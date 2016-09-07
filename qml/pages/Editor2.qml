@@ -72,9 +72,20 @@ Page {
 
             if (contentY-startY > 200 && time < 2 ) {
                 hdr.visible=false
+                f.anchors.top = page.top
                 console.debug("asd")
+            }
+            if (startY-contentY > 200 && time < 2 ) {
+                hdr.visible=true
+                f.anchors.top = hdr.bottom
+                console.debug("asdii")
 
             }
+            if (contentY<100){
+                hdr.visible=true
+                f.anchors.top = hdr.bottom
+            }
+
 
         }
 
@@ -114,7 +125,7 @@ Page {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
-                width: linecolumn.width *1.4
+                width: linecolumn.width *1.2
                 color:Theme.highlightBackgroundColor
 
                 Column {
