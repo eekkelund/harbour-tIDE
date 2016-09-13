@@ -42,11 +42,12 @@ private:
     qreal m_baseFontPointSize;
 
     QTextCharFormat keywordFormat;
-    QTextCharFormat classFormat;
-    QTextCharFormat singleLineCommentFormat;
-    QTextCharFormat multiLineCommentFormat;
+    QTextCharFormat qmlFormat;
+    QTextCharFormat jsFormat;
+    QTextCharFormat propertiesFormat;
     QTextCharFormat quotationFormat;
     QTextCharFormat functionFormat;
+    void loadDict(QString path, QStringList &patterns);
 };
 
 #endif // REALHIGHLIGHTER_H
