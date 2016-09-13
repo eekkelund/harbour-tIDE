@@ -66,10 +66,10 @@ void DocumentHandler::mergeFormatOnWordOrSelection(const QTextCharFormat &format
         cursor.select(QTextCursor::WordUnderCursor);
     cursor.mergeCharFormat(format);
 }
-void DocumentHandler::setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, qreal m_baseFontPointSize)
+void DocumentHandler::setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, QString highlightBackgroundColor, QString highlightDimmerColor, qreal m_baseFontPointSize)
 {
     if (m_realhighlighter) {
-        m_realhighlighter->setStyle(primaryColor, secondaryColor, highlightColor, secondaryHighlightColor, m_baseFontPointSize);
+        m_realhighlighter->setStyle(primaryColor, secondaryColor, highlightColor, secondaryHighlightColor, highlightBackgroundColor, highlightDimmerColor, m_baseFontPointSize);
     }
 }
 

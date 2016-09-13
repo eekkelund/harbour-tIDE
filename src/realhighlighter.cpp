@@ -139,7 +139,7 @@ void RealHighlighter::highlightBlock(const QString &text)
                 setFormat(start, text.length(), Qt::darkBlue);
             } else {
                 if (!QString("(){}[]").contains(ch))
-                    setFormat(start, 1, Qt::darkBlue);
+                    //setFormat(start, 1, Qt::green);
                 if (ch =='{' || ch == '}') {
                     bracketPositions += i;
                     if (ch == '{')
@@ -154,7 +154,7 @@ void RealHighlighter::highlightBlock(const QString &text)
 
         case NumberState:
             if (ch.isSpace() || !ch.isDigit()) {
-                setFormat(start, i - start, Qt::darkBlue);
+                setFormat(start, i - start, Qt::red);
                 state = StartState;
             } else {
                 ++i;
@@ -183,7 +183,7 @@ void RealHighlighter::highlightBlock(const QString &text)
                 QChar prev = (i > 0) ? text.at(i - 1) : QChar();
                 if (prev != '\\') {
                     ++i;
-                    setFormat(start, i - start, Qt::darkBlue);
+                    setFormat(start, i - start, Qt::blue);
                     state = StartState;
                 } else {
                     ++i;
@@ -197,7 +197,7 @@ void RealHighlighter::highlightBlock(const QString &text)
             if (ch == '*' && next == '/') {
                 ++i;
                 ++i;
-                setFormat(start, i - start, Qt::darkBlue);
+                setFormat(start, i - start, QColor(m_highlightDimmerColor));
                 state = StartState;
             } else {
                 ++i;
@@ -211,7 +211,7 @@ void RealHighlighter::highlightBlock(const QString &text)
     }
 
     if (state == CommentState)
-        setFormat(start, text.length(), Qt::darkBlue);
+        setFormat(start, text.length(), QColor(m_highlightBackgroundColor));
     else
         state = StartState;
 
@@ -233,16 +233,14 @@ void RealHighlighter::highlightBlock(const QString &text)
     blockState = (state & 15) | (bracketLevel << 4);
     setCurrentBlockState(blockState);
 }
-void RealHighlighter::setStyle(QString primaryColor,
-                               QString secondaryColor,
-                               QString highlightColor,
-                               QString secondaryHighlightColor,
-                               qreal baseFontPointSize)
+void RealHighlighter::setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, QString highlightBackgroundColor, QString highlightDimmerColor, qreal baseFontPointSize)
 {
     m_primaryColor = QString(primaryColor);
     m_secondaryColor = QString(secondaryColor);
     m_highlightColor = QString(highlightColor);
     m_secondaryHighlightColor = QString(secondaryHighlightColor);
+    m_highlightBackgroundColor = QString(highlightBackgroundColor);
+    m_highlightDimmerColor = QString(highlightDimmerColor);
     m_baseFontPointSize = baseFontPointSize;
     this->ruleUpdate();
     this->rehighlight();

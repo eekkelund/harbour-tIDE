@@ -359,6 +359,7 @@ Page {
                             });
                             documentHandler.setStyle(Theme.primaryColor, Theme.secondaryColor,
                                                      Theme.highlightColor, Theme.secondaryHighlightColor,
+                                                     Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
                                                      myeditor.font.pixelSize);
 
                             var txt = myeditor.text;//pyNotes.loadNote(textEditor.path);
@@ -379,8 +380,8 @@ Page {
 
                     id: nullEdit
                     color: "white"
-                    font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: TextEdit.Wrap//Text.WordWrap
+                    font.pixelSize: myeditor.font.pixelSize
+                    wrapMode: myeditor.wrapMode//Text.WordWrap
                     anchors.left: myeditor.left
                     anchors.right: myeditor.right
                     //width: 2
