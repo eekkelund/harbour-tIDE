@@ -116,13 +116,6 @@
     </message>
 </context>
 <context>
-    <name>Editor2</name>
-    <message>
-        <source>TITLE</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FirstPage</name>
     <message>
         <source>Show Page 2</source>

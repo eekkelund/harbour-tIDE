@@ -9,6 +9,7 @@ Page {
 
     property string ext: ".qml"
 
+
     SilicaListView {
         id:fileList
         anchors.top: parent.top
@@ -82,7 +83,7 @@ Page {
                 }
                 else {
                     filePath=path;
-                    pageStack.push(Qt.resolvedUrl("Editor2.qml"))
+                    pageStack.push(Qt.resolvedUrl("Editor2.qml"),{fileTitle: file.text})
                 }
 
             }

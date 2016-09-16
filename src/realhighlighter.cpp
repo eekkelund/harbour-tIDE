@@ -46,7 +46,7 @@ void RealHighlighter::ruleUpdate()
         highlightingRules.append(rule);
     }
 
-    keywordFormat.setForeground(QColor(m_secondaryHighlightColor));
+    keywordFormat.setForeground(QColor(m_highlightDimmerColor));
     keywordFormat.setFontWeight(QFont::Bold);
     QStringList keywordPatterns;
     loadDict(":/dictionaries/keywords.txt",keywordPatterns);
@@ -56,8 +56,9 @@ void RealHighlighter::ruleUpdate()
         rule.format = keywordFormat;
         highlightingRules.append(rule);
     }
-    jsFormat.setForeground(QColor(m_secondaryColor));
-    jsFormat.setFontWeight(QFont::Bold);
+    jsFormat.setForeground(QColor(m_secondaryHighlightColor));
+    jsFormat.setFontItalic(true);
+    //jsFormat.setFontWeight(QFont::Bold);
     QStringList jsPatterns;
     loadDict(":/dictionaries/javascript.txt",jsPatterns);
 
@@ -77,6 +78,29 @@ void RealHighlighter::ruleUpdate()
         highlightingRules.append(rule);
     }
 
+    //pythonFormat.setForeground(QColor(m_secondaryHighlightColor));
+    pythonFormat.setFontItalic(true);
+    //pythonFormat.setFontWeight(QFont::Bold);
+    QStringList pythonPatterns;
+    loadDict(":/dictionaries/python.txt",pythonPatterns);
+
+    foreach (const QString &pattern, pythonPatterns) {
+        rule.pattern = QRegExp(pattern);
+        rule.format = pythonFormat;
+        highlightingRules.append(rule);
+    }
+    silicaFormat.setForeground(QColor(m_highlightColor));
+    silicaFormat.setFontWeight(QFont::Bold);
+    QStringList silicaPatterns;
+    loadDict(":/dictionaries/silica.txt",silicaPatterns);
+
+    foreach (const QString &pattern, silicaPatterns) {
+        rule.pattern = QRegExp(pattern);
+        rule.format = silicaFormat;
+        highlightingRules.append(rule);
+    }
+
+
 
 }
 
@@ -91,6 +115,7 @@ void RealHighlighter::highlightBlock(const QString &text)
             index = expression.indexIn(text, index + length);
         }
     }
+    QTextCharFormat tmpFormat;
     enum {
         StartState = 0,
         NumberState = 1,
@@ -136,7 +161,9 @@ void RealHighlighter::highlightBlock(const QString &text)
                 state = CommentState;
             } else if (ch == '/' && next == '/') {
                 i = text.length();
-                setFormat(start, text.length(), Qt::darkBlue);
+                tmpFormat.setFontItalic(true);
+                tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
+                setFormat(start, text.length(), tmpFormat);
             } else {
                 if (!QString("(){}[]").contains(ch))
                     //setFormat(start, 1, Qt::green);
@@ -154,7 +181,7 @@ void RealHighlighter::highlightBlock(const QString &text)
 
         case NumberState:
             if (ch.isSpace() || !ch.isDigit()) {
-                setFormat(start, i - start, Qt::red);
+                setFormat(start, i - start, QColor(m_primaryColor));
                 state = StartState;
             } else {
                 ++i;
@@ -183,7 +210,9 @@ void RealHighlighter::highlightBlock(const QString &text)
                 QChar prev = (i > 0) ? text.at(i - 1) : QChar();
                 if (prev != '\\') {
                     ++i;
-                    setFormat(start, i - start, Qt::blue);
+                    tmpFormat.setFontItalic(true);
+                    tmpFormat.setForeground(QColor(m_secondaryColor));
+                    setFormat(start, i - start, tmpFormat);
                     state = StartState;
                 } else {
                     ++i;
@@ -197,7 +226,9 @@ void RealHighlighter::highlightBlock(const QString &text)
             if (ch == '*' && next == '/') {
                 ++i;
                 ++i;
-                setFormat(start, i - start, QColor(m_highlightDimmerColor));
+                tmpFormat.setFontItalic(true);
+                tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
+                setFormat(start, i - start, tmpFormat);
                 state = StartState;
             } else {
                 ++i;
@@ -210,8 +241,11 @@ void RealHighlighter::highlightBlock(const QString &text)
         }
     }
 
-    if (state == CommentState)
-        setFormat(start, text.length(), QColor(m_highlightBackgroundColor));
+    if (state == CommentState){
+        tmpFormat.setFontItalic(true);
+        tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
+        setFormat(start, text.length(), tmpFormat);
+    }
     else
         state = StartState;
 

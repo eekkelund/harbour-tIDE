@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.4
 
-import Mer.Cutes 1.1
 
 Page {
     id: page
@@ -21,10 +20,7 @@ Page {
         id:hdr
         title: qsTr("Application output")
     }
-    CutesActor {
-        id: actor
-        source: "launchProject.js"
-    }
+
     SilicaListView {
         id: outputList
         anchors.top: hdr.bottom

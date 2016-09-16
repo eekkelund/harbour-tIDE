@@ -8,6 +8,7 @@ Page {
     id: page
     //VerticalScrollDecorator{flickable:f}
     allowedOrientations: Orientation.All
+    property string fileTitle
     SilicaFlickable {
         id:hdr
 
@@ -31,7 +32,7 @@ Page {
             PageHeader  {
                 id:pgHead
                 width: parent.width
-                title: qsTr("TITLE")
+                title: fileTitle
             }
         }
     }
@@ -126,7 +127,9 @@ Page {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 width: linecolumn.width *1.2
-                color:Theme.highlightBackgroundColor
+                //color:Theme.highlightBackgroundColor
+                color: "transparent"
+
 
                 Column {
                     id: linecolumn
@@ -211,6 +214,7 @@ Page {
                             if (myeditor.text.length > previousText.length)
                             {
                                 var textBeforeCursor
+                                var textAfterCursor
                                 var openBrackets
                                 var closeBrackets
                                 var openBracketsCount
@@ -268,7 +272,8 @@ Page {
 
                                     }
                                     break
-                                    /*case "}":
+                                    case "}":
+                                    case "}":
                                     var lineBreakPosition
                                     for (var i = cursorPosition - 2; i >= 0; i--)
                                     {
@@ -285,14 +290,14 @@ Page {
                                     if (lineBreakPosition !== undefined)
                                     {
                                         textChangedManually = true
-                                        //cPosition=cursorPosition
-                                        //myeditor.select(lineBreakPosition + 1, cursorPosition - 1)
-                                        //cut()
+                                        cPosition=cursorPosition
+                                        myeditor.select(lineBreakPosition + 1, cursorPosition - 1)
+                                        cut()
                                         //cursorPosition = cPosition
 
                                         //remove(lineBreakPosition + 1, cursorPosition - 1)
 
-                                        textBeforeCursor = text.substring(0, cursorPosition)
+                                        textBeforeCursor = text.substring(0, cursorPosition-1)
                                         openBrackets = textBeforeCursor.match(/\{/g)
                                         closeBrackets = textBeforeCursor.match(/\}/g)
 
@@ -305,28 +310,33 @@ Page {
                                             if (closeBrackets !== null)
                                                 closeBracketsCount = closeBrackets.length
 
-                                            indentDepth = openBracketsCount - closeBracketsCount - 1
-                                            console.log(indentDepth)
+                                            indentDepth = openBracketsCount - closeBracketsCount -1
+
                                             if (indentDepth >= 0){
                                                 indentString = new Array(indentDepth + 1).join(myeditor.indentString)
                                                 indentStringCount = indentString.length
 
 
-                                                console.log(indentStringCount)
+
+
 
                                                 textChangedManually = true
 
-                                                cPosition =cursorPosition+indentStringCount+1
+                                                cPosition =cursorPosition+indentStringCount
                                                 console.log(cPosition+"and,"+cursorPosition)
-                                                myeditor.select(0,cursorPosition);
-                                                txti = myeditor.selectedText//KÄYTÄ TÄTÄ textBeforeCursor = text.substring(0, cursorPosition)
-                                                myeditor.select(cursorPosition,myeditor.text.length);
-                                                txti2= myeditor.selectedText
+                                                //myeditor.select(0,cursorPosition);
+
+
+                                                //txti = myeditor.selectedText//KÄYTÄ TÄTÄ textBeforeCursor = text.substring(0, cursorPosition)
+                                                //myeditor.select(cursorPosition,myeditor.text.length);
+                                                //txti2= myeditor.selectedText
+                                                textBeforeCursor = text.substring(0, cursorPosition)
+                                                textAfterCursor = text.substring(cursorPosition, text.length)
 
                                                 //console.log(cPosition+"and22,"+cursorPosition)
-                                                myeditor.deselect()
-                                                myeditor.text = txti + indentString + txti2
-                                                cursorPosition = cPosition
+                                                //myeditor.deselect()
+                                                myeditor.text = textBeforeCursor + indentString + textAfterCursor
+                                                cursorPosition = cPosition+1
                                                 console.log(cursorPosition)
                                                 //insert(cursorPosition - 1, indentString)
                                             }
@@ -339,7 +349,7 @@ Page {
                                         }
                                     }
 
-                                    break*/
+                                    break
                                 }
                             }
 

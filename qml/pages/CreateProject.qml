@@ -62,7 +62,7 @@ Page {
                             error.text =  qsTr("Projectname exists")
                         }
                         else {
-                            consolid:errore.log(projectQmlPath);
+                            console.log(projectQmlPath);
                             pageStack.replace(Qt.resolvedUrl("CreatorHome.qml")/*, {fullpath: projectPath +projectN.text+"/qml/"+projectN.text+".qml"}, {project: projectN.text}*/);
                         }
                     });
