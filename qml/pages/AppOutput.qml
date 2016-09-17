@@ -12,10 +12,9 @@ Page {
             py.call('stopProject.kill', [],function(result) {
                 console.log(result)
             });
-            console.log("stoppinf")
+            console.log("stopping")
         }
     }
-    //onDestroyed: py.call('startProject.stop', [],function(result) {});
     PageHeader {
         id:hdr
         title: qsTr("Application output")
@@ -27,37 +26,32 @@ Page {
         anchors.bottom: parent.bottom
         anchors.left:parent.left
         anchors.right: parent.right
+        clip: true
         model: ListModel { id: listModel }
         delegate: ListItem {
             id:listItem
             width: parent.width
-            height: Theme.itemSizeExtraSmall
+            contentHeight: outputText.height
             anchors {
                 left: parent.left
                 right: parent.right
                 margins: Theme.paddingMedium
             }
-
             Label {
                 id: outputText
+                x: Theme.paddingLarge
                 wrapMode: TextEdit.Wrap
                 width: parent.width
                 anchors.centerIn: parent
                 text: out
             }
+            menu: ContextMenu {
+                MenuItem {
+                    text: "Copy"
+                    onClicked: Clipboard.text=outputText.text
+                }
+            }
         }
-        /*Component.onCompleted: {
-            var add_item = function (reply) {
-                //for (var n in reply)
-                    listModel.append(reply);
-            };/*
-            actor.send({ from_qml : projectQmlPath}, {on_reply : add_item, on_progress: add_item})
-            //listModel.append(put);
-
-            actor.request("launch", {from_qml : projectQmlPath}, {on_reply : add_item, on_progress: add_item, on_error: add_item})
-
-        }*/
-
         Python {
             id: py
 

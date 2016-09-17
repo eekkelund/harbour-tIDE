@@ -3,6 +3,7 @@
 
 import pyotherside
 import os, errno
+from os.path import abspath
 from shutil import copyfile, copytree
 
 def create(projectName, projectPath):
@@ -18,22 +19,18 @@ def create(projectName, projectPath):
             copy(projectName, projectPath)
     except:
         raise
-
-
-
-                #                  copyfile("../template-app/template.desktop",
-                #                    projectPath+"/"+projectName+"/"+projectName+".desktop")
 def copy(projectName, projectPath):
     try:
         copytree("/usr/share/harbour-qmlcreator/qml/template-app/", projectPath+"/"+projectName)
-        rename(projectName, projectPath)
+        rename_files(projectName, projectPath)
+        rename_content(projectName, projectPath)
     except OSError as exc:
         if exc.errno == errno.ENOTDIR:
             shutil.copy("../../template-app/", projectPath+"/"+projectName)
         else:
             raise
 
-def rename(projectName, projectPath):
+def rename_files(projectName, projectPath):
     for root,dirs,files in os.walk(projectPath+"/"+projectName+"/"):
         if "pages" in dirs:
             dirs.remove("pages")
@@ -44,5 +41,23 @@ def rename(projectName, projectPath):
             parts = filename.split(".")
             newName = projectName+".{}".format(parts[1])
             os.rename(os.path.join(root, filename),os.path.join(root,newName))
+
     return "success"
 
+def rename_content(projectName, projectPath):
+    for root,dirs,files in os.walk(projectPath+"/"+projectName+"/"):
+        for file in files:
+            newlines = []
+            try:
+                with open(root+"/"+file, "r") as fi:
+                    for i, line in enumerate(fi, 1):
+                        newlines.append(line.replace("template", projectName))
+                with open(root+"/"+file, 'w') as fi:
+                    for line in newlines:
+                        fi.write(line)
+            except UnicodeDecodeError:
+                files.remove(file)
+            #with open(root+"/"+file, 'r') as fi:
+            #    for i, line in enumerate(fi, 1):
+            #        newlines.append(line.replace("template", projectName))
+    return "success"

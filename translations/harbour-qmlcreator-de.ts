@@ -51,6 +51,10 @@
         <source>My Cover</source>
         <translation>Mein Cover</translation>
     </message>
+    <message>
+        <source>Application Cover</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CreateProject</name>
@@ -133,6 +137,14 @@
         <source>Run the app</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show Second page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python example</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenFile</name>
@@ -163,11 +175,11 @@
 <context>
     <name>SecondPage</name>
     <message>
-        <source>Nested Page</source>
+        <source>Page 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Item</source>
+        <source>Index</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

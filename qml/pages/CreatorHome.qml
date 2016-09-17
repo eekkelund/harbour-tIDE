@@ -5,13 +5,7 @@ import io.thp.pyotherside 1.4
 
 Page {
     id: page
-    BusyIndicator {
-        id:indi
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: page.status == PageStatus.Deactivating
-            onRunningChanged: console.log(running)
-        }
+
 
     SilicaListView {
         id:projectList
@@ -64,6 +58,7 @@ Page {
                 console.log(name.text)
                 projectName = name.text
                 pageStack.push(Qt.resolvedUrl("ProjectHome.qml"))
+
             }
 
         }

@@ -43,7 +43,7 @@ Page {
         anchors.right: parent.right
         TextField {
             id: projectN
-
+            inputMethodHints: Qt.ImhNoPredictiveText
             placeholderText: qsTr("Name of the project")
             width: parent.width
             validator: RegExpValidator { regExp: /.{1,}/ }

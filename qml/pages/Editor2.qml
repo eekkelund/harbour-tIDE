@@ -74,12 +74,11 @@ Page {
             if (contentY-startY > 200 && time < 2 ) {
                 hdr.visible=false
                 f.anchors.top = page.top
-                console.debug("asd")
+
             }
             if (startY-contentY > 200 && time < 2 ) {
                 hdr.visible=true
                 f.anchors.top = hdr.bottom
-                console.debug("asdii")
 
             }
             if (contentY<100){
@@ -254,14 +253,14 @@ Page {
 
                                             cPosition =cursorPosition+indentStringCount
                                             console.log(cPosition+"and"+cursorPosition)
-                                            myeditor.select(0,cursorPosition);
-                                            txti = myeditor.selectedText
-                                            myeditor.select(cursorPosition,myeditor.text.length);
-                                            txti2= myeditor.selectedText
-
-
-                                            myeditor.deselect()
-                                            myeditor.text = txti + indentString+ txti2
+                                            textBeforeCursor = text.substring(0, cursorPosition)
+                                            textAfterCursor = text.substring(cursorPosition, text.length)
+                                            //myeditor.select(0,cursorPosition);
+                                            //txti = myeditor.selectedText
+                                            //myeditor.select(cursorPosition,myeditor.text.length);
+                                            //txti2= myeditor.selectedText
+                                            //myeditor.deselect()
+                                            myeditor.text = textBeforeCursor + indentString+ textAfterCursor
                                             cursorPosition = cPosition
                                             console.log(cursorPosition)
 
@@ -272,7 +271,6 @@ Page {
 
                                     }
                                     break
-                                    case "}":
                                     case "}":
                                     var lineBreakPosition
                                     for (var i = cursorPosition - 2; i >= 0; i--)

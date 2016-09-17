@@ -34,7 +34,7 @@ Dialog {
                 //anchors.left: parent.left
                 TextField {
                     id: fileName
-
+                    inputMethodHints: Qt.ImhNoPredictiveText
                     placeholderText: qsTr("Name of the file")
                     width: parent.width/2
                     validator: RegExpValidator { regExp: /.+/ }
