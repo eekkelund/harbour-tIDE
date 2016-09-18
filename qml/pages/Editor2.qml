@@ -13,6 +13,7 @@ Page {
         id:busy
         size: BusyIndicatorSize.Large
         anchors.centerIn: parent
+        running: true
 
     }
 
@@ -133,8 +134,8 @@ Page {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 width: linecolumn.width *1.2
-                color:Theme.highlightBackgroundColor
-                //color: "transparent"
+                //color:Theme.highlightBackgroundColor
+                color: "transparent"
 
 
                 Column {
@@ -145,13 +146,12 @@ Page {
                     Repeater {
                         id:repeat
                         model: nullEdit.lineCount
+                        //model: myeditor.positionToRectangle(myeditor.text.length)/myeditor.positionToRectangle(myeditor.text.length).height +1
                         delegate: TextEdit {
                             anchors.right: linecolumn.right
                             color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
-                            //font.family: settings.font
                             readOnly:true
                             font.pixelSize: myeditor.font.pixelSize
-                            //font.bold: index + 1 === myeditor.currentLine
                             text: index + 1
                         }
                     }
@@ -189,23 +189,25 @@ Page {
                     //color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     //visible:false
-                    onClicked: console.log(myeditor.positionToRectangle(cursorPosition).y+"sdsa"+myeditor.positionToRectangle(cursorPosition).height)
-                    Component.onCompleted: {
+                    onClicked: console.log(text[cursorPosition - 1] + "-last-"+myeditor.positionToRectangle(myeditor.text.length)+"sdsa"+myeditor.positionToRectangle(myeditor.text.length).height)
+                    /*Component.onCompleted: {
+                        //var txt;
                         py.call('editFile.openings', [filePath], function(result) {
-                            myeditor.text = result;
+                            //myeditor.text = result;
+                            documentHandler.text=result;
                         });
-                        var txt = myeditor.text;//pyNotes.loadNote(textEditor.path);
-                        documentHandler.text = txt;
-                        myeditor.modified = false;
+                        //var txt = myeditor.text;
+                        //documentHandler.text = txt;
+                       // myeditor.modified = false;
                         myeditor.forceActiveFocus();
 
-                    }
+                    }*/
                     onTextChanged: {
-                        if (focus) {
+                        /*if (focus) {
                             console.debug("onTextChanged")
                             myeditor.modified = true;
                             // nullEdit.text = myeditor.text;
-                        }
+                        }*/
 
 
                         // This is kind of stupid workaround, we forced to do this check because TextEdit sends
@@ -233,12 +235,13 @@ Page {
                                 var txti
                                 var txti2
                                 var indentStringCount
-
                                 var lastCharacter = text[cursorPosition - 1]
-
+                                console.log(lastCharacter)
+                                console.log(text[cursorPosition])
                                 switch (lastCharacter)
                                 {
                                 case "\n":
+                                    f.startY = f.contentY
                                     textBeforeCursor = text.substring(0, cursorPosition - 1)
                                     openBrackets = textBeforeCursor.match(/\{/g)
                                     closeBrackets = textBeforeCursor.match(/\}/g)
@@ -256,31 +259,25 @@ Page {
                                             indentString = new Array(indentDepth + 1).join(myeditor.indentString)
                                             indentStringCount = indentString.length
 
-
                                             textChangedManually = true
-
 
                                             cPosition =cursorPosition+indentStringCount
                                             console.log(cPosition+"and"+cursorPosition)
                                             textBeforeCursor = text.substring(0, cursorPosition)
                                             textAfterCursor = text.substring(cursorPosition, text.length)
-                                            //myeditor.select(0,cursorPosition);
-                                            //txti = myeditor.selectedText
-                                            //myeditor.select(cursorPosition,myeditor.text.length);
-                                            //txti2= myeditor.selectedText
-                                            //myeditor.deselect()
                                             myeditor.text = textBeforeCursor + indentString+ textAfterCursor
                                             cursorPosition = cPosition
                                             console.log(cursorPosition)
 
                                         }
-
-
-
-
                                     }
                                     break
                                 case "}":
+                                    //bug fix with letters after "}"
+                                    if (/^[a-zA-Z]/.test(text[cursorPosition])){
+                                        break
+                                    }
+
                                     var lineBreakPosition
                                     for (var i = cursorPosition - 2; i >= 0; i--)
                                     {
@@ -297,10 +294,13 @@ Page {
                                     if (lineBreakPosition !== undefined)
                                     {
                                         textChangedManually = true
-                                        cPosition=cursorPosition
-                                        myeditor.select(lineBreakPosition + 1, cursorPosition - 1)
-                                        cut()
-                                        //cursorPosition = cPosition
+                                        //cPosition=cursorPosition
+                                        cPosition =lineBreakPosition + 1
+                                        textBeforeCursor=text.substring(0, lineBreakPosition + 1)
+                                        textAfterCursor=text.substring(cursorPosition - 1, text.length)
+                                        text = textBeforeCursor + textAfterCursor
+                                        //cut()
+                                        cursorPosition = cPosition
 
                                         //remove(lineBreakPosition + 1, cursorPosition - 1)
 
@@ -370,22 +370,23 @@ Page {
                         cursorPosition: myeditor.cursorPosition
                         selectionStart: myeditor.selectionStart
                         selectionEnd: myeditor.selectionEnd
-                        Component.onCompleted: {
-                            py.call('editFile.openings', [filePath], function(result) {
-                                myeditor.text = result;
-                            });
+                        /*Component.onCompleted: {
+                            //var txt;
                             documentHandler.setStyle(Theme.primaryColor, Theme.secondaryColor,
                                                      Theme.highlightColor, Theme.secondaryHighlightColor,
                                                      Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
                                                      myeditor.font.pixelSize);
-
-                            var txt = myeditor.text;
-                            documentHandler.text = txt;
-                            myeditor.modified = false;
+                            py.call('editFile.openings', [filePath], function(result) {
+                                //myeditor.text = result;
+                                documentHandler.text = result;
+                            });
+                            //var txt = myeditor.text;
+                            //documentHandler.text = txt;
+                            //myeditor.modified = false;
 
                             myeditor.forceActiveFocus();
 
-                        }
+                        }*/
                         onTextChanged: {
                             myeditor.update()
                         }
@@ -406,16 +407,6 @@ Page {
                     visible: false
 
                 }
-                //Dirty way to get linenumbering working :)
-                /*Timer {
-                    interval: 100
-                    onTriggered: {
-                        nullEdit.text = nullEdit.text + "\n";
-                        stop();
-                    }
-                    Component.onCompleted: start()
-                }*/
-
             }
         }
         Python {
@@ -435,18 +426,24 @@ Page {
             onReceived: console.log('Unhandled event: ' + data)
         }
     }
-    /*onStatusChanged:{
+    onStatusChanged:{
         if((status !== PageStatus.Active) || (myeditor.text.length > 0)){
             return;
         }
         else {
-            busy.running=true;
+            //busy.running=true;
+            documentHandler.setStyle(Theme.primaryColor, Theme.secondaryColor,
+                                     Theme.highlightColor, Theme.secondaryHighlightColor,
+                                     Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
+                                     myeditor.font.pixelSize);
             py.call('editFile.openings', [filePath], function(result) {
-                myeditor.text = result;
+                //myeditor.text = result;
+                documentHandler.text = result;
             });
+            myeditor.forceActiveFocus();
             busy.running=false;
         }
-    }*/
+    }
 }
 
 
