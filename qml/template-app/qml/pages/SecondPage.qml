@@ -12,7 +12,6 @@ Page {
             right: parent.right
         }
         height: hdr.height+label.height
-        spacing: Theme.paddingLarge
         PageHeader {
             id:hdr
             title: qsTr("Page 2")

@@ -2,8 +2,6 @@ TARGET = template
 
 CONFIG += sailfishapp
 
-SOURCES += src/template.cpp
-
 OTHER_FILES += qml/template.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \

@@ -111,6 +111,10 @@
         <source>Open existing project</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No projects yet</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Editor</name>

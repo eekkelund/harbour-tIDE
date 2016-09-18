@@ -9,6 +9,13 @@ Page {
     //VerticalScrollDecorator{flickable:f}
     allowedOrientations: Orientation.All
     property string fileTitle
+    BusyIndicator {
+        id:busy
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
+
+    }
+
     SilicaFlickable {
         id:hdr
 
@@ -126,8 +133,8 @@ Page {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 width: linecolumn.width *1.2
-                //color:Theme.highlightBackgroundColor
-                color: "transparent"
+                color:Theme.highlightBackgroundColor
+                //color: "transparent"
 
 
                 Column {
@@ -138,11 +145,12 @@ Page {
                     Repeater {
                         id:repeat
                         model: nullEdit.lineCount
-                        delegate: Text {
+                        delegate: TextEdit {
                             anchors.right: linecolumn.right
                             color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
                             //font.family: settings.font
-                            font.pixelSize: Theme.fontSizeSmall
+                            readOnly:true
+                            font.pixelSize: myeditor.font.pixelSize
                             //font.bold: index + 1 === myeditor.currentLine
                             text: index + 1
                         }
@@ -171,6 +179,7 @@ Page {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     textMargin: 0
+                    labelVisible: false
                     //objectName: "myeditor"
                     wrapMode: TextEdit.Wrap//Text.WordWrap
 
@@ -271,7 +280,7 @@ Page {
 
                                     }
                                     break
-                                    case "}":
+                                case "}":
                                     var lineBreakPosition
                                     for (var i = cursorPosition - 2; i >= 0; i--)
                                     {
@@ -339,7 +348,7 @@ Page {
                                                 //insert(cursorPosition - 1, indentString)
                                             }
                                             //if (indentStringCount == null) {
-                                              //  indentStringCount =0
+                                            //  indentStringCount =0
                                             //}
 
 
@@ -370,7 +379,7 @@ Page {
                                                      Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
                                                      myeditor.font.pixelSize);
 
-                            var txt = myeditor.text;//pyNotes.loadNote(textEditor.path);
+                            var txt = myeditor.text;
                             documentHandler.text = txt;
                             myeditor.modified = false;
 
@@ -426,6 +435,18 @@ Page {
             onReceived: console.log('Unhandled event: ' + data)
         }
     }
+    /*onStatusChanged:{
+        if((status !== PageStatus.Active) || (myeditor.text.length > 0)){
+            return;
+        }
+        else {
+            busy.running=true;
+            py.call('editFile.openings', [filePath], function(result) {
+                myeditor.text = result;
+            });
+            busy.running=false;
+        }
+    }*/
 }
 
 

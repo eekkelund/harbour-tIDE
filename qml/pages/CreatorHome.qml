@@ -5,7 +5,7 @@ import io.thp.pyotherside 1.4
 
 Page {
     id: page
-
+    property string labelText: qsTr("Open existing project")
 
     SilicaListView {
         id:projectList
@@ -26,11 +26,12 @@ Page {
                 title: qsTr("TITLE")
             }
             Label {
+                id:topLabel
                 width: parent.width
                 //anchors.topMargin: Theme.paddingMedium
                 anchors.bottomMargin: Theme.paddingLarge
                 x: Theme.paddingLarge
-                text: qsTr("Open existing project")
+                text: labelText
                 color: Theme.secondaryHighlightColor
                 font.pixelSize: Theme.fontSizeLarge
                 //horizontalAlignment: Text.AlignRight
@@ -72,9 +73,15 @@ Page {
             importModule('createProject', function() {});
             importModule('openFile', function () {
                 py.call('openFile.projects', [projectPath], function(result2) {
-                    for (var i=0; i<result2.length; i++) {
-                        listModel.append(result2[i]);
-                        console.log(result2[i].project);
+                    if (result2 === 0){
+                        labelText=qsTr("No projects yet")
+                    }
+                    else {
+                        labelText=qsTr("Open existing project")
+                        for (var i=0; i<result2.length; i++) {
+                            listModel.append(result2[i]);
+                            console.log(result2[i].project);
+                        }
                     }
 
 
@@ -88,16 +95,16 @@ Page {
         onReceived: console.log('Unhandled event: ' + data)
     }
 
-function loadProjects() {
-    listModel.clear();
-    py.call('openFile.projects', [projectPath], function(result2) {
-        for (var i=0; i<result2.length; i++) {
-            listModel.append(result2[i]);
-            console.log(result2[i].project);
-        }
-    });
+    function loadProjects() {
+        listModel.clear();
+        py.call('openFile.projects', [projectPath], function(result2) {
+            for (var i=0; i<result2.length; i++) {
+                listModel.append(result2[i]);
+                console.log(result2[i].project);
+            }
+        });
 
-}
+    }
 }
 
 

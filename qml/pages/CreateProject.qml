@@ -63,7 +63,7 @@ Page {
                         }
                         else {
                             console.log(projectQmlPath);
-                            pageStack.replace(Qt.resolvedUrl("CreatorHome.qml")/*, {fullpath: projectPath +projectN.text+"/qml/"+projectN.text+".qml"}, {project: projectN.text}*/);
+                            pageStack.replaceAbove(null, Qt.resolvedUrl("CreatorHome.qml"));
                         }
                     });
 

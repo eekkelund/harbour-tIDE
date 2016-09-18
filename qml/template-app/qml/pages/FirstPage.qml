@@ -28,6 +28,7 @@ Page {
                 text:count
                 onPressed: {
                     py.call("button.press",[count],function(result) {
+                        console.log(qsTr("Sent: " +count+" Received: "+result))
                         count=result
                     });
                 }

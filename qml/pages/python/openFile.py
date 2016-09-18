@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from os import listdir, pardir
-from os.path import isfile, join,abspath
+from os.path import isfile, join,abspath, exists
 import glob
 import pyotherside
 
@@ -20,9 +20,12 @@ def filess(projectPath, projectName):
 
 def projects(path):
     projects=[]
-    for f in listdir(path):
-        projects.append({'project':f})
-    return projects
+    if not exists(path):
+        return 0
+    else:
+        for f in listdir(path):
+            projects.append({'project':f})
+        return projects
 
 def files(path):
     #onlyfiles=[f for f in listdir(projectPath+'/' + projectName) if isfile(join(projectPath+'/' + projectName, f))]
