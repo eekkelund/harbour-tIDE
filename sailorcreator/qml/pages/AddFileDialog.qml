@@ -11,9 +11,6 @@ Dialog {
         id:dHdr
         acceptText: qsTr("Add")
     }
-
-
-    //  anchors.fill: parent
     SilicaListView {
         width: page.width
         contentHeight: row.height
@@ -27,11 +24,6 @@ Dialog {
             Row {
                 id:row
                 anchors.fill: parent
-                //width: parent.width
-                //anchors.top: dHdr.bottom
-                //anchors.bottom: parent.bottom
-                //anchors.right: parent.right
-                //anchors.left: parent.left
                 TextField {
                     id: fileName
                     inputMethodHints: Qt.ImhNoPredictiveText
@@ -77,9 +69,7 @@ Dialog {
             fileName.focus= false;
             fileName.text = ""
             cBox.currentIndex = 0
-            dialog.acceptDestination=Qt.resolvedUrl("Editor.qml")
-            //pageStack.replace(Qt.resolvedUrl("Editor.qml"))
-
+            dialog.acceptDestination=Qt.resolvedUrl("Editor2.qml")
         }
     }
     onOpened:{

@@ -26,12 +26,12 @@ DISTFILES += \
     qml/pages/python/openFile.py \
    # qml/pages/Editor.qml \
     qml/pages/python/editFile.py \
-    qml/pages/AddFile.qml \
+    #qml/pages/AddFile.qml \
     qml/pages/python/addFile.py \
-    qml/pages/CreateProject2.qml \
-    qml/pages/AddFile2.qml \
+    #qml/pages/CreateProject2.qml \
+    #qml/pages/AddFile2.qml \
     qml/pages/AddFileDialog.qml \
-    qml/pages/CreateProjectDialog.qml \
+    #qml/pages/CreateProjectDialog.qml \
     qml/pages/AppOutput.qml \
     qml/pages/python/stopProject.py \
     qml/pages/Editor2.qml

@@ -2,32 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>AddFile</name>
-    <message>
-        <source>Add a new file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name of the file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add file</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AddFile2</name>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name of the file</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AddFileDialog</name>
     <message>
         <source>Add</source>
@@ -72,28 +46,6 @@
     </message>
     <message>
         <source>Projectname exists</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CreateProject2</name>
-    <message>
-        <source>Name of the project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CreateProjectDialog</name>
-    <message>
-        <source>Create</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name of the project</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

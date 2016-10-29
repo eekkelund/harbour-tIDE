@@ -6,7 +6,6 @@ import eekkelund.sailorcreator.documenthandler 1.0
 
 Page {
     id: page
-    //VerticalScrollDecorator{flickable:f}
     allowedOrientations: Orientation.All
     property string fileTitle
     BusyIndicator {
@@ -14,14 +13,9 @@ Page {
         size: BusyIndicatorSize.Large
         anchors.centerIn: parent
         running: true
-
     }
-
     SilicaFlickable {
         id:hdr
-
-        //anchors.left: parent.left
-        //anchors.right:parent.right
         anchors.top:parent.top
         height: headerColumn.height
         width: parent.width
@@ -36,7 +30,6 @@ Page {
             id:headerColumn
             width: parent.width
             spacing: Theme.paddingSmall
-            //height: pgHead.height
             PageHeader  {
                 id:pgHead
                 width: parent.width
@@ -44,19 +37,14 @@ Page {
             }
         }
     }
-
     SilicaFlickable {
-
         id:f
         clip: true
         anchors.top: hdr.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right:parent.right
-        // anchors.fill: parent
-
-        contentHeight:  contentColumn.height //+ headerColumn.height
-        //contentWidth: f.width
+        contentHeight:  contentColumn.height
         property int time
         property int startY
         VerticalScrollDecorator {}
@@ -93,51 +81,24 @@ Page {
                 hdr.visible=true
                 f.anchors.top = hdr.bottom
             }
-
-
         }
-
-
-        /*Column {
-            id:headerColumn
-            width: parent.width
-            spacing: Theme.paddingMedium
-            PageHeader  {
-                width: parent.width
-                title: qsTr("TITLE")
-            }
-        }*/
-
         Item {
             id:all
             anchors.fill: parent
-            //anchors.top:parent.top
-            //anchors.top: hdr.bottom
-            //anchors.bottom: parent.bottom
-            //anchors.left: parent.left
-            //anchors.right:parent.right
-            //width: parent.width
-
             property int indentSize: 4
-
             onIndentSizeChanged: {
                 var indentString = ""
                 for (var i = 0; i < indentSize; i++)
                     indentString += " "
                 myeditor.indentString = indentString
             }
-
-
             Rectangle {
                 id: linenum
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 width: linecolumn.width *1.2
-                //color:Theme.highlightBackgroundColor
                 color: "transparent"
-
-
                 Column {
                     id: linecolumn
                     y: Theme.paddingSmall
@@ -146,7 +107,6 @@ Page {
                     Repeater {
                         id:repeat
                         model: nullEdit.lineCount
-                        //model: myeditor.positionToRectangle(myeditor.text.length)/myeditor.positionToRectangle(myeditor.text.length).height +1
                         delegate: TextEdit {
                             anchors.right: linecolumn.right
                             color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
@@ -157,15 +117,11 @@ Page {
                     }
                 }
             }
-
             Column {
                 id: contentColumn
                 anchors.top: parent.top
                 anchors.left: linenum.right
                 anchors.right: parent.right
-                //spacing: 5
-
-
 
                 TextArea {
 
@@ -180,38 +136,12 @@ Page {
                     anchors.right: parent.right
                     textMargin: 0
                     labelVisible: false
-                    //objectName: "myeditor"
-                    wrapMode: TextEdit.Wrap//Text.WordWrap
+                    wrapMode: TextEdit.Wrap
 
-                    //anchors.top: parent.top
-                    //width: parent.width
                     text: documentHandler.text
-                    //color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    //visible:false
                     onClicked: console.log(text[cursorPosition - 1] + "-last-"+myeditor.positionToRectangle(myeditor.text.length)+"sdsa"+myeditor.positionToRectangle(myeditor.text.length).height)
-                    /*Component.onCompleted: {
-                        //var txt;
-                        py.call('editFile.openings', [filePath], function(result) {
-                            //myeditor.text = result;
-                            documentHandler.text=result;
-                        });
-                        //var txt = myeditor.text;
-                        //documentHandler.text = txt;
-                       // myeditor.modified = false;
-                        myeditor.forceActiveFocus();
-
-                    }*/
                     onTextChanged: {
-                        /*if (focus) {
-                            console.debug("onTextChanged")
-                            myeditor.modified = true;
-                            // nullEdit.text = myeditor.text;
-                        }*/
-
-
-                        // This is kind of stupid workaround, we forced to do this check because TextEdit sends
-                        // us "textChanged" and "lengthChanged" signals after every select() and forceActiveFocus() call
                         if (text !== previousText)
                         {
                             if (textChangedManually)
@@ -370,23 +300,7 @@ Page {
                         cursorPosition: myeditor.cursorPosition
                         selectionStart: myeditor.selectionStart
                         selectionEnd: myeditor.selectionEnd
-                        /*Component.onCompleted: {
-                            //var txt;
-                            documentHandler.setStyle(Theme.primaryColor, Theme.secondaryColor,
-                                                     Theme.highlightColor, Theme.secondaryHighlightColor,
-                                                     Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
-                                                     myeditor.font.pixelSize);
-                            py.call('editFile.openings', [filePath], function(result) {
-                                //myeditor.text = result;
-                                documentHandler.text = result;
-                            });
-                            //var txt = myeditor.text;
-                            //documentHandler.text = txt;
-                            //myeditor.modified = false;
 
-                            myeditor.forceActiveFocus();
-
-                        }*/
                         onTextChanged: {
                             myeditor.update()
                         }
@@ -395,14 +309,12 @@ Page {
 
                 }
                 TextEdit {
-
                     id: nullEdit
                     color: "white"
                     font.pixelSize: myeditor.font.pixelSize
-                    wrapMode: myeditor.wrapMode//Text.WordWrap
+                    wrapMode: myeditor.wrapMode
                     anchors.left: myeditor.left
                     anchors.right: myeditor.right
-                    //width: 2
                     text: myeditor.text
                     visible: false
 
@@ -431,13 +343,11 @@ Page {
             return;
         }
         else {
-            //busy.running=true;
             documentHandler.setStyle(Theme.primaryColor, Theme.secondaryColor,
                                      Theme.highlightColor, Theme.secondaryHighlightColor,
                                      Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
                                      myeditor.font.pixelSize);
             py.call('editFile.openings', [filePath], function(result) {
-                //myeditor.text = result;
                 documentHandler.text = result;
             });
             myeditor.forceActiveFocus();
@@ -445,5 +355,3 @@ Page {
         }
     }
 }
-
-
