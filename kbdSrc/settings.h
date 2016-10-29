@@ -8,12 +8,6 @@ class Settings : public QQuickItem
 
     Q_OBJECT
 
-public slots:
-    void save(QString name, QString data);
-    void restart();
-    void backup();
-    void restore();
-
 public:
     Q_INVOKABLE QVariant load(QString name);
     Settings(QQuickItem *parent=0);

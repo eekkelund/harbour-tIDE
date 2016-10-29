@@ -24,7 +24,7 @@ DISTFILES += \
     qml/pages/python/createProject.py \
     qml/pages/python/startProject.py \
     qml/pages/python/openFile.py \
-    qml/pages/Editor.qml \
+   # qml/pages/Editor.qml \
     qml/pages/python/editFile.py \
     qml/pages/AddFile.qml \
     qml/pages/python/addFile.py \
@@ -33,7 +33,6 @@ DISTFILES += \
     qml/pages/AddFileDialog.qml \
     qml/pages/CreateProjectDialog.qml \
     qml/pages/AppOutput.qml \
-    qml/pages/launchProject.js \
     qml/pages/python/stopProject.py \
     qml/pages/Editor2.qml
 

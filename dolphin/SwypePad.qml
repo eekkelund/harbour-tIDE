@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 import com.jolla.hwr 1.0
 import com.meego.maliitquick 1.0
 import com.jolla.keyboard 1.0
-import harbour.dolphin.keyboard 1.0
+import eekkelund.sailorcreator.keyboard 1.0
 
 
 

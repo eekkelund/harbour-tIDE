@@ -1,9 +1,9 @@
 import QtQuick 2.2
 import com.jolla.keyboard 1.0
 import Sailfish.Silica 1.0
-import harbour.dolphin.keyboard 1.0
+import eekkelund.sailorcreator.keyboard 1.0
 import com.meego.maliitquick 1.0
-import "Emoji.js" as Emoji
+//import "Emoji.js" as Emoji
 
 Rectangle {
 
@@ -151,18 +151,18 @@ Rectangle {
         itemHeight: height
         clip: true
 
-        model: VisualItemModel {
+        /*model: VisualItemModel {
             EmojiSlide { content: frequent }
             EmojiSlide { content: face }
             EmojiSlide { content: nature }
             EmojiSlide { content: object }
             EmojiSlide { content: place }
             EmojiSlide { content: sign }
-        }
+        }*/
 
-        EmojiSkinPopup {
+        /*EmojiSkinPopup {
             id: skinPopup
-        }
+        }*/
     }
 
     Close {

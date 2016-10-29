@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     QGuiApplication *app = SailfishApp::application(argc, argv);
     QQuickView *view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/harbour-sailorcreator.qml"));
-    qmlRegisterType<DocumentHandler>("eekkelund.documenthandler", 1, 0, "DocumentHandler");
+    qmlRegisterType<DocumentHandler>("eekkelund.sailorcreator.documenthandler", 1, 0, "DocumentHandler");
     view->showFullScreen();
 
     return app->exec();

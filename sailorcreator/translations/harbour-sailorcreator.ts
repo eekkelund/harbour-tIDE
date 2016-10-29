@@ -126,38 +126,11 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show Page 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UI Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hello Sailors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Run the app</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show Second page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Python example</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>OpenFile</name>
-    <message>
-        <source>Open File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select file to open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

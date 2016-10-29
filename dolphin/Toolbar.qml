@@ -26,12 +26,12 @@ Flow {
 
     Component.onCompleted: {
         //Emoji Button
-        if ( settings.emoji ) {
+        /*if ( settings.emoji ) {
             var emoji = emojiBar.createObject(root, {  })
-        }
+        }*/
 
         var toolbar
-
+toolbar = cursorBar.createObject(root, {  })
         //Toolbar
         switch(settings.toolbar) {
         case 1:
@@ -47,7 +47,7 @@ Flow {
 
 
     //Emoji
-    Component {
+    /*Component {
         id: emojiBar
 
         WidgetKey {
@@ -69,7 +69,7 @@ Flow {
                 timer.restart()
             }
         }
-    }
+    }*/
 
     //Cursor
     Component {
@@ -82,7 +82,7 @@ Flow {
                 CursorKey {
                     width: height
                     height: Theme.itemSizeSmall
-                    visible: root.count === 0 && !inEmojiView ? true : false
+                    visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                     direction: modelData
                 }
             }
@@ -101,7 +101,7 @@ Flow {
                 CommitKey {
                     width: height / 2
                     height: Theme.itemSizeSmall
-                    visible: root.count === 0 && !inEmojiView ? true : false
+                    visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                     caption: modelData
                     onClicked: MInputMethodQuick.sendCommit(caption)
                 }
@@ -119,7 +119,7 @@ Flow {
             CommitKey {
                 width: height
                 height: Theme.itemSizeSmall
-                visible: root.count === 0 && !inEmojiView ? true : false
+                visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                 caption: "HM"
                 onClicked: MInputMethodQuick.sendKey(Qt.Key_Home, 0,  "", Maliit.KeyClick)
             }
@@ -127,7 +127,7 @@ Flow {
             CommitKey {
                 width: height
                 height: Theme.itemSizeSmall
-                visible: root.count === 0 && !inEmojiView ? true : false
+                visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                 caption: "ED"
                 onClicked: MInputMethodQuick.sendKey(Qt.Key_End, 0,  "", Maliit.KeyClick)
             }
@@ -135,7 +135,7 @@ Flow {
             CommitKey {
                 width: height
                 height: Theme.itemSizeSmall
-                visible: root.count === 0 && !inEmojiView ? true : false
+                visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                 caption: "AL"
                 onClicked: MInputMethodQuick.sendKey(Qt.Key_A, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
             }
@@ -143,7 +143,7 @@ Flow {
             CommitKey {
                 width: height
                 height: Theme.itemSizeSmall
-                visible: root.count === 0 && !inEmojiView ? true : false
+                visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                 caption: "CP"
                 onClicked: MInputMethodQuick.sendKey(Qt.Key_C, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
             }
@@ -151,7 +151,7 @@ Flow {
             CommitKey {
                 width: height
                 height: Theme.itemSizeSmall
-                visible: root.count === 0 && !inEmojiView ? true : false
+                visible: root.count === 0 /*&& !inEmojiView*/ ? true : false
                 caption: "PS"
                 onClicked:  MInputMethodQuick.sendKey(Qt.Key_V, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
             }

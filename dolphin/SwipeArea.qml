@@ -89,7 +89,7 @@ MouseArea {
             console.warn("XXXXXXXXXXXXXXXXXXXXXXXx")
         } else if ( distance >= 0 && angle >= 135 && angle <= 214 ) {
 
-            inEmojiView = true
+            //inEmojiView = true
             if ( distance / 4 >= 1 ) {
                 swipeR = true
                 console.warn("XXXXXXXXXXXXXXXXXXXXXXXx")

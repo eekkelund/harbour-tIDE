@@ -89,7 +89,7 @@ void RealHighlighter::ruleUpdate()
         rule.format = pythonFormat;
         highlightingRules.append(rule);
     }
-    silicaFormat.setForeground(QColor(m_highlightColor));
+    /*silicaFormat.setForeground(QColor(m_highlightColor));
     silicaFormat.setFontWeight(QFont::Bold);
     QStringList silicaPatterns;
     loadDict(":/dictionaries/silica.txt",silicaPatterns);
@@ -98,7 +98,7 @@ void RealHighlighter::ruleUpdate()
         rule.pattern = QRegExp(pattern);
         rule.format = silicaFormat;
         highlightingRules.append(rule);
-    }
+    }*/
 
 
 

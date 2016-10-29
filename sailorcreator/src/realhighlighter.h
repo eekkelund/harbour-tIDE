@@ -48,7 +48,7 @@ private:
     QTextCharFormat jsFormat;
     QTextCharFormat propertiesFormat;
     QTextCharFormat pythonFormat;
-    QTextCharFormat silicaFormat;
+    //QTextCharFormat silicaFormat;
     void loadDict(QString path, QStringList &patterns);
 };
 
