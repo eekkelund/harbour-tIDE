@@ -12,6 +12,7 @@ ApplicationWindow
     property string projectPath: "/home"+"/nemo/Projects"
     property string projectName
     property string filePath
+    property string singleFile
     property string projectQmlPath:(projectPath +"/"+ projectName+"/qml/"+ projectName+".qml");
 }
 

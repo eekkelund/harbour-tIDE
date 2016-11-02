@@ -83,7 +83,8 @@ Page {
                 }
                 else {
                     filePath=path;
-                    pageStack.push(Qt.resolvedUrl("Editor2.qml"),{fileTitle: file.text})
+                    singleFile =file.text
+                    pageStack.push(Qt.resolvedUrl("Editor2.qml"))//,{fileTitle: file.text})
                 }
 
             }

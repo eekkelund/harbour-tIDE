@@ -69,6 +69,7 @@ Dialog {
             fileName.focus= false;
             fileName.text = ""
             cBox.currentIndex = 0
+            singleFile=fName+ext
             dialog.acceptDestination=Qt.resolvedUrl("Editor2.qml")
         }
     }

@@ -7,7 +7,8 @@ import eekkelund.sailorcreator.documenthandler 1.0
 Page {
     id: page
     allowedOrientations: Orientation.All
-    property string fileTitle
+    property string fileTitle: singleFile
+    property string fileType: fileTitle.split(".").slice(-1)[0];
     BusyIndicator {
         id:busy
         size: BusyIndicatorSize.Large
