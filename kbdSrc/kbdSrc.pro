@@ -10,13 +10,15 @@ uri = eekkelund.sailorcreator.keyboard
 SOURCES += \
     database.cpp \
     src.cpp \
-    settings.cpp
+    settings.cpp \
+    filewatcher.cpp
 
 
 HEADERS += \
     database.h \
     src.h \
-    settings.h
+    settings.h \
+    filewatcher.h
 
 OTHER_FILES = qmldir
 

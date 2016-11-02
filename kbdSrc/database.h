@@ -5,6 +5,18 @@
 #include <QStringList>
 #include <QVariantList>
 #include <QMap>
+#include <QDir>
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QFile>
+#include <QObject>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QQuickItem>
+#include <QDebug>
+#include <QStringList>
+#include <QFileInfo>
+#include "filewatcher.h"
 
 class Database : public QQuickItem
 {
@@ -20,6 +32,7 @@ public slots:
     void adjust(QString name, QString word);
     void debug(QString sql);
     void index(QString name);
+    void changed(QString type);
 
 public:
     ~Database();
@@ -40,7 +53,14 @@ Q_SIGNALS:
 public Q_SLOTS:
     void setName(QString name);
 
+private slots:
+
+  //void directoryChanged(const QString & path);
+  //void fileChanged(const QString & path);
+
 private:
+
+ // QFileSystemWatcher * watcher;
 
     QString m_name;
 

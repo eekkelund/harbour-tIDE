@@ -9,8 +9,8 @@ InputHandler {
     id: inputHandler
     Database {
         id: database
-        name: "develop"
-        Component.onCompleted: database.initial("develop");
+        name: "qml"
+        Component.onCompleted:  database.initial("qml");
     }
 
     onPreeditChanged: {

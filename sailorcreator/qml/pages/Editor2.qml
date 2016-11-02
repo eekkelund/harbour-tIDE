@@ -328,7 +328,7 @@ Page {
             Component.onCompleted: {
                 addImportPath(Qt.resolvedUrl('./python'));
                 importModule('editFile', function () {
-
+                    py.call('editFile.changeFiletype', [fileType], function(result){});
                 });
 
             }

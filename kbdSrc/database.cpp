@@ -1,14 +1,5 @@
 #include "database.h"
-#include <QDir>
-#include <QtSql>
-#include <QSqlDatabase>
-#include <QFile>
-#include <QObject>
-#include <QSqlError>
-#include <QSqlQuery>
-#include <QQuickItem>
-#include <QDebug>
-#include <QStringList>
+
 
 
 Database::~Database()
@@ -26,12 +17,43 @@ void Database::setName(QString name)
     m_name = name;
 }
 
+/*void Database::directoryChanged(const QString & path)
+{
+    printf("sad");
+    qDebug() << path;
+    QSettings settings(QString(path), QSettings::IniFormat);
+    QString someValue = settings.value("fileType/type", "default value if unset").toString(); // settings.value() returns QVariant
+    qDebug() << someValue;
+}
+
+void Database::fileChanged(const QString & path)
+{
+    printf("path");
+    qDebug() << path;
+    QFileInfo checkFile(path);
+    QSettings settings(QString(path), QSettings::IniFormat);
+    QString someValue = settings.value("fileType/type", "default value if unset").toString(); // settings.value() returns QVariant
+    qDebug() << someValue;
+    while(!checkFile.exists()){}
+    //std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    watcher->addPath(path);
+}*/
 
 
 Database::Database(QQuickItem *parent)
     : QQuickItem(parent)
 {
-    if ( database.database(m_name).isValid() == false ) {
+    FileWatcher *fs = new FileWatcher();
+    connect(fs, SIGNAL(changed(QString)), this, SLOT(changed(QString)));
+
+    //watcher =0;
+    //watcher = new QFileSystemWatcher(this);
+    //connect(watcher, SIGNAL(fileChanged(const QString &)), this, SLOT(fileChanged(const QString &)));
+    //connect(watcher, SIGNAL(directoryChanged(const QString &)), SLOT(directoryChanged(const QString &)));
+    //watcher->addPath("/var/lib/harbour-sailorcreator-keyboard/config/config.conf");
+    //watcher->addPath("/var/lib/harbour-sailorcreator-keyboard/config/");
+    //printf("watcher");
+   /* if ( database.database(m_name).isValid() == false ) {
         database = QSqlDatabase::addDatabase("QSQLITE", m_name);
     } else {
         database = QSqlDatabase::database(m_name);
@@ -40,28 +62,28 @@ Database::Database(QQuickItem *parent)
     database.setConnectOptions("QSQLITE_ENABLE_SHARED_CACHE = 1;");
     database.setDatabaseName("/var/lib/harbour-sailorcreator-keyboard/database/" + m_name + ".sqlite");
     qDebug()<<database.databaseName();
-        QFileInfo fi("/var/lib/harbour-sailorcreator-keyboard/database/" + m_name + ".sqlite");
-        if(QFile::exists("/var/lib/harbour-sailorcreator-keyboard/database/" + m_name + ".sqlite")) {
-             qDebug() << fi.filePath();
-         }
+    QFileInfo fi("/var/lib/harbour-sailorcreator-keyboard/database/" + m_name + ".sqlite");
+    if(QFile::exists("/var/lib/harbour-sailorcreator-keyboard/database/" + m_name + ".sqlite")) {
+        qDebug() << fi.filePath();
+    }
 
 
-        database.open();
-        qDebug() << database.lastError();
+    database.open();
+    qDebug() << database.lastError();
 
-        QSqlQuery query(database);
-        qDebug() << query.lastError();
+    QSqlQuery query(database);
+    qDebug() << query.lastError();
 
-        query.exec("PRAGMA synchronous = OFF; PRAGMA journal_mode = OFF; PRAGMA default_cache_size =32768; PRAGMA foreign_keys = OFF; PRAGMA count_changes = OFF; PRAGMA temp_store = qvectorMEMORY");
-        qDebug() << query.lastError();
-
+    query.exec("PRAGMA synchronous = OFF; PRAGMA journal_mode = OFF; PRAGMA default_cache_size =32768; PRAGMA foreign_keys = OFF; PRAGMA count_changes = OFF; PRAGMA temp_store = qvectorMEMORY");
+    qDebug() << query.lastError();
+*/
 }
 
 
 void Database::initial(QString name)
 {
     if ( database.database(name).isValid() == false ) {
-        database = QSqlDatabase::addDatabase("QSQLITE", name);
+        //database = QSqlDatabase::addDatabase("QSQLITE", name);
     } else {
         database = QSqlDatabase::database(name);
     }
@@ -69,20 +91,20 @@ void Database::initial(QString name)
     database.setConnectOptions("QSQLITE_ENABLE_SHARED_CACHE = 1;");
     database.setDatabaseName("/var/lib/harbour-sailorcreator-keyboard/database/" + name + ".sqlite");
     qDebug()<<database.databaseName();
-        QFileInfo fi("/var/lib/harbour-sailorcreator-keyboard/database/" + name + ".sqlite");
-        if(QFile::exists("/var/lib/harbour-sailorcreator-keyboard/database/" + name + ".sqlite")) {
-             qDebug() << fi.filePath();
-         }
+    QFileInfo fi("/var/lib/harbour-sailorcreator-keyboard/database/" + name + ".sqlite");
+    if(QFile::exists("/var/lib/harbour-sailorcreator-keyboard/database/" + name + ".sqlite")) {
+        qDebug() << fi.filePath();
+    }
 
 
-        database.open();
-        qDebug() << database.lastError();
+    database.open();
+    qDebug() << database.lastError();
 
-        QSqlQuery query(database);
-        qDebug() << query.lastError();
+    QSqlQuery query(database);
+    qDebug() << query.lastError();
 
-        query.exec("PRAGMA synchronous = OFF; PRAGMA journal_mode = OFF; PRAGMA default_cache_size =32768; PRAGMA foreign_keys = OFF; PRAGMA count_changes = OFF; PRAGMA temp_store = qvectorMEMORY");
-        qDebug() << query.lastError();
+    query.exec("PRAGMA synchronous = OFF; PRAGMA journal_mode = OFF; PRAGMA default_cache_size =32768; PRAGMA foreign_keys = OFF; PRAGMA count_changes = OFF; PRAGMA temp_store = qvectorMEMORY");
+    qDebug() << query.lastError();
 
 }
 
@@ -152,6 +174,11 @@ void Database::index(QString name)
         database.exec("REINDEX");
 
     }
+}
+
+void Database::changed(QString type)
+{
+    initial(type);
 }
 
 
