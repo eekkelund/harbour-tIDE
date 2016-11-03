@@ -2,6 +2,11 @@
 #define SETTINGS_H
 
 #include <QQuickItem>
+#include <QSettings>
+#include <QString>
+//#include <QProcess>
+#include <QStandardPaths>
+
 
 class Settings : public QQuickItem
 {

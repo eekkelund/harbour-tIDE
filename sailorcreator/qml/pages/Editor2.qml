@@ -301,7 +301,7 @@ Page {
                         cursorPosition: myeditor.cursorPosition
                         selectionStart: myeditor.selectionStart
                         selectionEnd: myeditor.selectionEnd
-
+                        Component.onCompleted: documentHandler.setDictionary(fileType);
                         onTextChanged: {
                             myeditor.update()
                         }

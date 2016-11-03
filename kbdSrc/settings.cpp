@@ -1,8 +1,4 @@
 #include "settings.h"
-#include <QSettings>
-#include <QString>
-#include <QProcess>
-#include <QStandardPaths>
 
 Settings::Settings(QQuickItem *parent)
     : QQuickItem(parent)

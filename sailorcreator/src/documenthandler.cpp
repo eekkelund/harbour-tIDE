@@ -73,6 +73,13 @@ void DocumentHandler::setStyle(QString primaryColor, QString secondaryColor, QSt
     }
 }
 
+void DocumentHandler::setDictionary(QString dictionary)
+{
+    if (m_realhighlighter) {
+        m_realhighlighter->setDictionary(dictionary);
+    }
+}
+
 QTextCursor DocumentHandler::textCursor() const
 {
     QTextCursor cursor = QTextCursor(m_doc);

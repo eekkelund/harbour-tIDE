@@ -75,6 +75,7 @@ public Q_SLOTS:
 
     void setText(QString &arg);
     void setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, QString highlightBackgroundColor, QString highlightDimmerColor, qreal m_baseFontPointSize);
+    void setDictionary(QString dictionary);
 
 private:
 

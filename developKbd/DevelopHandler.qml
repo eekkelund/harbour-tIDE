@@ -9,7 +9,6 @@ InputHandler {
     id: inputHandler
     Database {
         id: database
-        name: "qml"
         Component.onCompleted:  database.initial("qml");
     }
 

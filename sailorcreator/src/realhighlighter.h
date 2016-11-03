@@ -16,6 +16,7 @@ public:
     RealHighlighter(QTextDocument *parent = 0);
 
     void setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, QString highlightBackgroundColor, QString highlightDimmerColor, qreal m_baseFontPointSize);
+    void setDictionary(QString dictionary);
 
 protected:
     void highlightBlock(const QString &text) Q_DECL_OVERRIDE;
@@ -41,6 +42,7 @@ private:
     QString m_secondaryHighlightColor;
     QString m_highlightBackgroundColor;
     QString m_highlightDimmerColor;
+    QString m_dictionary;
     qreal m_baseFontPointSize;
 
     QTextCharFormat keywordFormat;
