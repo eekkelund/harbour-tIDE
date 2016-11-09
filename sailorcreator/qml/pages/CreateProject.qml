@@ -16,7 +16,6 @@ Page {
         dock: page.isPortrait ? Dock.Top : Dock.Left
         Text {
             id:error
-            //anchors.fill:parent
             anchors.centerIn: parent
             color: Theme.primaryColor
             font.pixelSize: Theme.fontSizeLarge
@@ -27,10 +26,6 @@ Page {
             onClicked: errorPanel.open = false;
         }
     }
-    //allowedOrientations: Orientation.Landscape
-    //Column {
-    //  id: column
-    // anchors.fill: parent
     PageHeader {
         id:hdr
         title: qsTr("Create new project")

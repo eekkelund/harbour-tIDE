@@ -28,7 +28,6 @@ def projects(path):
         return projects
 
 def files(path):
-    #onlyfiles=[f for f in listdir(projectPath+'/' + projectName) if isfile(join(projectPath+'/' + projectName, f))]
     all = []
     path= abspath(path)
     projectFolder = False;
@@ -40,7 +39,8 @@ def files(path):
     for f in listdir(path):
         if not isfile(join(path, f)):
             f=f+"/"
-        all.append(join(f))
+        if not f.endswith("~"):
+            all.append(join(f))
     filelist =[]
     for name in all:
         filelist.append({'files':name, 'pathh':path+"/"+name})

@@ -7,34 +7,119 @@ import eekkelund.sailorcreator.documenthandler 1.0
 Page {
     id: page
     allowedOrientations: Orientation.All
+    property bool textChangedAutoSave: false
+    property bool textChangedSave: false
     property string fileTitle: singleFile
-    property string fileType: fileTitle.split(".").slice(-1)[0];
+    //Check if file ends with tilde "~" and change the filetype accordingly
+    property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
     BusyIndicator {
         id:busy
         size: BusyIndicatorSize.Large
         anchors.centerIn: parent
         running: true
     }
+
     SilicaFlickable {
         id:hdr
+
         anchors.top:parent.top
+
+
         height: headerColumn.height
         width: parent.width
 
-        PullDownMenu {
+        /*PullDownMenu {
             MenuItem {
                 text: "Save file"
                 onClicked: py.call('editFile.savings', [filePath,myeditor.text], function(result) {});
             }
-        }
+        }*/
+
+
+
         Column {
             id:headerColumn
             width: parent.width
             spacing: Theme.paddingSmall
-            PageHeader  {
-                id:pgHead
+            height: pgHead.height
+            Flipable {
+                id: flipable
                 width: parent.width
-                title: fileTitle
+                height: parent.height
+
+                property bool flipped: false
+
+                transform: Rotation {
+                    id: rotation
+                    origin.x: flipable.width/2
+                    origin.y: flipable.height/2
+                    axis.x: -1; axis.y: 0; axis.z: 0     // set axis.y to 1 to rotate around y-axis
+                    angle: 0    // the default angle
+                }
+
+                states: State {
+                    name: "back"
+                    PropertyChanges { target: rotation; angle: 180 }
+                    when: flipable.flipped
+                }
+
+                transitions: Transition {
+                    NumberAnimation { target: rotation; property: "angle"; duration: 300 }
+                }
+                front:PageHeader  {
+                    id:pgHead
+                    width: parent.width
+                    anchors.right:parent.right
+                    title: fileTitle
+                    visible: true
+                    MouseArea {
+                        enabled: !flipable.flipped
+                        onClicked: {
+                            flipable.flipped = !flipable.flipped
+                            //pgHead.visible=false;
+                            //menu.visible=true;
+                        }
+                        anchors.fill: parent
+                    }
+                }
+                back:Flow {
+                    id:menu
+                    //visible:pgHead.visible ? false: true
+                    //width: isPortrait ? undefined : Theme.itemSizeExtraLarge
+                    height: pgHead.height
+                    spacing: Theme.paddingMedium
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    //y:pgHead._titleItem.y
+                    IconButton {
+                        icon.source: "image://theme/icon-m-rotate-left"
+                        //text: qsTr("Undo")
+                        onClicked: myeditor._editor.undo()
+                    }
+                    IconButton {
+                        icon.source: "image://theme/icon-m-rotate-right"
+                        //text: qsTr("Redo")
+                        onClicked: myeditor._editor.redo()
+                    }
+                    IconButton {
+                        icon.source: "image://ownIcons/icon-m-save"
+                        //text: qsTr("Save")
+                        enabled: textChangedSave
+                        onClicked: {
+                            py.call('editFile.savings', [filePath,myeditor.text], function(result) {});
+                            textChangedSave=false;
+                        }
+
+                    }
+                    IconButton {
+                        icon.source: "image://theme/icon-m-close"
+                        onClicked:{
+                            flipable.flipped = false
+                            //pgHead.visible=true;
+                            //menu.visible=false;
+                        }
+                    }
+                }
+
             }
         }
     }
@@ -60,6 +145,19 @@ Page {
             repeat:true;
             onTriggered: {
                 f.time = f.time +1
+            }
+        }
+
+        Timer {
+            id:autosaveTimer
+            interval: 3000;
+            running: true;
+            repeat:true;
+            onTriggered: {
+                if(textChangedAutoSave){
+                    py.call('editFile.autosave', [filePath,myeditor.text], function(result) {});
+                    textChangedAutoSave=false;
+                }
             }
         }
 
@@ -107,7 +205,7 @@ Page {
 
                     Repeater {
                         id:repeat
-                        model: nullEdit.lineCount
+                        model: myeditor._editor.lineCount
                         delegate: TextEdit {
                             anchors.right: linecolumn.right
                             color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
@@ -125,14 +223,14 @@ Page {
                 anchors.right: parent.right
 
                 TextArea {
-
+                    id: myeditor
                     property string previousText: ""
                     property bool textChangedManually: false
                     property string indentString: "    "
                     property int currentLine: myeditor.positionToRectangle(cursorPosition).y/myeditor.positionToRectangle(cursorPosition).height +1
-                    id: myeditor
                     property bool modified: false
                     property string path
+
                     anchors.left: parent.left
                     anchors.right: parent.right
                     textMargin: 0
@@ -172,6 +270,8 @@ Page {
                                 switch (lastCharacter)
                                 {
                                 case "\n":
+                                    textChangedSave = true
+                                    textChangedAutoSave=true;
                                     f.startY = f.contentY
                                     textBeforeCursor = text.substring(0, cursorPosition - 1)
                                     openBrackets = textBeforeCursor.match(/\{/g)
@@ -232,9 +332,7 @@ Page {
                                         text = textBeforeCursor + textAfterCursor
                                         //cut()
                                         cursorPosition = cPosition
-
                                         //remove(lineBreakPosition + 1, cursorPosition - 1)
-
                                         textBeforeCursor = text.substring(0, cursorPosition-1)
                                         openBrackets = textBeforeCursor.match(/\{/g)
                                         closeBrackets = textBeforeCursor.match(/\}/g)
@@ -253,18 +351,10 @@ Page {
                                             if (indentDepth >= 0){
                                                 indentString = new Array(indentDepth + 1).join(myeditor.indentString)
                                                 indentStringCount = indentString.length
-
-
-
-
-
                                                 textChangedManually = true
-
                                                 cPosition =cursorPosition+indentStringCount
                                                 console.log(cPosition+"and,"+cursorPosition)
                                                 //myeditor.select(0,cursorPosition);
-
-
                                                 //txti = myeditor.selectedText//KÄYTÄ TÄTÄ textBeforeCursor = text.substring(0, cursorPosition)
                                                 //myeditor.select(cursorPosition,myeditor.text.length);
                                                 //txti2= myeditor.selectedText
@@ -278,12 +368,6 @@ Page {
                                                 console.log(cursorPosition)
                                                 //insert(cursorPosition - 1, indentString)
                                             }
-                                            //if (indentStringCount == null) {
-                                            //  indentStringCount =0
-                                            //}
-
-
-
                                         }
                                     }
 
@@ -309,23 +393,13 @@ Page {
                     }
 
                 }
-                TextEdit {
-                    id: nullEdit
-                    color: "white"
-                    font.pixelSize: myeditor.font.pixelSize
-                    wrapMode: myeditor.wrapMode
-                    anchors.left: myeditor.left
-                    anchors.right: myeditor.right
-                    text: myeditor.text
-                    visible: false
-
-                }
             }
         }
         Python {
             id: py
 
             Component.onCompleted: {
+                console.log(fileType);
                 addImportPath(Qt.resolvedUrl('./python'));
                 importModule('editFile', function () {
                     py.call('editFile.changeFiletype', [fileType], function(result){});

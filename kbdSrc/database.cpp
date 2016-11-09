@@ -19,7 +19,7 @@ void Database::initial(QString name)
 {
     //If should use properties
     if (name != "qml" && name != "js" && name != "py") {
-        name = "properties";
+        name = "keywords";
     }
     //Check if file exists
     if(QFile::exists(path + name + ".sqlite")) {

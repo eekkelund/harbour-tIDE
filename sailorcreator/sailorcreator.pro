@@ -4,7 +4,8 @@ CONFIG += sailfishapp
 
 SOURCES += src/harbour-sailorcreator.cpp \
     src/realhighlighter.cpp \
-    src/documenthandler.cpp
+    src/documenthandler.cpp \
+    src/iconprovider.cpp
 
 OTHER_FILES += qml/harbour-sailorcreator.qml \
     qml/cover/CoverPage.qml \
@@ -39,7 +40,8 @@ DISTFILES += \
 
 HEADERS += \
     src/realhighlighter.h \
-    src/documenthandler.h
+    src/documenthandler.h \
+    src/iconprovider.h
 
 RESOURCES += \
     src/dictionarys.qrc
