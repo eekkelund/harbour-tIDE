@@ -72,7 +72,6 @@ Page {
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: Theme.paddingMedium
             }
             onClicked: {
                 console.log(file.text);
@@ -92,7 +91,8 @@ Page {
                 id: file
                 wrapMode: Text.WordWrap
                 width: parent.width
-                anchors.centerIn: parent
+                anchors.verticalCenter: parent.verticalCenter
+                x: Theme.paddingMedium
                 text: files
 
             }

@@ -12,6 +12,79 @@ Page {
     property string fileTitle: singleFile
     //Check if file ends with tilde "~" and change the filetype accordingly
     property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
+    /*property var lineNumberslist: new Array()
+    property int lastLineCount:0
+    property int numLines:0
+    property int lineCount: 1
+
+    function numberOfLines() {
+        console.log(myeditor._editor.lineCount)
+        //while(myeditor._editor.lineCount >= lineCount) {
+           //if(myeditor.text.match(/\n/g) || []){
+                var lineBreakPosition
+                for (var i = 1 ; i <= myeditor.text.length; i++)
+                {
+                    console.log(Math.round(myeditor.positionToRectangle(i).y/myeditor.positionToRectangle(i).height+1))
+                    console.log(lineCount)
+                    if (Math.round(myeditor.positionToRectangle(i).y/myeditor.positionToRectangle(i).height+1) > lineCount){
+                        if (myeditor.text[i-1] === "\n"){
+                            console.log("tämäpäs")
+                            numLines =numLines+1
+                            lineNumberslist.push(numLines)
+
+                        }else{
+                            console.log("tämdsäpäs")
+                            lineNumberslist.push(" ")
+                        }
+                        lineCount=lineCount+1
+                    }
+                }
+
+            //}
+       // }
+
+        //lineNumberslist += 1;
+        //lineNumberslist=lastLineCount
+        //console.log(lineNumberslist)
+        //return lineNumberslist;
+                lastLineCount=lineCount
+    }
+
+    function lineNumberChanged() {
+        console.log(lastLineCount)
+        console.log(myeditor._editor.lineCount)
+        if (lastLineCount===lineCount){
+        if (myeditor._editor.lineCount > lineNumberslist.length){//lastLineCount) {
+            console.log("Last character = " + myeditor.text[myeditor.cursorPosition - 1])
+            if(myeditor.text[myeditor.cursorPosition - 1] !== "\n") {
+                //lineNumberslist += "\n"
+                // += 1
+                //lineNumberslist.push(" ")
+                lineNumberslist.splice(myeditor.currentLine-1, 0, " ")
+            }
+            else {
+                //lineNumberslist += numberOfLines() + "\n";
+                // += " "
+                numLines =numLines+1
+                lineNumberslist.push(numLines)
+
+            }
+            lastLineCount = myeditor._editor.lineCount;
+        } else if (myeditor._editor.lineCount < lineNumberslist.length){//lastLineCount) {
+            //lineNumberslist = lineNumberslist.slice(0, -2);
+            console.log("perkr")
+            var popp = lineNumberslist.pop()
+             console.log(lineNumberslist)
+            if( popp !== " "){
+                numLines =numLines-1
+            }
+
+            lastLineCount = myeditor._editor.lineCount;
+        }
+        lineCount = lastLineCount
+        return lineNumberslist
+        }
+    }*/
     BusyIndicator {
         id:busy
         size: BusyIndicatorSize.Large
@@ -92,12 +165,14 @@ Page {
                     //y:pgHead._titleItem.y
                     IconButton {
                         icon.source: "image://theme/icon-m-rotate-left"
+                        enabled: myeditor._editor.canUndo
                         //text: qsTr("Undo")
                         onClicked: myeditor._editor.undo()
                     }
                     IconButton {
                         icon.source: "image://theme/icon-m-rotate-right"
                         //text: qsTr("Redo")
+                        enabled: myeditor._editor.canRedo
                         onClicked: myeditor._editor.redo()
                     }
                     IconButton {
@@ -105,7 +180,9 @@ Page {
                         //text: qsTr("Save")
                         enabled: textChangedSave
                         onClicked: {
-                            py.call('editFile.savings', [filePath,myeditor.text], function(result) {});
+                            py.call('editFile.savings', [filePath,myeditor.text], function(result) {
+                                fileTitle=result
+                            });
                             textChangedSave=false;
                         }
 
@@ -155,7 +232,10 @@ Page {
             repeat:true;
             onTriggered: {
                 if(textChangedAutoSave){
-                    py.call('editFile.autosave', [filePath,myeditor.text], function(result) {});
+                    py.call('editFile.autosave', [filePath,myeditor.text], function(result) {
+                        fileTitle=result
+                        console.log(result)
+                    });
                     textChangedAutoSave=false;
                 }
             }
@@ -211,7 +291,7 @@ Page {
                             color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
                             readOnly:true
                             font.pixelSize: myeditor.font.pixelSize
-                            text: index + 1
+                            text: index+1//lineNumberslist[index]
                         }
                     }
                 }
@@ -236,13 +316,14 @@ Page {
                     textMargin: 0
                     labelVisible: false
                     wrapMode: TextEdit.Wrap
-
                     text: documentHandler.text
                     font.pixelSize: Theme.fontSizeSmall
                     onClicked: console.log(text[cursorPosition - 1] + "-last-"+myeditor.positionToRectangle(myeditor.text.length)+"sdsa"+myeditor.positionToRectangle(myeditor.text.length).height)
                     onTextChanged: {
                         if (text !== previousText)
                         {
+                            //lineNumberChanged()
+                            //console.log(lineNumberslist)
                             if (textChangedManually)
                             {
                                 previousText = text
@@ -265,12 +346,12 @@ Page {
                                 var txti2
                                 var indentStringCount
                                 var lastCharacter = text[cursorPosition - 1]
+                                textChangedSave = true
                                 console.log(lastCharacter)
                                 console.log(text[cursorPosition])
                                 switch (lastCharacter)
                                 {
                                 case "\n":
-                                    textChangedSave = true
                                     textChangedAutoSave=true;
                                     f.startY = f.contentY
                                     textBeforeCursor = text.substring(0, cursorPosition - 1)
@@ -388,6 +469,7 @@ Page {
                         Component.onCompleted: documentHandler.setDictionary(fileType);
                         onTextChanged: {
                             myeditor.update()
+
                         }
 
                     }
@@ -418,15 +500,42 @@ Page {
             return;
         }
         else {
+            console.log(filePath)
             documentHandler.setStyle(Theme.primaryColor, Theme.secondaryColor,
                                      Theme.highlightColor, Theme.secondaryHighlightColor,
                                      Theme.highlightBackgroundColor, Theme.highlightDimmerColor,
                                      myeditor.font.pixelSize);
-            py.call('editFile.openings', [filePath], function(result) {
-                documentHandler.text = result;
-            });
+            py.call('editFile.checkAutoSaved', [filePath], function(result) {
+                if(!result){
+                    py.call('editFile.openings', [filePath], function(result) {
+                        documentHandler.text = result.text;
+                        fileTitle=result.fileTitle
+                    })
+                }else {
+                    pageStack.push(restoreD);
+                }
+            })
+
+            /*py.call('editFile.openings', [filePath], function(result) {
+
+                if(fileTitle!==result.fileTitle){
+                    console.log(fileTitle+" "+result.fileTitle)
+
+                }else {
+                    console.log(fileTitle+" "+result.fileTitle)
+                    documentHandler.text = result.text;
+                }
+
+
+
+                //numberOfLines()//
+                //console.log(lineNumberslist)
+            });*/
             myeditor.forceActiveFocus();
             busy.running=false;
         }
+    }
+    RestoreDialog{
+        id:restoreD
     }
 }

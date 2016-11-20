@@ -45,14 +45,14 @@ Page {
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: Theme.paddingMedium
             }
 
             Label {
                 id: name
                 wrapMode: Text.WordWrap
                 width: parent.width
-                anchors.centerIn: parent
+                anchors.verticalCenter: parent.verticalCenter
+                x: Theme.paddingMedium
                 text: project
             }
             onClicked: {

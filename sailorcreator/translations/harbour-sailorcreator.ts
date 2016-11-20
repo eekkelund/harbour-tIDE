@@ -102,6 +102,13 @@
     </message>
 </context>
 <context>
+    <name>RestoreDialog</name>
+    <message>
+        <source>Restore autosaved version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SecondPage</name>
     <message>
         <source>Page 2</source>

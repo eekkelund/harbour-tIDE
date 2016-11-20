@@ -35,7 +35,8 @@ DISTFILES += \
     #qml/pages/CreateProjectDialog.qml \
     qml/pages/AppOutput.qml \
     qml/pages/python/stopProject.py \
-    qml/pages/Editor2.qml
+    qml/pages/Editor2.qml \
+    qml/pages/RestoreDialog.qml
 
 
 HEADERS += \

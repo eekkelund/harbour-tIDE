@@ -6,15 +6,22 @@ import configparser
 import os
 
 def openings(filepath):
-    if os.path.exists(filepath+"~"):
-        file = open(filepath+"~", 'r')
-    else:
-        file = open(filepath, 'r')
+    file = open(filepath, 'r')
     txt = file.read()
     file.close()
-    return txt
+    return{'text': txt, 'fileTitle': os.path.basename(filepath)}
 
+def openAutoSaved(filepath):
+    file = open(filepath+"~", 'r')
+    txt = file.read()
+    file.close()
+    return{'text': txt, 'fileTitle': os.path.basename(filepath+"~")}
 
+def checkAutoSaved(filepath):
+    if os.path.exists(filepath+"~"):
+        return True
+    else:
+        return False
 
 def savings(filepath, text):
     if os.path.exists(filepath+"~"):
@@ -22,7 +29,7 @@ def savings(filepath, text):
     file = open(filepath, 'w')
     file.write(text)
     file.close()
-    return
+    return os.path.basename(filepath)
 
 def changeFiletype(filetype):
     config = configparser.RawConfigParser()
@@ -32,11 +39,20 @@ def changeFiletype(filetype):
     with open("/var/lib/harbour-sailorcreator-keyboard/config/config.conf", 'w+') as configfile:
         config.write(configfile)
 
+#def autosave(filepath, text):
+#    file = open(filepath+"~", 'w')
+#    file.write(text)
+#    file.close()
+#    return os.path.basename(filepath+"~")
+
 def autosave(filepath, text):
-    file = open(filepath+"~", 'w')
+    if(filepath.endswith("~")):
+        file = open(filepath, 'w')
+    else:
+        file = open(filepath+"~", 'w')
     file.write(text)
     file.close()
-    return
+    return os.path.basename(filepath+"~")
 
 
 
