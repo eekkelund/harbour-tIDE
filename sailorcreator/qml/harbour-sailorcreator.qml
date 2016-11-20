@@ -10,6 +10,7 @@ ApplicationWindow
     _defaultPageOrientations: Orientation.All
 
     property string projectPath: "/home"+"/nemo/Projects"
+    property string buildPath: "/home"+"/nemo/rpmbuild"
     property string projectName
     property string filePath
     property string singleFile

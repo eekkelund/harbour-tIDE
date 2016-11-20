@@ -20,6 +20,13 @@
     </message>
 </context>
 <context>
+    <name>BuildOutput</name>
+    <message>
+        <source>Build output</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>
@@ -69,13 +76,6 @@
     </message>
 </context>
 <context>
-    <name>Editor</name>
-    <message>
-        <source>TITLE</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FirstPage</name>
     <message>
         <source>Show Second page</source>
@@ -98,6 +98,10 @@
     </message>
     <message>
         <source>Select file to open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build the app</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -20,7 +20,7 @@ License:    LICENSE
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-sailorcreator.yaml
-Requires:   sailfishsilica-qt5 >= 0.10.9, qtchooser, qt5-qtdeclarative-qmlscene, pyotherside-qml-plugin-python3-qt5 >= 1.3, python3-base
+Requires:   sailfishsilica-qt5 >= 0.10.9, qtchooser, qt5-qtdeclarative-qmlscene, pyotherside-qml-plugin-python3-qt5 >= 1.3, python3-base, rpm-build
 Requires:   qt5-qtdeclarative-import-folderlistmodel
 
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2

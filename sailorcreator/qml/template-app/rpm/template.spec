@@ -18,14 +18,14 @@ Release:    1
 Group:      Qt/Qt
 License:    LICENSE
 URL:        http://example.org/
-Source0:    %{name}-%{version}.tar.bz2
+#Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5 >= 1.4
 Requires:   python3-base
-BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Quick)
+#BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
+#BuildRequires:  pkgconfig(Qt5Core)
+#BuildRequires:  pkgconfig(Qt5Qml)
+#BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
@@ -33,34 +33,30 @@ Application made with SailorCreator
 
 
 %prep
-%setup -q -n %{name}-%{version}
-
+%setup -q -n %{name}
 # >> setup
 # << setup
 
-%build
-# >> build pre
-# << build pre
+%postun
+    rm -rf /usr/share/%{name}
+fi
 
-%qtc_qmake5 
 
-%qtc_make %{?_smp_mflags}
-
-# >> build post
-# << build post
 
 %install
+
+
 rm -rf %{buildroot}
 # >> install pre
 # << install pre
-%qmake5_install
+#%qmake5_install
 
 # >> install post
 # << install post
 
-desktop-file-install --delete-original       \
-  --dir %{buildroot}%{_datadir}/applications             \
-   %{buildroot}%{_datadir}/applications/*.desktop
+#desktop-file-install --delete-original       \
+#  --dir %{buildroot}%{_datadir}/applications             \
+#   %{buildroot}%{_datadir}/applications/*.desktop
 
 %files
 %defattr(-,root,root,-)

@@ -36,7 +36,9 @@ DISTFILES += \
     qml/pages/AppOutput.qml \
     qml/pages/python/stopProject.py \
     qml/pages/Editor2.qml \
-    qml/pages/RestoreDialog.qml
+    qml/pages/RestoreDialog.qml \
+    qml/pages/python/buildRPM.py \
+    qml/pages/BuildOutput.qml
 
 
 HEADERS += \

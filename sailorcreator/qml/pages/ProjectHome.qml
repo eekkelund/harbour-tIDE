@@ -18,6 +18,12 @@ Page {
         VerticalScrollDecorator {}
         PullDownMenu {
             MenuItem {
+                text: qsTr("Build the app")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("BuildOutput.qml"))
+                }
+            }
+            MenuItem {
                 text: qsTr("Run the app")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("AppOutput.qml"))
@@ -105,6 +111,7 @@ Page {
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('./python'));
             importModule('addFile', function() {});
+            importModule('buildRPM', function() {});
             importModule('openFile', function () {
                 py.call('openFile.files', [projectPath+ "/"+projectName], function(result2) {
                     for (var i=0; i<result2.length; i++) {

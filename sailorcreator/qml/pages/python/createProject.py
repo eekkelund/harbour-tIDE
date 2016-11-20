@@ -7,14 +7,11 @@ from os.path import abspath
 from shutil import copyfile, copytree
 
 def create(projectName, projectPath):
-
     try:
         if not os.path.exists(projectPath):
             os.mkdir(projectPath)
-
         if os.path.exists(projectPath +"/"+ projectName):
             return False
-
         else:
             copy(projectName, projectPath)
     except:
@@ -57,7 +54,4 @@ def rename_content(projectName, projectPath):
                         fi.write(line)
             except UnicodeDecodeError:
                 files.remove(file)
-            #with open(root+"/"+file, 'r') as fi:
-            #    for i, line in enumerate(fi, 1):
-            #        newlines.append(line.replace("template", projectName))
     return "success"

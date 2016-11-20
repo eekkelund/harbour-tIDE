@@ -69,7 +69,7 @@ Page {
         id: py
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('./python'));
-            importModule('startProject', function() {});
+            //importModule('startProject', function() {});
             importModule('createProject', function() {});
             importModule('openFile', function () {
                 py.call('openFile.projects', [projectPath], function(result2) {
