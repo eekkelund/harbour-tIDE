@@ -27,7 +27,6 @@ FunctionKey {
             oldHandler.active = false
 
             keyboard.inputHandler = primaryHandler
-            keyboard.inputHandler.inEmojiView = false
             keyboard.inputHandler.fetchMany = false
             keyboard.inputHandler.active = true
             console.warn("primaryHandler")
@@ -35,7 +34,6 @@ FunctionKey {
         } else {
 
             keyboard.inputHandler = secondaryHandler
-            keyboard.inputHandler.inEmojiView = false
             keyboard.inputHandler.fetchMany = false
             keyboard.inputHandler.active = true
             console.warn("secondaryHandler")

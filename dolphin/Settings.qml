@@ -19,8 +19,7 @@ Item {
     property alias toolbar: _toolbar.value
     property alias background: _background.value
     property alias transparency: _transparency.value
-    property alias emoji: _emoji.value
-    property alias frequent: _frequent.value
+
 
     //
 
@@ -93,18 +92,6 @@ Item {
         defaultValue: 1
     }
 
-    //Emoji
-    ConfigurationValue {
-        id: _emoji
-        key: "/apps/harbour-sailorcreator-keyboard/settings/emoji/keyboard"
-        defaultValue: true
-    }
-
-    ConfigurationValue {
-        id: _frequent
-        key: "/apps/harbour-sailorcreator-keyboard/settings/emoji/frequent"
-        defaultValue: []
-    }
 
 
 }

@@ -72,7 +72,6 @@ Item {
     property var result: []
 
     property bool fetchMany: false
-    property bool inEmojiView: false
 
     signal candidatesUpdated
 
@@ -152,8 +151,7 @@ Item {
         autorepeatTimer.stop()
         multitap.flush()
 
-        //Close emoji keyboard and phrase Dialog
-        inputHandler.inEmojiView = false
+
         inputHandler.fetchMany = false
         reset()
     }

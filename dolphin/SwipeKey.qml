@@ -134,8 +134,6 @@ KeyBase {
 
             if ( swipeR === true ) {
 
-            } else {
-                inEmojiView = false
             }
 
         }
@@ -152,7 +150,6 @@ KeyBase {
 
             } else if ( distance >= 0 && angle >= 135 && angle <= 214 ) {
 
-                //inEmojiView = true
                 keyboard.layout.transition = distance / 4
                 if ( distance / 4 >= 1 ) {
                     swipeR = true

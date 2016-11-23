@@ -53,6 +53,7 @@ TopItem {
         }
 
         onDragEnded: {
+            //it won't go further if has more than 8 results
             if ( atXEnd && result.length > 8 ) {
                 SampleCache.play("/usr/share/sounds/jolla-ambient/stereo/keyboard_letter.wav")
                 buttonPressEffect.play()

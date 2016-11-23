@@ -39,9 +39,9 @@ KeyboardRow {
         width:  keyWidth * 2.2
     }
 
-    LanguageKey {
+    /*LanguageKey {
         width:  keyWidth * 2.2
-    }
+    }*/
 
     CharacterKey {
         caption: MInputMethodQuick.contentType === Maliit.EmailContentType? ".": ( MInputMethodQuick.contentType === Maliit.UrlContentType? ".": ( xt9? ".": "。" ) )

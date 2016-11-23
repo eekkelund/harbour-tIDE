@@ -44,7 +44,6 @@ FunctionKey {
     keyType: KeyType.SymbolKey
 
     onPressedChanged: {
-        keyboard.inputHandler.inEmojiView = false
         if (pressed && !keyboard.inSymView && keyboard.lastInitialKey === symbolKey) {
             keyboard.deadKeyAccent = ""
             keyboard.toggleSymbolMode()

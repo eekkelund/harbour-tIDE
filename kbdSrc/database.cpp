@@ -86,14 +86,14 @@ void Database::close(QString name)
     }
 }
 
-void Database::index(QString name)
+/*void Database::index(QString name)
 {
     if ( database.database(name).isValid() == true ) {
         database = QSqlDatabase::database(name);
         database.exec("REINDEX");
 
     }
-}
+}*/
 
 //Slot if fileType is changed in config.conf
 void Database::changed(QString type)

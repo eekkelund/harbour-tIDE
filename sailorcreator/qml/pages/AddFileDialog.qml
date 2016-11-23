@@ -52,7 +52,6 @@ Dialog {
                             onClicked: ext = text
                         }
                     }
-
                 }
             }
         }

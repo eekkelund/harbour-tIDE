@@ -54,7 +54,6 @@ FunctionKey {
 
     onClicked: {
         if (!_quickPicking || keyboard.characterKeyCounter > _charactersWhenPressed) {
-            inEmojiView = false
             keyboard.toggleSymbolMode()
         }
     }

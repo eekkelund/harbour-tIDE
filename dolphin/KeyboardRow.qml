@@ -6,9 +6,6 @@ import QtQuick 2.2
 Item {
 
     //Doplhin Keyboard
-    //Hide the keyboard when symobl keyboard is available
-    //Too complicated, use background would be better
-    //opacity: keyboard.inputHandler.inEmojiView || keyboard.inputHandler.fetchMany ? 0 : 1
     property real ratio: 1
 
     property bool followRowHeight: true

@@ -94,8 +94,10 @@ KeyboardLayout {
             languageLabel: ""
         }
         CharacterKey {
-            caption: "."
-            captionShifted: "."
+            caption: "}"
+            captionShifted: "}"
+            accents: "(){"
+            accentsShifted: "(){"
             implicitWidth: punctuationKeyWidth
             fixedWidth: !splitActive
             //separator: SeparatorState.HiddenSeparator

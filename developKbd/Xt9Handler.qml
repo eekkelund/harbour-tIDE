@@ -186,10 +186,6 @@ InputHandler {
         }
     }
 
-    /*EmojiDialog {
-        id: emojiDialog
-    }*/
-
     onActiveChanged: {
         if (!active && preedit !== "") {
             thread.acceptWord(preedit, false)

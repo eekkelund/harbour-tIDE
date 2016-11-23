@@ -38,7 +38,7 @@ KeyboardRow {
 
     SymbolKey {  }
 
-    LanguageKey {  }
+    //LanguageKey {  }
 
     ContextAwareKey {
         caption: MInputMethodQuick.contentType === Maliit.EmailContentType? "@": ( MInputMethodQuick.contentType === Maliit.UrlContentType? ":": ( xt9? "," : "，" ) )

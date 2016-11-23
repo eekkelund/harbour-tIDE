@@ -4,9 +4,6 @@ import io.thp.pyotherside 1.3
 
 
 Dialog{
-    //acceptDestination:Qt.resolvedUrl("Editor2.qml")
-    //acceptDestinationAction: PageStackAction.Replace
-
     Column{
         width: parent.width
         DialogHeader {}
@@ -16,8 +13,6 @@ Dialog{
             text: qsTr("Restore autosaved version?")
         }
     }
-
-    //canAccept: fileName.text !== "" ? true :false
     onAccepted: {
         py.call('editFile.openAutoSaved', [filePath], function(result) {
             documentHandler.text = result.text;

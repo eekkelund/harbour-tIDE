@@ -6,6 +6,9 @@ import io.thp.pyotherside 1.3
 Page {
     id: page
     property string labelText: qsTr("Open existing project")
+    function openEditor(){
+        pageStack.replace(Qt.resolvedUrl("Editor2.qml"))
+    }
 
     SilicaListView {
         id:projectList

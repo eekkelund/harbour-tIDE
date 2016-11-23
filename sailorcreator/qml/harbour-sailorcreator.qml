@@ -4,7 +4,16 @@ import "pages"
 
 ApplicationWindow
 {
-    initialPage: Component { CreatorHome { } }
+    initialPage: Component { CreatorHome {
+            id:home
+            Component.onCompleted: {
+                var args = Qt.application.arguments
+                if (args.length > 1) {
+                    filePath=args[1]
+                    home.openEditor();
+                }
+            }
+        } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All

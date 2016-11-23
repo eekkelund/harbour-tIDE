@@ -3,8 +3,8 @@
 #include <QSqlDatabase>
 #include <QQuickItem>
 #include <QStringList>
-#include <QVariantList>
-#include <QMap>
+//#include <QVariantList>
+//#include <QMap>
 #include <QDir>
 #include <QtSql>
 #include <QFile>
@@ -27,7 +27,7 @@ public slots:
     void initial(QString name);
     void close(QString name);
     void adjust(QString name, QString word);
-    void index(QString name);
+//    void index(QString name);
     void changed(QString type);
 
 public:

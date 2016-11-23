@@ -25,8 +25,6 @@ BackgroundItem {
 
     onClicked: {
 
-        inEmojiView = false
-
         if ( preedit !== "" && result.length > 0 && result.length <= 16 ) {
             applyMoreWord()
             console.warn(result)
