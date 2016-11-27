@@ -6,13 +6,13 @@ import configparser
 import os
 
 def openings(filepath):
-    file = open(filepath, 'r')
+    file = open(filepath, 'r', encoding = "utf-8")
     txt = file.read()
     file.close()
     return{'text': txt, 'fileTitle': os.path.basename(filepath)}
 
 def openAutoSaved(filepath):
-    file = open(filepath+"~", 'r')
+    file = open(filepath+"~", 'r', encoding = "utf-8")
     txt = file.read()
     file.close()
     return{'text': txt, 'fileTitle': os.path.basename(filepath+"~")}
@@ -26,7 +26,7 @@ def checkAutoSaved(filepath):
 def savings(filepath, text):
     if os.path.exists(filepath+"~"):
         os.remove(filepath+"~")
-    file = open(filepath, 'w')
+    file = open(filepath, 'w', encoding = "utf-8")
     file.write(text)
     file.close()
     return os.path.basename(filepath)
@@ -39,21 +39,13 @@ def changeFiletype(filetype):
     with open("/var/lib/harbour-sailorcreator-keyboard/config/config.conf", 'w+') as configfile:
         config.write(configfile)
 
-#def autosave(filepath, text):
-#    file = open(filepath+"~", 'w')
-#    file.write(text)
-#    file.close()
-#    return os.path.basename(filepath+"~")
-
 def autosave(filepath, text):
     if(filepath.endswith("~")):
-        file = open(filepath, 'w')
+        file = open(filepath, 'w', encoding = "utf-8")
     else:
-        file = open(filepath+"~", 'w')
+        file = open(filepath+"~", 'w', encoding = "utf-8")
     file.write(text)
     file.close()
     return os.path.basename(filepath+"~")
 
 
-
-#pyotherside.atexit(files.saving)

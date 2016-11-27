@@ -2,11 +2,12 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 import eekkelund.sailorcreator.documenthandler 1.0
+import org.nemomobile.notifications 1.0
+
 
 
 Page {
     id: page
-    allowedOrientations: Orientation.All
     property bool textChangedAutoSave: false
     property bool textChangedSave: false
     property string fileTitle: singleFile
@@ -85,6 +86,17 @@ Page {
         return lineNumberslist
         }
     }*/
+    Notification{
+        id:notification
+    }
+    function showError(message) {
+        notification.category="x-nemo.example"
+        notification.previewBody = qsTr("Erororor");
+        //notification.previewSummary =qsTr("Projectname exists");
+        notification.close();
+        notification.publish();
+    }
+
     BusyIndicator {
         id:busy
         size: BusyIndicatorSize.Large
@@ -347,43 +359,60 @@ Page {
                                 var indentStringCount
                                 var lastCharacter = text[cursorPosition - 1]
                                 textChangedSave = true
+                                var colonCount
                                 console.log(lastCharacter)
                                 console.log(text[cursorPosition])
                                 switch (lastCharacter)
                                 {
+
                                 case "\n":
                                     textChangedAutoSave=true;
                                     f.startY = f.contentY
                                     textBeforeCursor = text.substring(0, cursorPosition - 1)
-                                    openBrackets = textBeforeCursor.match(/\{/g)
-                                    closeBrackets = textBeforeCursor.match(/\}/g)
 
-                                    if (openBrackets !== null)
-                                    {
-                                        openBracketsCount = openBrackets.length
-                                        closeBracketsCount = 0
-
-                                        if (closeBrackets !== null)
-                                            closeBracketsCount = closeBrackets.length
-
-                                        indentDepth = openBracketsCount - closeBracketsCount
-                                        if (indentDepth > 0){
-                                            indentString = new Array(indentDepth + 1).join(myeditor.indentString)
-                                            indentStringCount = indentString.length
-
-                                            textChangedManually = true
-
-                                            cPosition =cursorPosition+indentStringCount
-                                            console.log(cPosition+"and"+cursorPosition)
+                                    if(fileType=="py"){
+                                        if(text[cursorPosition - 2]===":"){
+                                            colonCount = textBeforeCursor.match(/\:/g).length
+                                            indentString = new Array(colonCount).join("    ")
+                                            cPosition =cursorPosition+indentString.length
                                             textBeforeCursor = text.substring(0, cursorPosition)
                                             textAfterCursor = text.substring(cursorPosition, text.length)
-                                            myeditor.text = textBeforeCursor + indentString+ textAfterCursor
+                                            myeditor.text = textBeforeCursor + indentString + textAfterCursor
                                             cursorPosition = cPosition
-                                            console.log(cursorPosition)
-
+                                            break
                                         }
+                                    }else{
+
+                                        openBrackets = textBeforeCursor.match(/\{/g)
+                                        closeBrackets = textBeforeCursor.match(/\}/g)
+
+                                        if (openBrackets !== null)
+                                        {
+                                            openBracketsCount = openBrackets.length
+                                            closeBracketsCount = 0
+
+                                            if (closeBrackets !== null)
+                                                closeBracketsCount = closeBrackets.length
+
+                                            indentDepth = openBracketsCount - closeBracketsCount
+                                            if (indentDepth > 0){
+                                                indentString = new Array(indentDepth + 1).join(myeditor.indentString)
+                                                indentStringCount = indentString.length
+
+                                                textChangedManually = true
+
+                                                cPosition =cursorPosition+indentStringCount
+                                                console.log(cPosition+"and"+cursorPosition)
+                                                textBeforeCursor = text.substring(0, cursorPosition)
+                                                textAfterCursor = text.substring(cursorPosition, text.length)
+                                                myeditor.text = textBeforeCursor + indentString+ textAfterCursor
+                                                cursorPosition = cPosition
+                                                console.log(cursorPosition)
+
+                                            }
+                                        }
+                                        break
                                     }
-                                    break
                                 case "}":
                                     //bug fix with letters after "}"
                                     if (/^[a-zA-Z]/.test(text[cursorPosition])){
@@ -406,14 +435,12 @@ Page {
                                     if (lineBreakPosition !== undefined)
                                     {
                                         textChangedManually = true
-                                        //cPosition=cursorPosition
+                                        //will remove empty spaces*indentDepth
                                         cPosition =lineBreakPosition + 1
                                         textBeforeCursor=text.substring(0, lineBreakPosition + 1)
                                         textAfterCursor=text.substring(cursorPosition - 1, text.length)
                                         text = textBeforeCursor + textAfterCursor
-                                        //cut()
                                         cursorPosition = cPosition
-                                        //remove(lineBreakPosition + 1, cursorPosition - 1)
                                         textBeforeCursor = text.substring(0, cursorPosition-1)
                                         openBrackets = textBeforeCursor.match(/\{/g)
                                         closeBrackets = textBeforeCursor.match(/\}/g)
@@ -491,6 +518,8 @@ Page {
             onError: {
                 // when an exception is raised, this error handler will be called
                 console.log('python error: ' + traceback);
+                showError();
+
             }
             onReceived: console.log('Unhandled event: ' + data)
         }
@@ -516,6 +545,8 @@ Page {
                 }
             })
 
+            myeditor.forceActiveFocus();
+            busy.running=false;
             /*py.call('editFile.openings', [filePath], function(result) {
 
                 if(fileTitle!==result.fileTitle){
@@ -531,8 +562,6 @@ Page {
                 //numberOfLines()//
                 //console.log(lineNumberslist)
             });*/
-            myeditor.forceActiveFocus();
-            busy.running=false;
         }
     }
     RestoreDialog{
