@@ -2,14 +2,9 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 
-
 Page {
     id: page
-    property string labelText: qsTr("Open existing project")
-    function openEditor(){
-        pageStack.replace(Qt.resolvedUrl("Editor2.qml"))
-    }
-
+    property string labelText
     SilicaListView {
         id:projectList
         anchors.top: parent.top
@@ -72,11 +67,10 @@ Page {
         id: py
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('./python'));
-            //importModule('startProject', function() {});
             importModule('createProject', function() {});
             importModule('openFile', function () {
                 py.call('openFile.projects', [projectPath], function(result2) {
-                    if (result2 === 0){
+                    if (result2.length < 1){
                         labelText=qsTr("No projects yet")
                     }
                     else {
@@ -98,7 +92,7 @@ Page {
         onReceived: console.log('Unhandled event: ' + data)
     }
 
-    function loadProjects() {
+    /*function loadProjects() {
         listModel.clear();
         py.call('openFile.projects', [projectPath], function(result2) {
             for (var i=0; i<result2.length; i++) {
@@ -107,7 +101,7 @@ Page {
             }
         });
 
-    }
+    }*/
 }
 
 

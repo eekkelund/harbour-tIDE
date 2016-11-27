@@ -2,17 +2,11 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
 
+
 ApplicationWindow
 {
-    initialPage: Component { CreatorHome {
+    initialPage: Component { MainPage {
             id:home
-            Component.onCompleted: {
-                var args = Qt.application.arguments
-                if (args.length > 1) {
-                    filePath=args[1]
-                    home.openEditor();
-                }
-            }
         } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All
@@ -23,6 +17,7 @@ ApplicationWindow
     property string projectName
     property string filePath
     property string singleFile
+    property string homePath: "/home/nemo"
     property string projectQmlPath:(projectPath +"/"+ projectName+"/qml/"+ projectName+".qml");
 }
 

@@ -16,12 +16,12 @@
 int main(int argc, char *argv[])
 {
 
+    qmlRegisterType<DocumentHandler>("eekkelund.sailorcreator.documenthandler", 1, 0, "DocumentHandler");
     QGuiApplication *app = SailfishApp::application(argc, argv);
     QQuickView *view = SailfishApp::createView();
-    view->setSource(SailfishApp::pathTo("qml/harbour-sailorcreator.qml"));
-    qmlRegisterType<DocumentHandler>("eekkelund.sailorcreator.documenthandler", 1, 0, "DocumentHandler");
     QQmlEngine *engine = view->engine();
     engine->addImageProvider(QLatin1String("ownIcons"), new IconProvider);
+    view->setSource(SailfishApp::pathTo("qml/harbour-sailorcreator.qml"));
     view->showFullScreen();
 
     return app->exec();
