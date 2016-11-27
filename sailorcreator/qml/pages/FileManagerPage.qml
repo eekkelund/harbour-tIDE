@@ -2,7 +2,7 @@
 *  Thanks belongs to coderus! https://github.com/CODeRUS/splashscreen-changer/blob/master/settings/SecondPage.qml
 */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import Nemo.FileManager 1.0
 import Sailfish.FileManager 1.0

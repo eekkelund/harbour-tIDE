@@ -4,7 +4,7 @@ QT += qml quick sql
 CONFIG += qt plugin
 
 TARGET = $$qtLibraryTarget($$TARGET)
-uri = eekkelund.sailorcreator.keyboard
+uri = harbour.sailorcreator.keyboard
 
 # Input
 SOURCES += \

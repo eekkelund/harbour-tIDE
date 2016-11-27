@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 
@@ -21,6 +21,10 @@ Page{
                 text: qsTr("About")
                 //onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
         }
         Column {
             id: header
@@ -42,7 +46,7 @@ Page{
         }
         Button{
             id:projects
-            width:parent.width*(3/4)
+            preferredWidth: Theme.buttonWidthLarge
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: header.bottom
@@ -53,7 +57,7 @@ Page{
         }
         Button{
             id:file
-            width:parent.width*(3/4)
+            preferredWidth: Theme.buttonWidthLarge
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: projects.bottom
@@ -69,6 +73,7 @@ Page{
             return;
         }
         else{
+            console.log(StandardPaths.home+" "+StandardPaths.data)
             if(!hadArgs){
                 var args = Qt.application.arguments
                 if (args.length > 1) {

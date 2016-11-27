@@ -1,10 +1,9 @@
-import QtQuick 2.0
-import QtQuick 2.0
+import QtQuick 2.2
 import com.meego.maliitquick 1.0
 import com.jolla.xt9 1.0
 import Sailfish.Silica 1.0
 import com.jolla.keyboard 1.0
-import eekkelund.sailorcreator.keyboard 1.0
+import harbour.sailorcreator.keyboard 1.0
 import "../sailorcreator"
 
 InputHandler {

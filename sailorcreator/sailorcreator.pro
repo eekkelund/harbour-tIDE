@@ -2,6 +2,8 @@ TARGET = harbour-sailorcreator
 
 CONFIG += sailfishapp
 
+DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
+
 SOURCES += src/harbour-sailorcreator.cpp \
     src/realhighlighter.cpp \
     src/documenthandler.cpp \
@@ -22,25 +24,27 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-sailorcreator-de.ts
 
 DISTFILES += \
-    qml/pages/python/createProject.py \
-    qml/pages/python/startProject.py \
-    qml/pages/python/openFile.py \
+    qml/python/createProject.py \
+    qml/python/startProject.py \
+    qml/python/openFile.py \
    # qml/pages/Editor.qml \
-    qml/pages/python/editFile.py \
+    qml/python/editFile.py \
     #qml/pages/AddFile.qml \
-    qml/pages/python/addFile.py \
+    qml/python/addFile.py \
     #qml/pages/CreateProject2.qml \
     #qml/pages/AddFile2.qml \
     qml/pages/AddFileDialog.qml \
     #qml/pages/CreateProjectDialog.qml \
     qml/pages/AppOutput.qml \
-    qml/pages/python/stopProject.py \
+    qml/python/stopProject.py \
     qml/pages/Editor2.qml \
     qml/pages/RestoreDialog.qml \
-    qml/pages/python/buildRPM.py \
+    qml/python/buildRPM.py \
     qml/pages/BuildOutput.qml \
     qml/pages/MainPage.qml \
-    qml/pages/FileManagerPage.qml
+    qml/pages/FileManagerPage.qml \
+    qml/python/settings.py \
+    qml/pages/SettingsPage.qml
 
 
 HEADERS += \

@@ -16,7 +16,7 @@
 int main(int argc, char *argv[])
 {
 
-    qmlRegisterType<DocumentHandler>("eekkelund.sailorcreator.documenthandler", 1, 0, "DocumentHandler");
+    qmlRegisterType<DocumentHandler>("harbour.sailorcreator.documenthandler", 1, 0, "DocumentHandler");
     QGuiApplication *app = SailfishApp::application(argc, argv);
     QQuickView *view = SailfishApp::createView();
     QQmlEngine *engine = view->engine();

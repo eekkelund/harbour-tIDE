@@ -123,6 +123,10 @@
         <source>Edit single file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProjectHome</name>
@@ -158,6 +162,101 @@
     </message>
     <message>
         <source>Index</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPage</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto saving</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ExtraSmall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Small</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Large</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sail Sans Pro Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Sans</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Helvetica</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Droid Sans Mono</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comic Sans</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ubuntu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DejaVu Sans Mono</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Appearance &amp; Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark Theme</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

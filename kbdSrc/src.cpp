@@ -5,7 +5,7 @@
 
 void src::registerTypes(const char *uri)
 {
-    // @uri eekkelund.sailorcreator.keyboard
+    // @uri harbour.sailorcreator.keyboard
     qmlRegisterType<Database>(uri, 1, 0, "Database");
     qmlRegisterType<Settings>(uri, 1, 0, "Settings");
 
