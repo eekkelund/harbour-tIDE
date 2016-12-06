@@ -4,7 +4,6 @@
 #include <QQuickItem>
 #include <QSettings>
 #include <QString>
-//#include <QProcess>
 #include <QStandardPaths>
 
 

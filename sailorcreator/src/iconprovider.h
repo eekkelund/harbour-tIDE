@@ -10,7 +10,6 @@ class IconProvider : public QQuickImageProvider
 {
 public:
     IconProvider();
-
     QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize);
 };
 

@@ -60,14 +60,12 @@ InputHandler {
     }
 
     function applyWord() {
-        //result = database.develop(preedit, 16)
         result = database.predict(preedit, 16)
         candidatesUpdated()
     }
 
     function applyMoreWord() {
         if ( result.length <= 16 ) {
-            //result = database.develop(preedit, 128)
             result = database.predict(preedit, 128)
             candidatesUpdated()
         }
@@ -75,7 +73,6 @@ InputHandler {
 
     function predictWord(word) {
         result = database.predict(word, 32)
-        //result = database.develop(word, 32)
         candidatesUpdated()
     }
 
@@ -113,7 +110,7 @@ InputHandler {
 
         if ( pressedKey.key === Qt.Key_Space ) {
 
-            if ( preedit.length > 0 && result.length > 0 && /*config.spacebar === 1*/ settings.spacebar === true) {
+            if ( preedit.length > 0 && result.length > 0 && settings.spacebar === true) {
 
                 preedit = ""
                 commit(result[0])
@@ -197,17 +194,7 @@ InputHandler {
             }
             handled = true
 
-        }/* else if ( pressedKey.text === "通" ) {
-
-            if ( preedit.length > 0  ) {
-                preedit = preedit + "?"
-                MInputMethodQuick.sendPreedit(preedit, Maliit.PreeditDefault)
-
-            }
-
-            handled = true
-
-        } */else if ( pressedKey.key === Qt.Key_Clear ) {
+        }else if ( pressedKey.key === Qt.Key_Clear ) {
 
             reset()
             empty()

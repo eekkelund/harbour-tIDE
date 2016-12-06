@@ -3,8 +3,6 @@
 #include <QSqlDatabase>
 #include <QQuickItem>
 #include <QStringList>
-//#include <QVariantList>
-//#include <QMap>
 #include <QDir>
 #include <QtSql>
 #include <QFile>
@@ -12,7 +10,6 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QQuickItem>
-//#include <QDebug>
 #include <QStringList>
 #include <QFileInfo>
 #include "filewatcher.h"
@@ -27,7 +24,6 @@ public slots:
     void initial(QString name);
     void close(QString name);
     void adjust(QString name, QString word);
-//    void index(QString name);
     void changed(QString type);
 
 public:

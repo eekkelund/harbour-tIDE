@@ -5,32 +5,12 @@ import org.nemomobile.notifications 1.0
 
 Page {
     id: page
-    /*DockedPanel {
-        id: errorPanel
-
-        width: page.isPortrait ? parent.width : Theme.itemSizeExtraLarge + Theme.paddingLarge
-        height: page.isPortrait ? Theme.itemSizeExtraLarge + Theme.paddingLarge : parent.height
-
-        dock: page.isPortrait ? Dock.Top : Dock.Left
-        Text {
-            id:error
-            anchors.centerIn: parent
-            color: Theme.primaryColor
-            font.pixelSize: Theme.fontSizeLarge
-            font.bold: true
-        }
-        MouseArea {
-            anchors.fill:parent
-            onClicked: errorPanel.open = false;
-        }
-    }*/
     Notification{
         id:notification
     }
     function showError(message) {
         notification.category="x-nemo.example"
         notification.previewBody = qsTr("Projectname exists");
-        //notification.previewSummary =qsTr("Projectname exists");
         notification.close();
         notification.publish();
     }
@@ -61,16 +41,21 @@ Page {
                     py.call('createProject.create', [projectName,projectPath], function(result) {
                         if (result===false){
                             //Show warning
-                            //errorPanel.open =true
-                            //error.text =  qsTr("Projectname exists")
                             showError();
                         }
                         else {
                             console.log(projectQmlPath);
-                            pageStack.replaceAbove(null, Qt.resolvedUrl("CreatorHome.qml"));
+                            pageStack.replaceAbove(getBottomPageId(), Qt.resolvedUrl("CreatorHome.qml"));
                         }
                     });
 
+                    function getBottomPageId()
+                    {
+                        return pageStack.find( function(page)
+                        {
+                            return (page._depth === 0)
+                        })
+                    }
 
 
                 }
@@ -92,8 +77,6 @@ Page {
         }
         onReceived: console.log('Unhandled event: ' + data)
     }
-
-    //}
 }
 
 

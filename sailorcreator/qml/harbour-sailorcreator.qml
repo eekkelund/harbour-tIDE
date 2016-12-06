@@ -56,15 +56,14 @@ ApplicationWindow
     onStringHighlightColorChanged: setSetting('strcolor',stringHighlightColor)
     property string commentHighlightColor//: Theme.highlightBackgroundColor
     onCommentHighlightColorChanged: setSetting('commentcolor',commentHighlightColor)
-
+    property string bgColor//:"transparent"
+    onBgColorChanged: setSetting('bgcolor',bgColor)
+    property bool trace //:false
+    onTraceChanged: setSetting('trace', trace)
 
     function setSetting(key, value){
-        console.log(key+" "+ value)
+        console.log(key+" "+value)
         py.call('settings.set', [key, value], function(result) {});
-    }
-
-    Component.onCompleted: {
-
     }
 
     Python {
@@ -73,13 +72,23 @@ ApplicationWindow
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('./python'));
             importModule('settings', function () {
+                //getSettings
                 py.call('settings.setDataPath', [StandardPaths.data], function(){
                     py.ready =true
-                    py.call('settings.get', ['darktheme'], function(result) {darkTheme=result});
+                    py.call('settings.get', ['darktheme'], function(result) {
+                        if (result=="True") darkTheme=true
+                        else darkTheme=false
+                    });
                     py.call('settings.get', ['fontsize'], function(result) {fontSize=result});
                     py.call('settings.get', ['fonttype'], function(result) {fontType=result});
-                    py.call('settings.get', ['linenums'], function(result) {lineNums=result});
-                    py.call('settings.get', ['autosave'], function(result) {autoSave=result});
+                    py.call('settings.get', ['linenums'], function(result) {
+                        if (result=="True") lineNums=true
+                        else lineNums=false
+                          });
+                    py.call('settings.get', ['autosave'], function(result) {
+                        if (result=="True") autoSave=true
+                        else autoSave=false
+                          });
                     py.call('settings.get', ['indentsize'], function(result) {indentSize=result});
                     py.call('settings.get', ['textcolor'], function(result) {textColor=result});
                     py.call('settings.get', ['qmlcolor'], function(result) {qmlHighlightColor=result});
@@ -88,7 +97,11 @@ ApplicationWindow
                     py.call('settings.get', ['jscolor'], function(result) {javascriptHighlightColor=result});
                     py.call('settings.get', ['strcolor'], function(result) {stringHighlightColor=result});
                     py.call('settings.get', ['commentcolor'], function(result) {commentHighlightColor=result});
-
+                    py.call('settings.get', ['bgcolor'], function(result) {bgColor=result});
+                    py.call('settings.get', ['trace'], function(result) {
+                        if (result=="True") trace=true
+                        else trace=false
+                          });
                 });
 
             });
@@ -96,8 +109,6 @@ ApplicationWindow
         onError: {
             // when an exception is raised, this error handler will be called
             console.log('python error: ' + traceback);
-            //showError();
-
         }
         onReceived: console.log('Unhandled event: ' + data)
     }

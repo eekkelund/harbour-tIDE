@@ -14,6 +14,14 @@ OTHER_FILES += qml/harbour-sailorcreator.qml \
     qml/pages/CreateProject.qml \
     qml/pages/ProjectHome.qml \
     qml/pages/CreatorHome.qml \
+    qml/pages/AddFileDialog.qml \
+    qml/pages/AppOutput.qml \
+    qml/pages/Editor2.qml \
+    qml/pages/RestoreDialog.qml \
+    qml/pages/BuildOutput.qml \
+    qml/pages/MainPage.qml \
+    qml/pages/FileManagerPage.qml \
+    qml/pages/SettingsPage.qml \
     translations/*.ts \
     harbour-sailorcreator.desktop
 
@@ -27,25 +35,11 @@ DISTFILES += \
     qml/python/createProject.py \
     qml/python/startProject.py \
     qml/python/openFile.py \
-   # qml/pages/Editor.qml \
     qml/python/editFile.py \
-    #qml/pages/AddFile.qml \
     qml/python/addFile.py \
-    #qml/pages/CreateProject2.qml \
-    #qml/pages/AddFile2.qml \
-    qml/pages/AddFileDialog.qml \
-    #qml/pages/CreateProjectDialog.qml \
-    qml/pages/AppOutput.qml \
     qml/python/stopProject.py \
-    qml/pages/Editor2.qml \
-    qml/pages/RestoreDialog.qml \
     qml/python/buildRPM.py \
-    qml/pages/BuildOutput.qml \
-    qml/pages/MainPage.qml \
-    qml/pages/FileManagerPage.qml \
-    qml/python/settings.py \
-    qml/pages/SettingsPage.qml
-
+    qml/python/settings.py
 
 HEADERS += \
     src/realhighlighter.h \

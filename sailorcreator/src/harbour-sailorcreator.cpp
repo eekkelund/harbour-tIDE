@@ -6,8 +6,6 @@
 #include <QQuickView>
 #include <QGuiApplication>
 #include <QQmlEngine>
-#include <QDebug>
-//#include <QTextEdit>
 #include <QString>
 #include "documenthandler.h"
 #include "iconprovider.h"
@@ -15,7 +13,6 @@
 
 int main(int argc, char *argv[])
 {
-
     qmlRegisterType<DocumentHandler>("harbour.sailorcreator.documenthandler", 1, 0, "DocumentHandler");
     QGuiApplication *app = SailfishApp::application(argc, argv);
     QQuickView *view = SailfishApp::createView();

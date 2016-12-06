@@ -4,7 +4,7 @@ import io.thp.pyotherside 1.3
 
 Page {
     id: page
-    property string confusingPath: projectPath+ "/"+projectName
+    property string projectHomePath: projectPath+ "/"+projectName
 
     property string ext: ".qml"
 
@@ -19,20 +19,19 @@ Page {
             MenuItem {
                 text: qsTr("Build the app")
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("BuildOutput.qml"))
+                   // pageStack.push(Qt.resolvedUrl("BuildOutput.qml"))
                 }
             }
             MenuItem {
                 text: qsTr("Run the app")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("AppOutput.qml"))
-                    //py.call("startProject.start", [projectQmlPath],function(result) {});
                 }
             }
             MenuItem {
                 text: qsTr("Add file")
                 onClicked: {
-                    pageStack.push(dialog, {path:confusingPath})
+                    pageStack.push(dialog, {path:projectHomePath})
                 }
             }
         }
@@ -46,13 +45,11 @@ Page {
             }
             Label {
                 width: parent.width
-                //anchors.topMargin: Theme.paddingMedium
                 anchors.bottomMargin: Theme.paddingLarge
                 x: Theme.paddingLarge
                 text: qsTr("Select file to open")
                 color: Theme.secondaryHighlightColor
                 font.pixelSize: Theme.fontSizeLarge
-                //horizontalAlignment: Text.AlignRight
             }
         }
 
@@ -83,12 +80,12 @@ Page {
                 console.log(path);
                 if (file.text.slice(-1) =="/") {
                     lmodel.loadNew(path);
-                    confusingPath = path;
+                    projectHomePath = path;
                 }
                 else {
                     filePath=path;
                     singleFile =file.text
-                    pageStack.push(Qt.resolvedUrl("Editor2.qml"))//,{fileTitle: file.text})
+                    pageStack.push(Qt.resolvedUrl("Editor2.qml"))
                 }
 
             }
@@ -127,8 +124,6 @@ Page {
         }
         onReceived: console.log('Unhandled event: ' + data)
     }
-
-
     AddFileDialog {
         id: dialog
     }

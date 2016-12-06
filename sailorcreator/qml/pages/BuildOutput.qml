@@ -6,15 +6,6 @@ import io.thp.pyotherside 1.3
 Page {
     id: page
     property int pid
-    /*onStatusChanged: {
-        if (status == PageStatus.Deactivating) {
-            console.log("stoppinf")
-            py.call('stopProject.kill', [],function(result) {
-                console.log(result)
-            });
-            console.log("stopping")
-        }
-    }*/
     PageHeader {
         id:hdr
         title: qsTr("Build output")
@@ -59,12 +50,10 @@ Page {
                 addImportPath(Qt.resolvedUrl('./../python'));
                 setHandler('output', function(text) {
                     listModel.append(text);
-                    //outputText.text= text+"\n";
                 });
                 setHandler('pid', function(pidi) {
                     pid=pidi
                     console.log(pid)
-                    //outputText.text= text+"\n";
                 });
                 importModule('buildRPM', function () {
                     py.call("buildRPM.createBuildDir", [projectName, buildPath, projectPath],function() {});
@@ -77,7 +66,6 @@ Page {
             onError: {
                 console.log('python error: ' + traceback);
             }
-            //onReceived: console.log('Unhandled event: ' + data)//listModel.append(data);
         }
 
     }

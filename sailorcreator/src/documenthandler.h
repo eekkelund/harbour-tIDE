@@ -57,38 +57,22 @@ class DocumentHandler : public QObject
 {
     Q_OBJECT
     Q_ENUMS(HAlignment)
-
     Q_PROPERTY(QQuickItem *target READ target WRITE setTarget NOTIFY targetChanged)
     Q_PROPERTY(int cursorPosition READ cursorPosition WRITE setCursorPosition NOTIFY cursorPositionChanged)
     Q_PROPERTY(int selectionStart READ selectionStart WRITE setSelectionStart NOTIFY selectionStartChanged)
     Q_PROPERTY(int selectionEnd READ selectionEnd WRITE setSelectionEnd NOTIFY selectionEndChanged)
-
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
-
-
 
 public:
     DocumentHandler();
 
-    QQuickItem * target() const
-    {
-        return m_target;
-    }
+    QQuickItem * target() const;
 
-    int cursorPosition() const
-    {
-        return m_cursorPosition;
-    }
+    int cursorPosition() const;
 
-    int selectionStart() const
-    {
-        return m_selectionStart;
-    }
+    int selectionStart() const;
 
-    int selectionEnd() const
-    {
-        return m_selectionEnd;
-    }
+    int selectionEnd() const;
 
     void setTarget(QQuickItem * target);
     void setCursorPosition(int position);

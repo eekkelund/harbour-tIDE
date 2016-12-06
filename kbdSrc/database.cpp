@@ -86,31 +86,11 @@ void Database::close(QString name)
     }
 }
 
-/*void Database::index(QString name)
-{
-    if ( database.database(name).isValid() == true ) {
-        database = QSqlDatabase::database(name);
-        database.exec("REINDEX");
-
-    }
-}*/
 
 //Slot if fileType is changed in config.conf
 void Database::changed(QString type)
 {
     initial(type);
-}
-
-
-
-QStringList Database::develop(QString keys, QString size)
-{
-    QString sql;
-
-    sql = "SELECT word FROM predict WHERE keys GLOB \"" + keys + "*\" ORDER BY frequency DESC, sorting DESC LIMIT 0, " + size;
-
-    return Database::load(sql);
-
 }
 
 //prediction call

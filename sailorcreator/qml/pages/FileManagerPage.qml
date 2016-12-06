@@ -1,5 +1,5 @@
 /*
-*  Thanks belongs to coderus! https://github.com/CODeRUS/splashscreen-changer/blob/master/settings/SecondPage.qml
+*  Thanks belongs to coderus+Jolla! https://github.com/CODeRUS/splashscreen-changer/blob/master/settings/SecondPage.qml
 */
 
 import QtQuick 2.2
@@ -14,10 +14,7 @@ Page {
     property alias path: fileModel.path
     property string title
     property bool showFormat
-
-
     signal formatClicked
-
     property var callback
 
     backNavigation: !FileEngine.busy
@@ -38,6 +35,13 @@ Page {
         Behavior on opacity { FadeAnimator {} }
 
         anchors.fill: parent
+        PullDownMenu {
+            MenuItem {
+                text:fileModel.path=="/"? qsTr("Go home"):qsTr("Show Root")
+                onClicked: fileModel.path=="/"?fileModel.path=homePath:fileModel.path="/"
+            }
+        }
+
         model: fileModel
 
         header: PageHeader {
@@ -68,7 +72,7 @@ Page {
                         ena = true
                         break
                     case "application/pdf":
-                        ena = true
+                        ena = false
                         break
                     case "application/vnd.oasis.opendocument.spreadsheet":
                     case "application/x-kspread":
@@ -76,7 +80,7 @@ Page {
                     case "text/csv":
                     case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
                     case "application/vnd.openxmlformats-officedocument.spreadsheetml.template":
-                        ena = true
+                        ena = false
                         break
                     case "application/vnd.oasis.opendocument.presentation":
                     case "application/vnd.oasis.opendocument.presentation-template":
@@ -84,7 +88,7 @@ Page {
                     case "application/vnd.ms-powerpoint":
                     case "application/vnd.openxmlformats-officedocument.presentationml.presentation":
                     case "application/vnd.openxmlformats-officedocument.presentationml.template":
-                        ena = true
+                        ena = false
                         break
                     case "application/vnd.oasis.opendocument.text-master":
                     case "application/vnd.oasis.opendocument.text":
@@ -95,7 +99,7 @@ Page {
                     case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
                     case "application/vnd.openxmlformats-officedocument.wordprocessingml.template":
                     case "application/vnd.ms-works":
-                        ena = true
+                        ena = false
                         break
                     default:
                         if (mimeType.indexOf("audio/") == 0) {

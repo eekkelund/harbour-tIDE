@@ -59,12 +59,10 @@ Page {
                 addImportPath(Qt.resolvedUrl('./../python'));
                 setHandler('output', function(text) {
                     listModel.append(text);
-                    //outputText.text= text+"\n";
                 });
                 setHandler('pid', function(pidi) {
                     pid=pidi
                     console.log(pid)
-                    //outputText.text= text+"\n";
                 });
                 importModule('stopProject', function () {
                     py.call('stopProject.set_path', [projectQmlPath],function(result) {
@@ -78,7 +76,6 @@ Page {
             onError: {
                 console.log('python error: ' + traceback);
             }
-            //onReceived: console.log('Unhandled event: ' + data)//listModel.append(data);
         }
 
     }

@@ -75,10 +75,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TITLE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Open existing project</source>
         <translation type="unfinished"></translation>
     </message>
@@ -86,11 +82,38 @@
         <source>No projects yet</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open /usr/share/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>/usr/share/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to own projects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Projects</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Editor2</name>
     <message>
         <source>Erororor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileManagerPage</name>
+    <message>
+        <source>Show Root</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go home</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -257,6 +280,14 @@
     </message>
     <message>
         <source>Dark Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gradient color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ambience Theme</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

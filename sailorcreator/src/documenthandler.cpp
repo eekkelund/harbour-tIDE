@@ -47,7 +47,26 @@
 
 DocumentHandler::DocumentHandler() : m_target(0)  , m_doc(0) , m_cursorPosition(-1) , m_selectionStart(0) , m_selectionEnd(0) , m_realhighlighter(0)
 {
+}
 
+QQuickItem *DocumentHandler::target() const
+{
+    return m_target;
+}
+
+int DocumentHandler::cursorPosition() const
+{
+    return m_cursorPosition;
+}
+
+int DocumentHandler::selectionStart() const
+{
+    return m_selectionStart;
+}
+
+int DocumentHandler::selectionEnd() const
+{
+    return m_selectionEnd;
 }
 
 QString DocumentHandler::text() const

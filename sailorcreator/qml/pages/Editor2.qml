@@ -88,16 +88,16 @@ Page {
     }*/
     Rectangle {
         id:rectangle
-        color: darkTheme ? "#1e1e27" : "transparent"
+        color: bgColor
         anchors.fill: parent
         visible: true
+
         Notification{
             id:notification
         }
         function showError(message) {
             notification.category="x-nemo.example"
             notification.previewBody = qsTr("Erororor");
-            //notification.previewSummary =qsTr("Projectname exists");
             notification.close();
             notification.publish();
         }
@@ -117,16 +117,6 @@ Page {
 
             height: headerColumn.height
             width: parent.width
-
-            /*PullDownMenu {
-            MenuItem {
-                text: "Save file"
-                onClicked: py.call('editFile.savings', [filePath,myeditor.text], function(result) {});
-            }
-        }*/
-
-
-
             Column {
                 id:headerColumn
                 width: parent.width
@@ -166,35 +156,27 @@ Page {
                             enabled: !flipable.flipped
                             onClicked: {
                                 flipable.flipped = !flipable.flipped
-                                //pgHead.visible=false;
-                                //menu.visible=true;
                             }
                             anchors.fill: parent
                         }
                     }
                     back:Flow {
                         id:menu
-                        //visible:pgHead.visible ? false: true
-                        //width: isPortrait ? undefined : Theme.itemSizeExtraLarge
                         height: pgHead.height
                         spacing: Theme.paddingMedium
                         anchors.horizontalCenter: parent.horizontalCenter
-                        //y:pgHead._titleItem.y
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-left"
                             enabled: myeditor._editor.canUndo
-                            //text: qsTr("Undo")
                             onClicked: myeditor._editor.undo()
                         }
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-right"
-                            //text: qsTr("Redo")
                             enabled: myeditor._editor.canRedo
                             onClicked: myeditor._editor.redo()
                         }
                         IconButton {
                             icon.source: "image://ownIcons/icon-m-save"
-                            //text: qsTr("Save")
                             enabled: textChangedSave
                             onClicked: {
                                 py.call('editFile.savings', [filePath,myeditor.text], function(result) {
@@ -208,8 +190,6 @@ Page {
                             icon.source: "image://theme/icon-m-close"
                             onClicked:{
                                 flipable.flipped = false
-                                //pgHead.visible=true;
-                                //menu.visible=false;
                             }
                         }
                     }
@@ -259,10 +239,6 @@ Page {
             }
 
             onContentYChanged: {
-
-                //console.debug(contentY)
-                //console.debug(time)
-
                 if (contentY-startY > 200 && time < 2 ) {
                     hdr.visible=false
                     f.anchors.top = rectangle.top
@@ -328,7 +304,7 @@ Page {
                         labelVisible: false
                         wrapMode: TextEdit.Wrap
                         text: documentHandler.text
-                        color: textColor
+                        color: focus ? textColor : Theme.primaryColor
                         font.pixelSize: fontSize
                         font.family: fontType
                         onClicked: console.log(text[cursorPosition - 1] + "-last-"+myeditor.positionToRectangle(myeditor.text.length)+"sdsa"+myeditor.positionToRectangle(myeditor.text.length).height)
@@ -465,27 +441,17 @@ Page {
                                                     textChangedManually = true
                                                     cPosition =cursorPosition+indentStringCount
                                                     console.log(cPosition+"and,"+cursorPosition)
-                                                    //myeditor.select(0,cursorPosition);
-                                                    //txti = myeditor.selectedText//KÄYTÄ TÄTÄ textBeforeCursor = text.substring(0, cursorPosition)
-                                                    //myeditor.select(cursorPosition,myeditor.text.length);
-                                                    //txti2= myeditor.selectedText
                                                     textBeforeCursor = text.substring(0, cursorPosition)
                                                     textAfterCursor = text.substring(cursorPosition, text.length)
-
-                                                    //console.log(cPosition+"and22,"+cursorPosition)
-                                                    //myeditor.deselect()
                                                     myeditor.text = textBeforeCursor + indentStr + textAfterCursor
                                                     cursorPosition = cPosition+1
                                                     console.log(cursorPosition)
-                                                    //insert(cursorPosition - 1, indentString)
                                                 }
                                             }
                                         }
-
                                         break
                                     }
                                 }
-
                                 previousText = text
                             }
                         }
@@ -496,14 +462,10 @@ Page {
                             cursorPosition: myeditor.cursorPosition
                             selectionStart: myeditor.selectionStart
                             selectionEnd: myeditor.selectionEnd
-                            Component.onCompleted: documentHandler.setDictionary(fileType);
                             onTextChanged: {
                                 myeditor.update()
-
                             }
-
                         }
-
                     }
                 }
             }
@@ -514,12 +476,7 @@ Page {
             Component.onCompleted: {
                 console.log(fileType);
                 addImportPath(Qt.resolvedUrl('./../python'));
-                importModule('editFile', function () {
-                    py.call('editFile.changeFiletype', [fileType], function(result){});
-                });
-                /*importModule('settings', function () {
-                    py.call('settings.setDataPath', [StandardPaths.data], function(result){});
-                });*/
+                importModule('editFile', function () {});
             }
             onError: {
                 // when an exception is raised, this error handler will be called
@@ -545,6 +502,8 @@ Page {
                     py.call('editFile.openings', [filePath], function(result) {
                         documentHandler.text = result.text;
                         fileTitle=result.fileTitle
+                        py.call('editFile.changeFiletype', [fileType], function(result){});
+                        documentHandler.setDictionary(fileType);
                     })
                 }else {
                     pageStack.push(restoreD);
@@ -552,25 +511,8 @@ Page {
             })
             myeditor.forceActiveFocus();
             busy.running=false;
-            /*py.call('settings.getAll', [], function(result) {
-                console.log(result)
-            });
-
-            /*py.call('editFile.openings', [filePath], function(result) {
-
-                if(fileTitle!==result.fileTitle){
-                    console.log(fileTitle+" "+result.fileTitle)
-
-                }else {
-                    console.log(fileTitle+" "+result.fileTitle)
-                    documentHandler.text = result.text;
-                }
-
-
-
-                //numberOfLines()//
-                //console.log(lineNumberslist)
-            });*/
+            //numberOfLines()//
+            //console.log(lineNumberslist)
         }
     }
     RestoreDialog{

@@ -12,18 +12,14 @@ void RealHighlighter::loadDict(QString path, QStringList &patterns){
     QFile dict(path);
     if (dict.open(QIODevice::ReadOnly))
     {
-
-        qDebug()<<dict.isOpen();
         QTextStream textStream(&dict);
         while (true)
         {
-
             QString line = textStream.readLine();
             if (line.isNull())
                 break;
             else
                 patterns.append("\\b"+line+"\\b");
-
         }
         dict.close();
     }
@@ -71,9 +67,7 @@ void RealHighlighter::ruleUpdate()
         }
 
     }else if (m_dictionary=="py") {
-        //pythonFormat.setForeground(QColor(m_secondaryHighlightColor));
         pythonFormat.setFontItalic(true);
-        //pythonFormat.setFontWeight(QFont::Bold);
         QStringList pythonPatterns;
         loadDict(":/dictionaries/python.txt",pythonPatterns);
 
@@ -95,7 +89,6 @@ void RealHighlighter::ruleUpdate()
    }else if (m_dictionary=="js") {
         jsFormat.setForeground(QColor(m_secondaryHighlightColor));
         jsFormat.setFontItalic(true);
-        //jsFormat.setFontWeight(QFont::Bold);
         QStringList jsPatterns;
         loadDict(":/dictionaries/javascript.txt",jsPatterns);
 
@@ -243,7 +236,6 @@ void RealHighlighter::highlightBlock(const QString &text)
                 ++i;
             }
             break;
-
         case CommentState:
             if (ch == '*' && next == '/') {
                 ++i;
@@ -256,7 +248,6 @@ void RealHighlighter::highlightBlock(const QString &text)
                 ++i;
             }
             break;
-
         default:
             state = StartState;
             break;

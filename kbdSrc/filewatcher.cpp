@@ -13,21 +13,14 @@ FileWatcher::FileWatcher()
 
 void FileWatcher::directoryChanged(const QString & path)
 {
-  qDebug() << path;
-  //QSettings settings(QString(path), QSettings::IniFormat);
-  //QString someValue = settings.value("fileType/type", "default value if unset").toString(); // settings.value() returns QVariant
-  //qDebug() << someValue;
 }
-
+//checks if config file is changed=different filetype opened
 void FileWatcher::fileChanged(const QString & path)
 {
-    qDebug() << path;
     QFileInfo checkFile(path);
     QSettings settings(QString(path), QSettings::IniFormat);
-    QString type = settings.value("fileType/type", "qml").toString(); // settings.value() returns QVariant
-    qDebug() << type;
+    QString type = settings.value("fileType/type", "qml").toString();
     emit changed(type);
     while(!checkFile.exists()){}
-    //std::this_thread::sleep_for(std::chrono::milliseconds(10));
     watcher->addPath(path);
 }

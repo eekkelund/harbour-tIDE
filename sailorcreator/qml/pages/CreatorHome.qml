@@ -12,6 +12,32 @@ Page {
         height: parent.height
         PullDownMenu {
             MenuItem {
+                text:  projectPath=="/usr/share/" ? qsTr("Go to own projects"): qsTr("Open /usr/share/")
+                onClicked: goToProjects()
+
+                function goToProjects(){
+                    if(projectPath=="/usr/share/"){
+                        projectPath= homePath+"/Projects"
+                        labelText=qsTr("Open existing project")
+                    }else{
+                        projectPath="/usr/share/"
+                        labelText=qsTr("/usr/share/")
+                    }
+                    py.call('openFile.projects', [projectPath], function(result2) {
+                        listModel.clear()
+                        if (result2.length < 1){
+                            labelText=qsTr("No projects yet")
+                        }
+                        else {
+                            for (var i=0; i<result2.length; i++) {
+                                listModel.append(result2[i]);
+                                console.log(result2[i].project);
+                            }
+                        }
+                    });
+                }
+            }
+            MenuItem {
                 text: qsTr("Create new project")
                 onClicked: pageStack.push(Qt.resolvedUrl("CreateProject.qml"))
             }
@@ -21,18 +47,16 @@ Page {
             spacing: Theme.paddingMedium
             PageHeader  {
                 width: parent.width
-                title: qsTr("TITLE")
+                title: qsTr("Projects")
             }
             Label {
                 id:topLabel
                 width: parent.width
-                //anchors.topMargin: Theme.paddingMedium
                 anchors.bottomMargin: Theme.paddingLarge
                 x: Theme.paddingLarge
                 text: labelText
                 color: Theme.secondaryHighlightColor
                 font.pixelSize: Theme.fontSizeLarge
-                //horizontalAlignment: Text.AlignRight
             }
         }
         model: ListModel { id: listModel }
@@ -54,7 +78,6 @@ Page {
                 text: project
             }
             onClicked: {
-                console.log(name.text)
                 projectName = name.text
                 pageStack.push(Qt.resolvedUrl("ProjectHome.qml"))
 
@@ -80,8 +103,6 @@ Page {
                             console.log(result2[i].project);
                         }
                     }
-
-
                 });
             });
         }
@@ -91,17 +112,6 @@ Page {
         }
         onReceived: console.log('Unhandled event: ' + data)
     }
-
-    /*function loadProjects() {
-        listModel.clear();
-        py.call('openFile.projects', [projectPath], function(result2) {
-            for (var i=0; i<result2.length; i++) {
-                listModel.append(result2[i]);
-                console.log(result2[i].project);
-            }
-        });
-
-    }*/
 }
 
 
