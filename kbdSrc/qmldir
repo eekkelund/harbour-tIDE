@@ -1,2 +1,2 @@
-module harbour.sailorcreator.keyboard
-plugin harbour-sailorcreator
+module harbour.tide.keyboard
+plugin harbour-tide

@@ -34,7 +34,7 @@ import QtQuick 2.2
 import com.meego.maliitquick 1.0
 import com.jolla.keyboard 1.0
 import Sailfish.Silica 1.0 as Silica
-import harbour.sailorcreator.keyboard 1.0
+import harbour.tide.keyboard 1.0
 
 
 Item {

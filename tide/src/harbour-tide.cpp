@@ -14,24 +14,30 @@
  * contact the author of this file, or the owner of the project in which
  * this file belongs to.
 *****************************************************************************/
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifdef QT_QML_DEBUG
+#include <QtQuick>
+#endif
 
-#include <QQuickItem>
-#include <QSettings>
+#include <sailfishapp.h>
+#include <QQuickView>
+#include <QGuiApplication>
+#include <QQmlEngine>
 #include <QString>
-#include <QStandardPaths>
+#include "documenthandler.h"
+#include "iconprovider.h"
 
 
-class Settings : public QQuickItem
+int main(int argc, char *argv[])
 {
+    qmlRegisterType<DocumentHandler>("harbour.tide.documenthandler", 1, 0, "DocumentHandler");
+    QGuiApplication *app = SailfishApp::application(argc, argv);
+    QQuickView *view = SailfishApp::createView();
+    QQmlEngine *engine = view->engine();
+    engine->addImageProvider(QLatin1String("ownIcons"), new IconProvider);
+    view->setSource(SailfishApp::pathTo("qml/harbour-tide.qml"));
+    view->showFullScreen();
 
-    Q_OBJECT
+    return app->exec();
 
-public:
-    Q_INVOKABLE QVariant load(QString name);
-    Settings(QQuickItem *parent=0);
-};
+}
 
-
-#endif // SETTINGS_H

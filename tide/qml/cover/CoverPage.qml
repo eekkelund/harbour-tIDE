@@ -14,24 +14,27 @@
  * contact the author of this file, or the owner of the project in which
  * this file belongs to.
 *****************************************************************************/
-#ifndef SETTINGS_H
-#define SETTINGS_H
+import QtQuick 2.2
+import Sailfish.Silica 1.0
 
-#include <QQuickItem>
-#include <QSettings>
-#include <QString>
-#include <QStandardPaths>
+CoverBackground {
+    Label {
+        id: label
+        anchors.centerIn: parent
+        text: qsTr("My Cover")
+    }
+
+    CoverActionList {
+        id: coverAction
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-next"
+        }
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-pause"
+        }
+    }
+}
 
 
-class Settings : public QQuickItem
-{
-
-    Q_OBJECT
-
-public:
-    Q_INVOKABLE QVariant load(QString name);
-    Settings(QQuickItem *parent=0);
-};
-
-
-#endif // SETTINGS_H

@@ -30,8 +30,8 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 import com.meego.maliitquick 1.0
-import harbour.sailorcreator.keyboard 1.0
-import "../sailorcreator"
+import harbour.tide.keyboard 1.0
+import "../tide"
 
 KeyboardLayout {
     id: layout
