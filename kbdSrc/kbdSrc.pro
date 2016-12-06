@@ -1,10 +1,10 @@
 TEMPLATE = lib
-TARGET = harbour-sailorcreator
+TARGET = harbour-tide
 QT += qml quick sql
 CONFIG += qt plugin
 
 TARGET = $$qtLibraryTarget($$TARGET)
-uri = harbour.sailorcreator.keyboard
+uri = harbour.tide.keyboard
 
 # Input
 SOURCES += \

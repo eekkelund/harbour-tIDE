@@ -1,6 +1,6 @@
 #include "database.h"
 
-QString path = "/var/lib/harbour-sailorcreator-keyboard/database/";
+QString path = "/var/lib/harbour-tide-keyboard/database/";
 
 Database::~Database()
 {
@@ -30,7 +30,7 @@ void Database::initial(QString name)
         }
         //open database
         database.setConnectOptions("QSQLITE_ENABLE_SHARED_CACHE = 1;");
-        database.setDatabaseName("/var/lib/harbour-sailorcreator-keyboard/database/" + name + ".sqlite");
+        database.setDatabaseName("/var/lib/harbour-tide-keyboard/database/" + name + ".sqlite");
         database.open();
         QSqlQuery query(database);
         query.exec("PRAGMA synchronous = OFF; PRAGMA journal_mode = OFF; PRAGMA default_cache_size =32768; PRAGMA foreign_keys = OFF; PRAGMA count_changes = OFF; PRAGMA temp_store = qvectorMEMORY");
