@@ -84,6 +84,7 @@ Page {
                     py.call('stopProject.set_path', [projectQmlPath],function(result) {
                         console.log(result);
                     });
+                    console.log(trace)
                     py.call('stopProject.init', [trace], function(result) {console.log(result)});
                     py.call('stopProject.start_proc', [], function(result) {console.log(result)});
                 });

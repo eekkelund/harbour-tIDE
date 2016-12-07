@@ -56,7 +56,7 @@ def run_process():
 
 def init(import_trace):
     global trace
-    trace = import_trace in ("true", "True")
+    trace = import_trace
     global bgthread
     bgthread = Thread(target=run_process)
     return "created"

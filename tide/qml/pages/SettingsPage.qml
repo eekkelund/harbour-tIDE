@@ -21,6 +21,36 @@ Page {
     id:page
     property int gradient_color: 1
     property int gradient_color_: 1
+
+    function setColor(index,color){
+        switch (index){
+        case 0:
+            textColor = color;
+            break;
+        case 1:
+            qmlHighlightColor = color;
+            break;
+        case 2:
+            keywordsHighlightColor = color;
+            break;
+        case 3:
+            propertiesHighlightColor = color;
+            break;
+        case 4:
+            javascriptHighlightColor = color;
+            break;
+        case 5:
+            stringHighlightColor = color;
+            break;
+        case 6:
+            commentHighlightColor = color;
+            break;
+        case 7:
+            bgColor = color;
+            break;
+        }
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height + Theme.paddingLarge
@@ -80,26 +110,70 @@ Page {
                     text: qsTr("Ambience Theme")
                     width: column.width/2 -Theme.paddingSmall
                     onCheckedChanged: {
-                         darkT.checked = !checked
-                     }
+                        darkT.checked = !checked
+                    }
                 }
 
             }
             ComboBox {
                 label: qsTr("Color of:")
-                value: "Asd"
-
+                //value: "Asd"
+                id: colorBox
                 menu: ContextMenu {
                     MenuItem {
-                        text: qsTr("ExtraSmall")
+                        text: qsTr("Text")
+                        color: textColor
                         onClicked:{
-
+                            //  activeColor=textColor
                         }
                     }
                     MenuItem {
-                        text: qsTr("Small")
+                        text: qsTr("QML Highlight")
+                        color: qmlHighlightColor
                         onClicked:{
-
+                            //   activeColor=qmlHighlightColor
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("Keywords Highlight")
+                        color: keywordsHighlightColor
+                        onClicked:{
+                            //    activeColor=keywordsHighlightColor
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("Properties Highlight")
+                        color: propertiesHighlightColor
+                        onClicked:{
+                            //    activeColor=propertiesHighlightColor
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("Javascript Highlight")
+                        color: javascriptHighlightColor
+                        onClicked:{
+                            //activeColor=javascriptHighlightColor
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("String Highlight")
+                        color: stringHighlightColor
+                        onClicked:{
+                            //activeColor=stringHighlightColor
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("Comment Highlight")
+                        color: commentHighlightColor
+                        onClicked:{
+                            //activeColor=commentHighlightColor
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("Background")
+                        color:bgColor
+                        onClicked:{
+                            //activeColor=bgColor
                         }
                     }
                 }
@@ -107,6 +181,9 @@ Page {
 
             Slider {
                 id: slider
+                onReleased: {
+                    setColor(colorBox.currentIndex,Qt.hsla((gradient_color/100),1.0,0.5,1.0))
+                }
                 Rectangle {
                     id: background
                     x: slider.leftMargin
@@ -181,7 +258,6 @@ Page {
                 valueText: "|"
                 onValueChanged: {
                     gradient_color = value
-                console.log(Qt.hsla((gradient_color/100),1.0,0.5,1.0))
                 }
                 onPressAndHold: cancel()
 
@@ -194,10 +270,6 @@ Page {
                     anchors.topMargin: Theme.paddingMedium*2
                     color: Qt.hsla((gradient_color/100),1.0,0.5,1.0)
                     text: qsTr("Gradient color")
-
-                    function toHsl(percentage){
-
-                    }
                 }
             }
 

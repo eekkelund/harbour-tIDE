@@ -61,6 +61,17 @@ void RealHighlighter::ruleUpdate()
             highlightingRules.append(rule);
         }
 
+        jsFormat.setForeground(QColor(m_secondaryHighlightColor));
+        jsFormat.setFontItalic(true);
+        QStringList jsPatterns;
+        loadDict(":/dictionaries/javascript.txt",jsPatterns);
+
+        foreach (const QString &pattern, jsPatterns) {
+            rule.pattern = QRegExp(pattern);
+            rule.format = jsFormat;
+            highlightingRules.append(rule);
+        }
+
         keywordFormat.setForeground(QColor(m_highlightDimmerColor));
         keywordFormat.setFontWeight(QFont::Bold);
 

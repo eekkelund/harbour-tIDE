@@ -324,6 +324,11 @@ Page {
                         font.pixelSize: fontSize
                         font.family: fontType
                         onClicked: console.log(text[cursorPosition - 1] + "-last-"+myeditor.positionToRectangle(myeditor.text.length)+"sdsa"+myeditor.positionToRectangle(myeditor.text.length).height)
+                        /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
+                        *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
+                        *I HAVE MODIFIED ORIGINAL FUNCTION
+                        *THANK YOU Oleg Yadrov :)
+                        */
                         onTextChanged: {
                             if (text !== previousText)
                             {
@@ -396,13 +401,15 @@ Page {
 
                                                     textChangedManually = true
 
-                                                    cPosition =cursorPosition+indentStringCount
+
+                                                    _editor.insert(cursorPosition, indentStr)
+                                                    /*cPosition =cursorPosition+indentStringCount
                                                     console.log(cPosition+"and"+cursorPosition)
                                                     textBeforeCursor = text.substring(0, cursorPosition)
                                                     textAfterCursor = text.substring(cursorPosition, text.length)
                                                     myeditor.text = textBeforeCursor + indentStr+ textAfterCursor
                                                     cursorPosition = cPosition
-                                                    console.log(cursorPosition)
+                                                    console.log(cursorPosition)*/
 
                                                 }
                                             }
@@ -430,12 +437,14 @@ Page {
                                         if (lineBreakPosition !== undefined)
                                         {
                                             textChangedManually = true
+
+                                            _editor.remove(lineBreakPosition + 1, cursorPosition - 1)
                                             //will remove empty spaces*indentDepth
-                                            cPosition =lineBreakPosition + 1
+                                            /*cPosition =lineBreakPosition + 1
                                             textBeforeCursor=text.substring(0, lineBreakPosition + 1)
                                             textAfterCursor=text.substring(cursorPosition - 1, text.length)
                                             text = textBeforeCursor + textAfterCursor
-                                            cursorPosition = cPosition
+                                            cursorPosition = cPosition*/
                                             textBeforeCursor = text.substring(0, cursorPosition-1)
                                             openBrackets = textBeforeCursor.match(/\{/g)
                                             closeBrackets = textBeforeCursor.match(/\}/g)
@@ -453,15 +462,16 @@ Page {
 
                                                 if (indentDepth >= 0){
                                                     indentStr = new Array(indentDepth + 1).join(indentString)
-                                                    indentStringCount = indentStr.length
+                                                    //indentStringCount = indentStr.length
                                                     textChangedManually = true
-                                                    cPosition =cursorPosition+indentStringCount
+                                                    /*cPosition =cursorPosition+indentStringCount
                                                     console.log(cPosition+"and,"+cursorPosition)
                                                     textBeforeCursor = text.substring(0, cursorPosition)
                                                     textAfterCursor = text.substring(cursorPosition, text.length)
                                                     myeditor.text = textBeforeCursor + indentStr + textAfterCursor
                                                     cursorPosition = cPosition+1
-                                                    console.log(cursorPosition)
+                                                    console.log(cursorPosition)*/
+                                                    _editor.insert(cursorPosition - 1, indentStr)
                                                 }
                                             }
                                         }

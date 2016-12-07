@@ -298,5 +298,37 @@
         <source>QML TRACE</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QML Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Properties Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Javascript Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>String Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Background</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
