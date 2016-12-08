@@ -5,13 +5,26 @@ tIDE
 
 Is Transportable IDE for SailfishOS devices.
 
+## Features
+
+*Basic IDE features such as:
+**Syntax highlighting(Supports QML, JS & Python)
+**Create template SailfishOS projects
+**Auto completion (Installs new keyboard)
+**Running the application
+**Debug log while running the application
+**Building a RPM(soooon)
+
+*Normal text editor features including:
+**Line numbering
+**Autosaving
+**Theming
+**Font settings
+**Indentation
+
 ## Installation
 
 Download rpm from openrepos and pkcon install-local harbour-tide
-
-## Usage
-
-TODO: Write usage instructions
 
 ## Contributing
 
@@ -23,11 +36,13 @@ TODO: Write usage instructions
 
 ## History
 
-TODO: Write history
+No releases yet :)
 
 ## Credits
 
-TODO: Write credits
+Parts of keyboard are taken from Jolla's [maliit](https://github.com/maliit) keyboard and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard). 
+Snippets of code also loaned from Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)
+Thanks for SettingsPage slider belongs to [Ancelad](https://github.com/Ancelad)
 
 ## License
 
