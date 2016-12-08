@@ -94,6 +94,7 @@ void RealHighlighter::ruleUpdate()
         }
 
     }else if (m_dictionary=="py") {
+        pythonFormat.setForeground(QColor(m_secondaryHighlightColor));
         pythonFormat.setFontItalic(true);
         QStringList pythonPatterns;
         loadDict(":/dictionaries/python.txt",pythonPatterns);
