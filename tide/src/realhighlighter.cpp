@@ -50,17 +50,6 @@ void RealHighlighter::ruleUpdate()
     qDebug()<<m_dictionary;
 
     if (m_dictionary=="qml") {
-        qmlFormat.setForeground(QColor(m_highlightColor));
-        qmlFormat.setFontWeight(QFont::Bold);
-        QStringList qmlPatterns;
-        loadDict(":/dictionaries/qml.txt",qmlPatterns);
-
-        foreach (const QString &pattern, qmlPatterns) {
-            rule.pattern = QRegExp(pattern);
-            rule.format = qmlFormat;
-            highlightingRules.append(rule);
-        }
-
         jsFormat.setForeground(QColor(m_secondaryHighlightColor));
         jsFormat.setFontItalic(true);
         QStringList jsPatterns;
@@ -69,6 +58,17 @@ void RealHighlighter::ruleUpdate()
         foreach (const QString &pattern, jsPatterns) {
             rule.pattern = QRegExp(pattern);
             rule.format = jsFormat;
+            highlightingRules.append(rule);
+        }
+
+        qmlFormat.setForeground(QColor(m_highlightColor));
+        qmlFormat.setFontWeight(QFont::Bold);
+        QStringList qmlPatterns;
+        loadDict(":/dictionaries/qml.txt",qmlPatterns);
+
+        foreach (const QString &pattern, qmlPatterns) {
+            rule.pattern = QRegExp(pattern);
+            rule.format = qmlFormat;
             highlightingRules.append(rule);
         }
 
@@ -165,7 +165,10 @@ void RealHighlighter::highlightBlock(const QString &text)
         StringState = 3,
         CommentState = 4
     };
-
+    /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator
+    *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
+    *I HAVE MODIFIED ORIGINAL FUNCTION :)
+    */
     QList<int> bracketPositions;
 
     int blockState = previousBlockState();

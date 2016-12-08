@@ -183,24 +183,34 @@ Page {
                         //anchors.horizontalCenter: parent.horizontalCenter
                         SearchField{
                             id:searchField
-                            width: activeFocus ? pgHead.width : implicitWidth
+                            width: activeFocus ? pgHead.width -Theme.paddingLarge : implicitWidth
                             placeholderText: "Search"
-                            EnterKey.onClicked: myeditor.text.search(searchField.text)
+                            EnterKey.onClicked: {
+                                var reg = new RegExp(text, "i")
+
+                                myeditor.cursorPosition = myeditor.text.search(reg)
+                                focus=false
+                                myeditor.focus=true
+                            }
+                            onActiveFocusChanged: text = ""
                         }
 
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-left"
                             enabled: myeditor._editor.canUndo
                             onClicked: myeditor._editor.undo()
+                            visible:!searchField.activeFocus
                         }
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-right"
                             enabled: myeditor._editor.canRedo
                             onClicked: myeditor._editor.redo()
+                            visible:!searchField.activeFocus
                         }
                         IconButton {
                             icon.source: "image://ownIcons/icon-m-save"
                             enabled: textChangedSave
+                            visible:!searchField.activeFocus
                             onClicked: {
                                 py.call('editFile.savings', [filePath,myeditor.text], function(result) {
                                     fileTitle=result
@@ -211,6 +221,7 @@ Page {
                         }
                         IconButton {
                             icon.source: "image://theme/icon-m-close"
+                            visible:!searchField.activeFocus
                             onClicked:{
                                 flipable.flipped = false
                             }
@@ -219,9 +230,6 @@ Page {
 
                 }
             }
-        }
-        function search(){
-
         }
 
         SilicaFlickable {
@@ -338,7 +346,6 @@ Page {
                         /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
                         *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
                         *I HAVE MODIFIED ORIGINAL FUNCTION
-                        *THANK YOU Oleg Yadrov :)
                         */
                         onTextChanged: {
                             if (text !== previousText)
