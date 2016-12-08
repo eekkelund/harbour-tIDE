@@ -117,64 +117,39 @@ Page {
             }
             ComboBox {
                 label: qsTr("Color of:")
-                //value: "Asd"
                 id: colorBox
                 menu: ContextMenu {
                     MenuItem {
                         text: qsTr("Text")
                         color: textColor
-                        onClicked:{
-                            //  activeColor=textColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("QML Highlight")
                         color: qmlHighlightColor
-                        onClicked:{
-                            //   activeColor=qmlHighlightColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("Keywords Highlight")
                         color: keywordsHighlightColor
-                        onClicked:{
-                            //    activeColor=keywordsHighlightColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("Properties Highlight")
                         color: propertiesHighlightColor
-                        onClicked:{
-                            //    activeColor=propertiesHighlightColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("Javascript Highlight")
                         color: javascriptHighlightColor
-                        onClicked:{
-                            //activeColor=javascriptHighlightColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("String Highlight")
                         color: stringHighlightColor
-                        onClicked:{
-                            //activeColor=stringHighlightColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("Comment Highlight")
                         color: commentHighlightColor
-                        onClicked:{
-                            //activeColor=commentHighlightColor
-                        }
                     }
                     MenuItem {
                         text: qsTr("Background")
                         color:bgColor
-                        onClicked:{
-                            //activeColor=bgColor
-                        }
                     }
                 }
             }
@@ -182,7 +157,7 @@ Page {
             Slider {
                 id: slider
                 onReleased: {
-                    setColor(colorBox.currentIndex,Qt.hsla((gradient_color/100),1.0,0.5,1.0))
+                    setColor(colorBox.currentIndex, Qt.hsla((gradient_color/100),1.0,0.5,1.0))
                 }
                 Rectangle {
                     id: background

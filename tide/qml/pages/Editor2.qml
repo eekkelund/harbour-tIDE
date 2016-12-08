@@ -180,7 +180,14 @@ Page {
                         id:menu
                         height: pgHead.height
                         spacing: Theme.paddingMedium
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        //anchors.horizontalCenter: parent.horizontalCenter
+                        SearchField{
+                            id:searchField
+                            width: activeFocus ? pgHead.width : implicitWidth
+                            placeholderText: "Search"
+                            EnterKey.onClicked: myeditor.text.search(searchField.text)
+                        }
+
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-left"
                             enabled: myeditor._editor.canUndo
@@ -213,6 +220,10 @@ Page {
                 }
             }
         }
+        function search(){
+
+        }
+
         SilicaFlickable {
             id:f
             clip: true
