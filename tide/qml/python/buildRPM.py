@@ -17,16 +17,9 @@ def createBuildDir(projectName, buildPath, projectPath):
     try:
         if not os.path.exists(buildPath):
             os.makedirs(buildPath +"/BUILD")
-            #os.makedirs(buildPath +"/BUILDROOT")
             os.makedirs(buildPath +"/SOURCES")
-            #os.makedirs(buildPath +"/RPMS/armv7hl")#only for phone
             os.makedirs(buildPath +"/SPECS")
-            os.makedirs(buildPath +"/BUILD/"+projectName+"-0.1-1.i386/usr/share/"+projectName)
-            os.makedirs(buildPath +"/BUILD/"+projectName+"-0.1-1.i386/usr/share/applications")
-            os.makedirs(buildPath +"/BUILD/"+projectName+"-0.1-1.i386/usr/share/icons/108x108/apps/")
-            os.makedirs(buildPath +"/BUILD/"+projectName+"-0.1-1.i386/usr/share/icons/128x128/apps/")
-            os.makedirs(buildPath +"/BUILD/"+projectName+"-0.1-1.i386/usr/share/icons/256x256/apps/")
-            os.makedirs(buildPath +"/BUILD/"+projectName+"-0.1-1.i386/usr/share/icons/86x86/apps/")
+            os.makedirs(buildPath +"/BUILDROOT/")
         if os.path.exists(buildPath +"/"+ projectName):
             #create new
             shutil.rmtree(buildPath +"/"+ projectName)
@@ -45,10 +38,6 @@ def getReady(projectName, buildPath, projectPath):
     global buildP
     project=projectName
     buildP =buildPath
-    #os.chdir(buildPath+"/"+ projectName+"/rpmbuild/SPECS")
-    #cwd = os.getcwd()
-    #pyotherside.send(cwd)
-    #startt()
 
 def build():
     master_fd, slave_fd = pty.openpty()

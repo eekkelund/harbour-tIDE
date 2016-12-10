@@ -2,5 +2,6 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=template
-Exec=template
+#Exec=template
+Exec=sailfish-qml template
 Name=template

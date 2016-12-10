@@ -35,7 +35,7 @@ Page {
             MenuItem {
                 text: qsTr("Build the app")
                 onClicked: {
-                   // pageStack.push(Qt.resolvedUrl("BuildOutput.qml"))
+                    pageStack.push(Qt.resolvedUrl("BuildOutput.qml"))
                 }
             }
             MenuItem {
