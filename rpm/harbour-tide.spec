@@ -16,11 +16,10 @@ Summary:    Transportable IDE
 Version:    0.1
 Release:    1
 Group:      Qt/Qt
-License:    LICENSE
-URL:        http://example.org/
+License:    GPLv3
+URL:        https://github.com/eekkelund/
 Source0:    %{name}-%{version}.tar.bz2
-Source100:  harbour-tide.yaml
-Requires:   sailfishsilica-qt5 >= 0.10.9, qtchooser, qt5-qtdeclarative-qmlscene, pyotherside-qml-plugin-python3-qt5 >= 1.3, python3-base, rpm-build
+Requires:   sailfishsilica-qt5 >= 0.10.9, qtchooser, qt5-qtdeclarative-qmlscene, pyotherside-qml-plugin-python3-qt5 >= 1.3, rpm-build, meego-rpm-config, qt5-qmake, make
 Requires:   qt5-qtdeclarative-import-folderlistmodel
 
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
@@ -30,8 +29,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my Sailfish OS Application
-
+Trasnportable IDE for SailfishOS devices
 
 %prep
 %setup -q -n %{name}-%{version}
