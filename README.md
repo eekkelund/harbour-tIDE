@@ -1,18 +1,12 @@
  
 # tIDE
 
-Is Transportable IDE for SailfishOS devices.
+transportable IDE for SailfishOS devices.
 
 All feature suggestions welcome! :)
 
 Includes keyboard!
 
-## Screenshots
-
-<img src="https://cloud.githubusercontent.com/assets/11635400/21082725/1b47c23e-bfea-11e6-8324-96427c66b317.png" alt="Dark theme" style="width: 200px;"/>
-<img src="https://cloud.githubusercontent.com/assets/11635400/21082726/1b493aa6-bfea-11e6-909b-44b506755b22.png" alt="Settings" style="width: 200px;"/>
-<img src="https://cloud.githubusercontent.com/assets/11635400/21082724/1b47770c-bfea-11e6-86c2-3d232d494142.png" alt="Predictive text" style="width: 200px;"/>
-<img src="https://cloud.githubusercontent.com/assets/11635400/21082723/1b467816-bfea-11e6-8614-53b3a88ffd50.png" alt="Building&Running" style="width: 200px;"/>
 
 ## Features
 
@@ -34,28 +28,36 @@ Includes keyboard!
   * Redo/Undo
   * Search
 
+## Screenshots
+
+![Dark theme](https://cloud.githubusercontent.com/assets/11635400/21082871/471aff54-bfed-11e6-8a35-63c3fbb066a8.png "Dark theme in editor")
+![Settings](https://cloud.githubusercontent.com/assets/11635400/21082870/471a3cfe-bfed-11e6-8792-a330cea85d68.png "Settings")
+![Predictive text](https://cloud.githubusercontent.com/assets/11635400/21082873/471b61d8-bfed-11e6-9a6e-c328f6371804.png "Predictive text")
+![Building&Running](https://cloud.githubusercontent.com/assets/11635400/21082872/471b3bb8-bfed-11e6-85da-31bc6aa4f333.png "Building & Running")
+  
 ## Roadmap
 
 Not in particular order..:)
 
-* C++ support
+[ ]  C++ support
   * Syntax highlighting
   * Predictive
   * Compiling
-* Github/Gitlab gui
-* Start as root
-* Building
-* OBS
-* Help mode(API's)
-* Icon and cover for harbour
-* Harbour version
-* App cover
-* Fix line numbering
-* Suggestions + Bugs
+
+[ ] Github/Gitlab gui
+[ ] Start as root
+[ ] Building
+[ ] OBS
+[ ] Help mode(API's)
+[ ] Icon and cover for harbour
+[ ] Harbour version
+[ ] App cover
+[ ] Fix line numbering
+[ ] Suggestions + Bugs
 
 ## Installation
 
-Download RPM from openrepos and `pkcon install-local harbour-tide`
+Download RPM from openrepos and `pkcon install-local harbour-tide`  
 Restart maliit-server `systemctl --user restart maliit-server.service` 
 
 ## Contributing
@@ -72,8 +74,8 @@ No releases yet :)
 
 ## Credits
 
-Parts of keyboard are taken from Jolla's [maliit](https://github.com/maliit) keyboard and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard). 
-Snippets of code also loaned from Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)
+Parts of keyboard are taken from Jolla's [maliit](https://github.com/maliit) keyboard and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard).  
+Snippets of code also loaned from Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
 Thanks for SettingsPage slider belongs to [Ancelad](https://github.com/Ancelad)
 
 ## License
