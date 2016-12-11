@@ -102,6 +102,8 @@ Page {
         return lineNumberslist
         }
     }*/
+
+
     Rectangle {
         id:rectangle
         color: bgColor
@@ -127,12 +129,20 @@ Page {
 
         SilicaFlickable {
             id:hdr
-
             anchors.top:parent.top
-
-
             height: headerColumn.height
             width: parent.width
+
+            TouchInteractionHint{
+                id: headerHint
+                z: 999
+                direction: TouchInteraction.Up
+                //anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                distance: 1
+                loops: 2
+            }
+
             Column {
                 id:headerColumn
                 width: parent.width
@@ -555,6 +565,7 @@ Page {
             })
             myeditor.forceActiveFocus();
             busy.running=false;
+            headerHint.start()
             //numberOfLines()//
             //console.log(lineNumberslist)
         }

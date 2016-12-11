@@ -22,6 +22,11 @@ import io.thp.pyotherside 1.3
 Page {
     id: page
     property int pid
+    onStatusChanged: {
+        if (status == PageStatus.Deactivating) {
+            py.call('buildRPM.kill', [],function(result) {console.log(result)});
+        }
+    }
     PageHeader {
         id:hdr
         title: qsTr("Build output")
@@ -29,6 +34,17 @@ Page {
 
     SilicaListView {
         id: outputList
+        PullDownMenu {
+            id:pulldown
+            visible: false
+            /*MenuItem {
+                text: qsTr("Install")
+                onClicked: {
+                    py.call('buildRPM.kill', [], function(result) {console.log(result)});
+                    listModel.clear()
+                }
+            }*/
+        }
         anchors.top: hdr.bottom
         anchors.bottom: parent.bottom
         anchors.left:parent.left
@@ -54,7 +70,7 @@ Page {
             }
             menu: ContextMenu {
                 MenuItem {
-                    text: "Copy"
+                    text: qsTr("Copy")
                     onClicked: Clipboard.text=outputText.text
                 }
             }
@@ -66,6 +82,9 @@ Page {
                 addImportPath(Qt.resolvedUrl('./../python'));
                 setHandler('output', function(text) {
                     listModel.append(text);
+                    if (text.out.search("Wrote")>-1){
+                        pulldown.visible =true
+                    }
                 });
                 setHandler('pid', function(pidi) {
                     pid=pidi

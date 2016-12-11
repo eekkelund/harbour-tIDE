@@ -30,6 +30,10 @@
         <source>Application output</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuildOutput</name>
@@ -37,13 +41,13 @@
         <source>Build output</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
-    <message>
-        <source>My Cover</source>
-        <translation>Mein Cover</translation>
-    </message>
     <message>
         <source>Application Cover</source>
         <translation type="unfinished"></translation>

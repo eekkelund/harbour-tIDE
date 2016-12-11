@@ -24,7 +24,6 @@ Page {
     property int pid
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
-            console.log("stoppinf")
             py.call('stopProject.kill', [],function(result) {
                 console.log(result)
             });
@@ -63,7 +62,7 @@ Page {
             }
             menu: ContextMenu {
                 MenuItem {
-                    text: "Copy"
+                    text: qsTr("Copy")
                     onClicked: Clipboard.text=outputText.text
                 }
             }

@@ -46,39 +46,44 @@ Page {
             placeholderText: qsTr("Name of the project")
             width: parent.width
             validator: RegExpValidator { regExp: /.{1,}/ }
+            EnterKey.enabled: text.length > 0
+            EnterKey.iconSource: "image://theme/icon-m-enter-accept"
+            EnterKey.onClicked: create();
         }
         Button {
             id:add
             anchors.horizontalCenter: column.horizontalCenter
             text:qsTr("Create project")
-            onPressed: {
-                if (projectN.text !== "") {
-                    projectName = projectN.text;
-                    py.call('createProject.create', [projectName,projectPath], function(result) {
-                        if (result===false){
-                            //Show warning
-                            showError();
-                        }
-                        else {
-                            console.log(projectQmlPath);
-                            pageStack.replaceAbove(getBottomPageId(), Qt.resolvedUrl("CreatorHome.qml"));
-                        }
-                    });
-
-                    function getBottomPageId()
-                    {
-                        return pageStack.find( function(page)
-                        {
-                            return (page._depth === 0)
-                        })
-                    }
-
-
-                }
-            }
+            onPressed: create();
         }
 
     }
+    function create(){
+        if (projectN.text !== "") {
+            projectName = projectN.text;
+            py.call('createProject.create', [projectName,projectPath], function(result) {
+                if (result===false){
+                    //Show warning
+                    showError();
+                }
+                else {
+                    console.log(projectQmlPath);
+                    pageStack.replaceAbove(getBottomPageId(), Qt.resolvedUrl("CreatorHome.qml"));
+                }
+            });
+
+            function getBottomPageId()
+            {
+                return pageStack.find( function(page)
+                {
+                    return (page._depth === 0)
+                })
+            }
+
+
+        }
+    }
+    Component.onCompleted: projectN.forceActiveFocus()
 
     Python {
         id: py

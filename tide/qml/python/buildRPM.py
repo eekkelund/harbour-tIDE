@@ -41,9 +41,8 @@ def getReady(projectName, buildPath, projectPath):
 
 def build():
     master_fd, slave_fd = pty.openpty()
-    pyotherside.send('pid', "asd")
     global process
-    process = Popen(["rpmbuild", "-bb", buildP+"/SPECS/"+project+".spec"], stdin=slave_fd, stdout=slave_fd, stderr=STDOUT, bufsize=0, close_fds=True)
+    process = Popen(["rpmbuild", "-ba", buildP+"/SPECS/"+project+".spec"], stdin=slave_fd, stdout=slave_fd, stderr=STDOUT, bufsize=0, close_fds=True)
     pyotherside.send('pid', process.pid)
     timeout = .1
     with os.fdopen(master_fd, 'r+b', 0) as master:
@@ -70,8 +69,8 @@ def build():
                     os.close(slave_fd) # subproces don't need it anymore
                     break
     rc = process.wait()
-    print("subprocess exited with status %d" % rc)
-    processs.kill()
+    pyotherside.send('pid', "subprocess exited with status %d" % rc)
+    process.kill()
 
 def init():
     global bgthread
@@ -81,3 +80,8 @@ def init():
 def start_proc():
     bgthread.start()
     return "started"
+
+def kill():
+    os.kill(process.pid, signal.SIGTERM)
+    bgthread = None
+    return "stopperd"
