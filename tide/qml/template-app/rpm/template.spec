@@ -45,7 +45,9 @@ fi
 # >> build pre
 # << build pre
 
+#%%qtc_qmake5 
 
+#%%qtc_make %%{?_smp_mflags}
 
 # >> build post
 # << build post
@@ -77,7 +79,7 @@ rm -rf %{buildroot}
 
 # >> install pre
 # << install pre
-
+#%%qmake5_install
 
 # >> install post
 # << install post
