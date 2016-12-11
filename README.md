@@ -1,49 +1,47 @@
  
-# Project Name
-
-tIDE
+# tIDE
 
 Is Transportable IDE for SailfishOS devices.
 
-All feature suggestions welcome! :simple_smile:
+All feature suggestions welcome! :)
 
 Includes keyboard!
 
 ## Features
 
-*Basic IDE features such as:
-**Syntax highlighting(Supports QML, JS & Python)
-**Create template SailfishOS projects
-**Auto completion (Installs new keyboard)
-**Running the application
-**Debug log while running the application
-**Building a RPM(experimental)
+* Basic IDE features such as:
+⋅⋅* Syntax highlighting(Supports QML, JS & Python)
+⋅⋅* Create template SailfishOS projects
+⋅⋅* Auto completion (Installs new keyboard)
+⋅⋅* Running the application
+⋅⋅* Debug log while running the application
+⋅⋅* Building a RPM(experimental)
 
-*Normal text editor features including:
-**Line numbering
-**Autosaving
-**Theming
-**Font settings
-**Indentation
+* Normal text editor features including:
+⋅⋅* Line numbering
+⋅⋅* Autosaving
+⋅⋅* Theming
+⋅⋅* Font settings
+⋅⋅* Indentation
 
 ## Roadmap
 
 Not in particular order..:)
 
-1. C++ support
-**Syntax highlighting
-**Predictive
-**Compiling
-2. Github/Gitlab gui
-3. Start as root
-4. Building
-5. OBS
-6. Help mode(API's)
-7. Icon and cover for harbour
-8. Harbour version
-9. App cover
-10. Fix line numbering
-11. Suggestions + Bugs
+* C++ support
+⋅⋅* Syntax highlighting
+⋅⋅* Predictive
+⋅⋅* Compiling
+* Github/Gitlab gui
+* Start as root
+* Building
+* OBS
+* Help mode(API's)
+* Icon and cover for harbour
+* Harbour version
+* App cover
+* Fix line numbering
+* Suggestions + Bugs
 
 ## Installation
 
