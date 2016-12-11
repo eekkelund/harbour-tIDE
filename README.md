@@ -39,21 +39,21 @@ Includes keyboard!
 
 Not in particular order..:)
 
-[ ]  C++ support
+- [ ]  C++ support
   * Syntax highlighting
   * Predictive
   * Compiling
 
-[ ] Github/Gitlab gui
-[ ] Start as root
-[ ] Building
-[ ] OBS
-[ ] Help mode(API's)
-[ ] Icon and cover for harbour
-[ ] Harbour version
-[ ] App cover
-[ ] Fix line numbering
-[ ] Suggestions + Bugs
+- [ ] Github/Gitlab gui
+- [ ] Start as root
+- [ ] Building
+- [ ] OBS
+- [ ] Help mode(API's)
+- [ ] Icon and cover for harbour
+- [ ] Harbour version
+- [ ] App cover
+- [ ] Fix line numbering
+- [ ] Suggestions + Bugs
 
 ## Installation
 
