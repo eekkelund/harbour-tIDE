@@ -76,6 +76,8 @@ ApplicationWindow
     onBgColorChanged: setSetting('bgcolor',bgColor)
     property bool trace //:false
     onTraceChanged: setSetting('trace', trace)
+    property int hint//:0
+    onHintChanged: setSetting('hint',hint)
 
     function setSetting(key, value){
         console.log(key+" "+value)
@@ -100,11 +102,11 @@ ApplicationWindow
                         if (result=="True") lineNums=true
                         else lineNums=false
                         console.log(lineNums)
-                          });
+                    });
                     py.call('settings.get', ['autosave'], function(result) {
                         if (result=="True") autoSave=true
                         else autoSave=false
-                          });
+                    });
                     py.call('settings.get', ['indentsize'], function(result) {indentSize=result});
                     py.call('settings.get', ['textcolor'], function(result) {textColor=result});
                     py.call('settings.get', ['qmlcolor'], function(result) {qmlHighlightColor=result});
@@ -117,7 +119,8 @@ ApplicationWindow
                     py.call('settings.get', ['trace'], function(result) {
                         if (result=="True") trace=true
                         else trace=false
-                          });
+                    });
+                    py.call('settings.get', ['hint'], function(result) {hint=result});
                 });
 
             });

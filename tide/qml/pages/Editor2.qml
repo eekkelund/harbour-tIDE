@@ -29,6 +29,8 @@ Page {
     property string fileTitle: singleFile
     //Check if file ends with tilde "~" and change the filetype accordingly
     property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
+
+    //Try to fix linenumbering
     /*property var lineNumberslist: new Array()
     property int lastLineCount:0
     property int numLines:0
@@ -565,7 +567,10 @@ Page {
             })
             myeditor.forceActiveFocus();
             busy.running=false;
+            if(hint<3){
             headerHint.start()
+            hint = hint+1
+            }
             //numberOfLines()//
             //console.log(lineNumberslist)
         }

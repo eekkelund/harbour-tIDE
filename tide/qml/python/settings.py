@@ -26,7 +26,8 @@ def setDataPath(path):
                           'strcolor':"#ffcd8b",
                           'commentcolor':"#cd8b00",
                           'bgcolor':"#1e1e27",
-                          'trace':'False'
+                          'trace':'False',
+                          'hint':'0'
                           }
         with open(confPath, 'a+') as cfg:
             config.write(cfg)
