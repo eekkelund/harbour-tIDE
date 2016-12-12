@@ -12,11 +12,11 @@ def setDataPath(path):
     if not os.path.exists(confPath):
         os.makedirs(path)
         config = configparser.RawConfigParser()
-        config['editor']={'darktheme': 'true',
+        config['editor']={'darktheme': 'True',
                           'fontsize': '35',
                           'fonttype': "Sail Sans Pro Light",
-                          'linenums': 'true',
-                          'autosave': 'false',
+                          'linenums': 'True',
+                          'autosave': 'False',
                           'indentsize': '4',
                           'textcolor':"#cfbfad",
                           'qmlcolor':"#ff8bff",
@@ -26,7 +26,7 @@ def setDataPath(path):
                           'strcolor':"#ffcd8b",
                           'commentcolor':"#cd8b00",
                           'bgcolor':"#1e1e27",
-                          'trace':'false'
+                          'trace':'False'
                           }
         with open(confPath, 'a+') as cfg:
             config.write(cfg)

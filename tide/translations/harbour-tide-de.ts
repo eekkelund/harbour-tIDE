@@ -291,10 +291,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ambience Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Debugging</source>
         <translation type="unfinished"></translation>
     </message>
@@ -332,6 +328,10 @@
     </message>
     <message>
         <source>Background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ambience Theme</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
