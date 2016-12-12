@@ -287,10 +287,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gradient color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Debugging</source>
         <translation type="unfinished"></translation>
     </message>

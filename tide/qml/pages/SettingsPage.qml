@@ -244,7 +244,7 @@ Page {
                     anchors.top: parent.verticalCenter
                     anchors.topMargin: Theme.paddingMedium*2
                     color: Qt.hsla((gradient_color/100),1.0,0.5,1.0)
-                    text: qsTr("Gradient color")
+                    text: colorBox.currentItem.text
                 }
             }
 
