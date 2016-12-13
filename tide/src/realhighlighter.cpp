@@ -47,7 +47,6 @@ void RealHighlighter::ruleUpdate()
     highlightingRules.clear();
     QStringList keywordPatterns;
     QStringList propertiesPatterns;
-    qDebug()<<m_dictionary;
 
     if (m_dictionary=="qml") {
         jsFormat.setForeground(QColor(m_secondaryHighlightColor));
