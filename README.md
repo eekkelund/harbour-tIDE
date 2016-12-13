@@ -34,6 +34,8 @@ Includes keyboard!
 ![Settings](https://cloud.githubusercontent.com/assets/11635400/21082870/471a3cfe-bfed-11e6-8792-a330cea85d68.png "Settings")
 ![Predictive text](https://cloud.githubusercontent.com/assets/11635400/21082873/471b61d8-bfed-11e6-9a6e-c328f6371804.png "Predictive text")
 ![Building&Running](https://cloud.githubusercontent.com/assets/11635400/21082872/471b3bb8-bfed-11e6-85da-31bc6aa4f333.png "Building & Running")
+![App output](https://cloud.githubusercontent.com/assets/11635400/21133077/c1fb2ef0-c11f-11e6-869b-facc0689d669.png "App output")
+![Build output](https://cloud.githubusercontent.com/assets/11635400/21133076/c1fa9ee0-c11f-11e6-9d8b-588c3f4b6780.png "Build output")
   
 ## Roadmap
 
@@ -54,6 +56,9 @@ Not in particular order..:)
 - [ ] App cover
 - [ ] Fix line numbering
 - [ ] Suggestions + Bugs
+- [ ] Nemomobile version
+- [ ] Breakpoints
+- [ ] About page
 
 ## Installation
 

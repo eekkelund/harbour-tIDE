@@ -3,4 +3,4 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-tide
 Exec=harbour-tide
-Name=harbour-tide
+Name=tIDE
