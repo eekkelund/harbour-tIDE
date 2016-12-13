@@ -78,6 +78,8 @@ ApplicationWindow
     onTraceChanged: setSetting('trace', trace)
     property int hint//:0
     onHintChanged: setSetting('hint',hint)
+    property bool plugins //:
+    onPluginsChanged: setSetting('plugins',plugins)
 
     function setSetting(key, value){
         console.log(key+" "+value)
@@ -121,6 +123,10 @@ ApplicationWindow
                         else trace=false
                     });
                     py.call('settings.get', ['hint'], function(result) {hint=result});
+                    py.call('settings.get', ['plugins'], function(result) {
+                        if (result=="True") plugins=true
+                        else plugins=false
+                    });
                 });
 
             });

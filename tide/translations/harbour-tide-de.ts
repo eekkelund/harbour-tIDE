@@ -330,5 +330,9 @@
         <source>Ambience Theme</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>DEBUG PLUGINS</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

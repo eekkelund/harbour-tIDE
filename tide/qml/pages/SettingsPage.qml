@@ -367,6 +367,13 @@ Page {
                     trace = checked
                 }
             }
+            TextSwitch {
+                text: qsTr("DEBUG PLUGINS")
+                checked: plugins
+                onCheckedChanged: {
+                    plugins = checked
+                }
+            }
 
         }
 

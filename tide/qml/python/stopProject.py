@@ -12,6 +12,7 @@ project =None
 process =None
 bgthread =None
 trace=None
+plugins=None
 
 def set_path(project_path):
     global project
@@ -24,6 +25,8 @@ def run_process():
     new_env = os.environ.copy()
     if (trace):
         new_env['QML_IMPORT_TRACE'] = '1'#if user wants trace
+    elif(plugins):
+        new_env['QT_DEBUG_PLUGINS']='1'#if user wants plugins log
     process = Popen(["qmlscene", project], stdin=slave_fd, stdout=slave_fd, stderr=STDOUT, bufsize=0, close_fds=True, env=new_env )
     pyotherside.send('pid', process.pid)
     timeout = .1
@@ -54,9 +57,11 @@ def run_process():
     print("subprocess exited with status %d" % rc)
     processs.kill()
 
-def init(import_trace):
+def init(import_trace, import_plugins):
     global trace
     trace = import_trace
+    global plugins
+    plugins = import_plugins
     global bgthread
     bgthread = Thread(target=run_process)
     return "created"
