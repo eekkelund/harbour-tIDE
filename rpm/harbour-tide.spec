@@ -13,7 +13,7 @@ Name:       harbour-tide
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    transportable IDE
-Version:    0.1
+Version:    0.0.devel
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -60,6 +60,9 @@ rm -rf %{buildroot}
 desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
+
+%post
+systemctl --user restart maliit-server.service
 
 %files
 %defattr(755,nemo,nemo,755)
