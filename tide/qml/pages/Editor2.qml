@@ -26,6 +26,7 @@ Page {
     id: page
     property bool textChangedAutoSave: false
     property bool textChangedSave: false
+    property bool searched: false
     property string fileTitle: singleFile
     //Check if file ends with tilde "~" and change the filetype accordingly
     property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
@@ -122,6 +123,8 @@ Page {
             notification.publish();
         }
 
+
+
         BusyIndicator {
             id:busy
             size: BusyIndicatorSize.Large
@@ -157,6 +160,16 @@ Page {
 
                     property bool flipped: false
 
+                    function search(text, position, direction, id) {
+                        var reg = new RegExp(text, "ig")
+                        var match = myeditor.text.match(reg)
+                        if(direction=="back"){
+                            myeditor.cursorPosition = myeditor.text.lastIndexOf(match[match.length-1], position)
+                        }else myeditor.cursorPosition = myeditor.text.indexOf(match[0],position)
+                        //id.focus =false
+                        myeditor.forceActiveFocus();
+                    }
+
                     transform: Rotation {
                         id: rotation
                         origin.x: flipable.width/2
@@ -191,38 +204,61 @@ Page {
                     back:Flow {
                         id:menu
                         height: pgHead.height
-                        spacing: Theme.paddingMedium
-                        //anchors.horizontalCenter: parent.horizontalCenter
+                        //spacing: Theme.paddingMedium
+                        anchors.horizontalCenter: parent.horizontalCenter
+
                         SearchField{
                             id:searchField
-                            width: activeFocus ? pgHead.width -Theme.paddingLarge : implicitWidth
-                            placeholderText: "Search"
-                            EnterKey.onClicked: {
-                                var reg = new RegExp(text, "i")
-
-                                myeditor.cursorPosition = myeditor.text.search(reg)
-                                focus=false
-                                myeditor.focus=true
+                            width: (activeFocus || text.length>0) ? pgHead.width -previous.width*2: implicitWidth
+                            placeholderText: qsTr("Search")
+                            EnterKey.onClicked:{
+                                flipable.search(text,0,"forward",searchField);
+                                //focus=false
+                                searched=true
                             }
-                            onActiveFocusChanged: text = ""
+                            onTextChanged: searched = false
+                            //onActiveFocusChanged:
                         }
-
+                        IconButton {
+                            id:previous
+                            icon.source: "image://theme/icon-m-previous"
+                            enabled: searched
+                            onClicked:{
+                                flipable.search(searchField.text,myeditor.cursorPosition-1,"back",previous);
+                                //focus=false
+                                //myeditor.focus=true
+                                myeditor.forceActiveFocus();
+                            }
+                            visible:searchField.activeFocus || searchField.text.length>0
+                        }
+                        IconButton {
+                            id:next
+                            icon.source: "image://theme/icon-m-next"
+                            enabled: searched
+                            onClicked:{
+                                flipable.search(searchField.text,myeditor.cursorPosition+1,"forward",next);
+                                //focus=false
+                                //myeditor.focus=true
+                                myeditor.forceActiveFocus();
+                            }
+                            visible:searchField.activeFocus || searchField.text.length>0
+                        }
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-left"
                             enabled: myeditor._editor.canUndo
                             onClicked: myeditor._editor.undo()
-                            visible:!searchField.activeFocus
+                            visible:!searchField.activeFocus && searchField.text.length<=0
                         }
                         IconButton {
                             icon.source: "image://theme/icon-m-rotate-right"
                             enabled: myeditor._editor.canRedo
                             onClicked: myeditor._editor.redo()
-                            visible:!searchField.activeFocus
+                            visible:!searchField.activeFocus && searchField.text.length<=0
                         }
                         IconButton {
                             icon.source: "image://ownIcons/icon-m-save"
                             enabled: textChangedSave
-                            visible:!searchField.activeFocus
+                            visible:!searchField.activeFocus && searchField.text.length<=0
                             onClicked: {
                                 py.call('editFile.savings', [filePath,myeditor.text], function(result) {
                                     fileTitle=result
@@ -233,13 +269,12 @@ Page {
                         }
                         IconButton {
                             icon.source: "image://theme/icon-m-close"
-                            visible:!searchField.activeFocus
+                            visible:!searchField.activeFocus && searchField.text.length<=0
                             onClicked:{
                                 flipable.flipped = false
                             }
                         }
                     }
-
                 }
             }
         }
@@ -310,7 +345,7 @@ Page {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.left: parent.left
-                    width: lineNums ? linecolumn.width *1.2 : 0
+                    width: lineNums ? linecolumn.width *1.2 : Theme.paddingSmall
                     color: "transparent"
                     visible: lineNums
                     Column {
@@ -568,8 +603,8 @@ Page {
             myeditor.forceActiveFocus();
             busy.running=false;
             if(hint<3){
-            headerHint.start()
-            hint = hint+1
+                headerHint.start()
+                hint = hint+1
             }
             //numberOfLines()//
             //console.log(lineNumberslist)
