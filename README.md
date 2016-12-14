@@ -3,9 +3,11 @@
 
 transportable IDE for SailfishOS devices.
 
-All feature suggestions welcome! :)
+All feature suggestions and contributions welcome! :)
 
 Includes keyboard!
+
+![tIDE](https://github.com/eekkelund/harbour-tIDE/blob/devel/tide/icons/128x128/harbour-tide.png?raw=true "tIDE")
 
 
 ## Features
