@@ -313,7 +313,6 @@ Page {
                     if(textChangedAutoSave){
                         py.call('editFile.autosave', [filePath,myeditor.text], function(result) {
                             fileTitle=result
-                            console.log(result)
                         });
                         textChangedAutoSave=false;
                     }
@@ -389,7 +388,6 @@ Page {
                         color: focus ? textColor : Theme.primaryColor
                         font.pixelSize: fontSize
                         font.family: fontType
-                        onClicked: console.log(text[cursorPosition - 1] + "-last-"+myeditor.positionToRectangle(myeditor.text.length)+"sdsa"+myeditor.positionToRectangle(myeditor.text.length).height)
                         /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
                         *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
                         *I HAVE MODIFIED ORIGINAL FUNCTION
@@ -398,7 +396,6 @@ Page {
                             if (text !== previousText)
                             {
                                 //lineNumberChanged()
-                                //console.log(lineNumberslist)
                                 if (textChangedManually)
                                 {
                                     previousText = text
@@ -423,8 +420,6 @@ Page {
                                     var lastCharacter = text[cursorPosition - 1]
                                     textChangedSave = true
                                     var colonCount
-                                    console.log(lastCharacter)
-                                    console.log(text[cursorPosition])
                                     switch (lastCharacter)
                                     {
 
@@ -465,17 +460,7 @@ Page {
                                                     indentStringCount = indentStr.length
 
                                                     textChangedManually = true
-
-
                                                     _editor.insert(cursorPosition, indentStr)
-                                                    /*cPosition =cursorPosition+indentStringCount
-                                                    console.log(cPosition+"and"+cursorPosition)
-                                                    textBeforeCursor = text.substring(0, cursorPosition)
-                                                    textAfterCursor = text.substring(cursorPosition, text.length)
-                                                    myeditor.text = textBeforeCursor + indentStr+ textAfterCursor
-                                                    cursorPosition = cPosition
-                                                    console.log(cursorPosition)*/
-
                                                 }
                                             }
                                         }
@@ -497,8 +482,6 @@ Page {
                                                 break
                                             }
                                         }
-                                        console.log(lineBreakPosition);
-
                                         if (lineBreakPosition !== undefined)
                                         {
                                             textChangedManually = true
@@ -529,13 +512,6 @@ Page {
                                                     indentStr = new Array(indentDepth + 1).join(indentString)
                                                     //indentStringCount = indentStr.length
                                                     textChangedManually = true
-                                                    /*cPosition =cursorPosition+indentStringCount
-                                                    console.log(cPosition+"and,"+cursorPosition)
-                                                    textBeforeCursor = text.substring(0, cursorPosition)
-                                                    textAfterCursor = text.substring(cursorPosition, text.length)
-                                                    myeditor.text = textBeforeCursor + indentStr + textAfterCursor
-                                                    cursorPosition = cPosition+1
-                                                    console.log(cursorPosition)*/
                                                     _editor.insert(cursorPosition - 1, indentStr)
                                                 }
                                             }
@@ -565,7 +541,6 @@ Page {
             id: py
 
             Component.onCompleted: {
-                console.log(fileType);
                 addImportPath(Qt.resolvedUrl('./../python'));
                 importModule('editFile', function () {});
             }
@@ -575,15 +550,19 @@ Page {
                 showError();
 
             }
-            onReceived: console.log('Unhandled event: ' + data)
         }
     }
     onStatusChanged:{
         if((status !== PageStatus.Active) || (myeditor.text.length > 0)){
+            if (autoSave&&textChangedAutoSave){
+                py.call('editFile.autosave', [filePath,myeditor.text], function(result) {
+                    fileTitle=result
+                });
+            }
+
             return;
         }
         else {
-            console.log(filePath)
             documentHandler.setStyle(propertiesHighlightColor, stringHighlightColor,
                                      qmlHighlightColor, javascriptHighlightColor,
                                      commentHighlightColor, keywordsHighlightColor,

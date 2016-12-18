@@ -27,7 +27,7 @@ Page {
         width: parent.width
         height: parent.height
         PullDownMenu {
-            MenuItem {
+            /*MenuItem {
                 text:  projectPath=="/usr/share/" ? qsTr("Go to own projects"): qsTr("Open /usr/share/")
                 onClicked: goToProjects()
 
@@ -47,12 +47,11 @@ Page {
                         else {
                             for (var i=0; i<result2.length; i++) {
                                 listModel.append(result2[i]);
-                                console.log(result2[i].project);
                             }
                         }
                     });
                 }
-            }
+            }*/
             MenuItem {
                 text: qsTr("Create new project")
                 onClicked: pageStack.push(Qt.resolvedUrl("CreateProject.qml"))
@@ -113,10 +112,9 @@ Page {
                         labelText=qsTr("No projects yet")
                     }
                     else {
-                        labelText=qsTr("Open existing project")
+                        labelText=qsTr("Open an existing project")
                         for (var i=0; i<result2.length; i++) {
                             listModel.append(result2[i]);
-                            console.log(result2[i].project);
                         }
                     }
                 });
@@ -126,7 +124,6 @@ Page {
             // when an exception is raised, this error handler will be called
             console.log('python error: ' + traceback);
         }
-        onReceived: console.log('Unhandled event: ' + data)
     }
 }
 

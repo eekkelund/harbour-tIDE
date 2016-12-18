@@ -82,7 +82,6 @@ ApplicationWindow
     onPluginsChanged: setSetting('plugins',plugins)
 
     function setSetting(key, value){
-        console.log(key+" "+value)
         py.call('settings.set', [key, value], function(result) {});
     }
 
@@ -96,14 +95,12 @@ ApplicationWindow
                     py.call('settings.get', ['darktheme'], function(result) {
                         if (result=="True") darkTheme=true
                         else darkTheme=false
-                        console.log(darkTheme)
                     });
                     py.call('settings.get', ['fontsize'], function(result) {fontSize=result});
                     py.call('settings.get', ['fonttype'], function(result) {fontType=result});
                     py.call('settings.get', ['linenums'], function(result) {
                         if (result=="True") lineNums=true
                         else lineNums=false
-                        console.log(lineNums)
                     });
                     py.call('settings.get', ['autosave'], function(result) {
                         if (result=="True") autoSave=true
@@ -135,7 +132,6 @@ ApplicationWindow
             // when an exception is raised, this error handler will be called
             console.log('python error: ' + traceback);
         }
-        onReceived: console.log('Unhandled event: ' + data)
     }
 }
 

@@ -67,7 +67,6 @@ Page {
                     showError();
                 }
                 else {
-                    console.log(projectQmlPath);
                     pageStack.replaceAbove(getBottomPageId(), Qt.resolvedUrl("CreatorHome.qml"));
                 }
             });
@@ -96,7 +95,6 @@ Page {
             // when an exception is raised, this error handler will be called
             console.log('python error: ' + traceback);
         }
-        onReceived: console.log('Unhandled event: ' + data)
     }
 }
 

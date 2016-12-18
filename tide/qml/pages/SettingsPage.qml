@@ -80,7 +80,6 @@ Page {
                     text: qsTr("Dark Theme")
                     width: column.width/2 -Theme.paddingSmall
                     onCheckedChanged: {
-                        console.log(checked)
                         darkTheme = checked
                         lightT.checked = !checked
                         if(darkTheme){

@@ -34,8 +34,8 @@ Page{
         height: parent.height
         PullDownMenu {
             MenuItem {
-                text: qsTr("About")
-                //onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+                text: qsTr("About & Help")
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
                 text: qsTr("Settings")
@@ -48,14 +48,14 @@ Page{
             spacing: Theme.paddingMedium
             PageHeader  {
                 width: parent.width
-                title: "tIDE - Transportable IDE"
+                title: "tIDE"
             }
             Label {
                 id:topLabel
                 width: parent.width
                 anchors.bottomMargin: Theme.paddingLarge
                 x: Theme.paddingLarge
-                text: qsTr("Logoo?")
+                text: qsTr("transportable IDE")
                 color: Theme.secondaryHighlightColor
                 font.pixelSize: Theme.fontSizeLarge
             }
@@ -89,7 +89,6 @@ Page{
             return;
         }
         else{
-            console.log(StandardPaths.home+" "+StandardPaths.data)
             if(!hadArgs){
                 var args = Qt.application.arguments
                 if (args.length > 1) {

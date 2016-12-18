@@ -16,7 +16,7 @@ def setDataPath(path):
                           'fontsize': '35',
                           'fonttype': "Sail Sans Pro Light",
                           'linenums': 'True',
-                          'autosave': 'False',
+                          'autosave': 'True',
                           'indentsize': '4',
                           'textcolor':"#cfbfad",
                           'qmlcolor':"#ff8bff",

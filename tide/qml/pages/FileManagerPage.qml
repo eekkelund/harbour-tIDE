@@ -35,12 +35,12 @@ Page {
         Behavior on opacity { FadeAnimator {} }
 
         anchors.fill: parent
-        PullDownMenu {
+       /* PullDownMenu {
             MenuItem {
                 text:fileModel.path=="/"? qsTr("Go home"):qsTr("Show Root")
                 onClicked: fileModel.path=="/"?fileModel.path=homePath:fileModel.path="/"
             }
-        }
+        }*/
 
         model: fileModel
 

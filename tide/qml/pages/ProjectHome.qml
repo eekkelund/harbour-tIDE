@@ -76,7 +76,6 @@ Page {
                 py.call('openFile.files', [path], function(result) {
                     for (var i=0; i<result.length; i++) {
                         lmodel.append(result[i]);
-                        console.log(result[i].files);
                     }
                 });
             }
@@ -92,8 +91,6 @@ Page {
                 right: parent.right
             }
             onClicked: {
-                console.log(file.text);
-                console.log(path);
                 if (file.text.slice(-1) =="/") {
                     lmodel.loadNew(path);
                     projectHomePath = path;
@@ -128,9 +125,6 @@ Page {
                 py.call('openFile.files', [projectPath+ "/"+projectName], function(result2) {
                     for (var i=0; i<result2.length; i++) {
                         lmodel.append(result2[i]);
-                        console.log(result2[i].files);
-                        console.log(result2[i].pathh);
-
                     }
                 });
             });
@@ -138,7 +132,6 @@ Page {
         onError: {
             console.log('python error: ' + traceback);
         }
-        onReceived: console.log('Unhandled event: ' + data)
     }
     AddFileDialog {
         id: dialog

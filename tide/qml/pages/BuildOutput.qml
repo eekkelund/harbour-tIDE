@@ -24,7 +24,7 @@ Page {
     property int pid
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
-            py.call('buildRPM.kill', [],function(result) {console.log(result)});
+            py.call('buildRPM.kill', [],function(result) {});
         }
     }
     PageHeader {
@@ -88,7 +88,6 @@ Page {
                 });
                 setHandler('pid', function(pidi) {
                     pid=pidi
-                    console.log(pid)
                 });
                 importModule('buildRPM', function () {
                     py.call("buildRPM.createBuildDir", [projectName, buildPath, projectPath],function() {});

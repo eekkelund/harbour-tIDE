@@ -24,10 +24,7 @@ Page {
     property int pid
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
-            py.call('stopProject.kill', [],function(result) {
-                console.log(result)
-            });
-            console.log("stopping")
+            py.call('stopProject.kill', [],function(result) {console.log(result)});
         }
     }
     PageHeader {
@@ -77,15 +74,11 @@ Page {
                 });
                 setHandler('pid', function(pidi) {
                     pid=pidi
-                    console.log(pid)
                 });
                 importModule('stopProject', function () {
-                    py.call('stopProject.set_path', [projectQmlPath],function(result) {
-                        console.log(result);
-                    });
-                    console.log(trace)
-                    py.call('stopProject.init', [trace, plugins], function(result) {console.log(result)});
-                    py.call('stopProject.start_proc', [], function(result) {console.log(result)});
+                    py.call('stopProject.set_path', [projectQmlPath],function(result) {});
+                    py.call('stopProject.init', [trace, plugins], function(result) {});
+                    py.call('stopProject.start_proc', [], function(result) {});
                 });
 
             }
