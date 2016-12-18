@@ -13,18 +13,18 @@ Includes keyboard!
 ## Features
 
 * Basic IDE features such as:
-  * Syntax highlighting(Supports QML, JS & Python)
-  * Create template SailfishOS projects
-  * Auto completion (Installs new keyboard)
-  * Running the application
-  * Debug log while running the application
-  * Building a RPM(experimental)
-  * Keyboard has predictive text(Supports QML, JS & Python)
+  * Syntax highlighting ( QML, JS & Python)
+  * Project template creation for SailfishOS
+  * Autocomplete (Installs new keyboard)
+  * Running your application
+  * Application output & debug log
+  * Building a RPM (experimental)
+  * Predictive text (QML, JS & Python)
 
 * Normal text editor features including:
-  * Line numbering
-  * Autosaving
-  * Theming
+  * Line numbers (experimental)
+  * Autosave
+  * Themes
   * Font settings
   * Indentation
   * Redo/Undo
@@ -39,7 +39,7 @@ Includes keyboard!
 ![App output](https://cloud.githubusercontent.com/assets/11635400/21133077/c1fb2ef0-c11f-11e6-869b-facc0689d669.png "App output")
 ![Build output](https://cloud.githubusercontent.com/assets/11635400/21133076/c1fa9ee0-c11f-11e6-9d8b-588c3f4b6780.png "Build output")
   
-## Roadmap
+## To Do
 
 Not in particular order..:)
 
@@ -53,14 +53,15 @@ Not in particular order..:)
 - [ ] Building
 - [ ] OBS
 - [ ] Help mode(API's)
-- [ ] Icon and cover for harbour
+- [ ] Cover for harbour
+- [X] Icon
 - [ ] Harbour version
 - [ ] App cover
 - [ ] Fix line numbering
 - [ ] Suggestions + Bugs
 - [ ] Nemomobile version
 - [ ] Breakpoints
-- [ ] About page
+- [X] About page
 
 ## Installation
 
@@ -81,9 +82,10 @@ No releases yet :)
 
 ## Credits
 
-Parts of keyboard are taken from Jolla's [maliit](https://github.com/maliit) keyboard and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard).  
-Snippets of code also loaned from Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
-Thanks for SettingsPage slider belongs to [Ancelad](https://github.com/Ancelad)
+Base of the keyboard: Jolla's [maliit keyboard](https://github.com/maliit) and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard).  
+Some highlighting rules and indentation: Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
+SettingsPage slider: [Ancelad](https://github.com/Ancelad)
+Dedicated to: [Gido Griese](https://talk.maemo.org/member.php?u=60993)
 
 ## License
 
