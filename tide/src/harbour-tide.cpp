@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
 {
     qmlRegisterType<DocumentHandler>("harbour.tide.documenthandler", 1, 0, "DocumentHandler");
     QGuiApplication *app = SailfishApp::application(argc, argv);
+    app->setApplicationVersion(QString(APP_VERSION));
     QQuickView *view = SailfishApp::createView();
     QQmlEngine *engine = view->engine();
     engine->addImageProvider(QLatin1String("ownIcons"), new IconProvider);

@@ -14,6 +14,149 @@
     </message>
 </context>
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report an issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Developer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Building a RPM(experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal text editor features including:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Redo/Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Instructions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License: GPLv3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dedicated to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>transportable IDE for SailfishOS devices.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic IDE features:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autocomplete (Installs new keyboard)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax highlighting (QML, JS &amp; Python)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project template creation for SailfishOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running your application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Application output &amp; debug log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predictive text (QML, JS &amp; Python)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line numbers (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autosave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New keyboard is activated from: Settings - Text input - Keyboards - Develop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Built RPM&apos;s are located at:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base of the keyboard: Jolla&apos;s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some highlighting rules and indentation:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SettingsPage slider:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>and SaberAltria&apos;s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddFileDialog</name>
     <message>
         <source>Add</source>
@@ -87,18 +230,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open /usr/share/</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>/usr/share/</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Go to own projects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -111,17 +242,6 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FileManagerPage</name>
-    <message>
-        <source>Show Root</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Go home</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -139,10 +259,6 @@
 <context>
     <name>MainPage</name>
     <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -155,7 +271,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logoo?</source>
+        <source>About &amp; Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>transportable IDE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

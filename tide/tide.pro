@@ -39,7 +39,8 @@ DISTFILES += \
     qml/python/addFile.py \
     qml/python/stopProject.py \
     qml/python/buildRPM.py \
-    qml/python/settings.py
+    qml/python/settings.py \
+    qml/pages/AboutPage.qml
 
 HEADERS += \
     src/realhighlighter.h \
@@ -48,3 +49,5 @@ HEADERS += \
 
 RESOURCES += \
     src/dictionarys.qrc
+
+INCLUDEPATH += $$PWD
