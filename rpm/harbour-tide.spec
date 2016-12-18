@@ -41,7 +41,8 @@ transportable IDE for SailfishOS devices
 # >> build pre
 # << build pre
 
-%qtc_qmake5 
+%qtc_qmake5  \
+    VERSION=%{version}
 
 %qtc_make %{?_smp_mflags}
 
