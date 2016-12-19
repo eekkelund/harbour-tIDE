@@ -222,15 +222,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open existing project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No projects yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Projects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open an existing project</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
