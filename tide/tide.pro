@@ -40,7 +40,8 @@ DISTFILES += \
     qml/python/stopProject.py \
     qml/python/buildRPM.py \
     qml/python/settings.py \
-    qml/pages/AboutPage.qml
+    qml/pages/AboutPage.qml \
+    qml/python/deleteProject.py
 
 HEADERS += \
     src/realhighlighter.h \
