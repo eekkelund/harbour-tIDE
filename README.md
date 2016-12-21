@@ -29,6 +29,7 @@ Includes keyboard!
   * Indentation
   * Redo/Undo
   * Search
+  * Launch from terminal (harbour-tide /path/to/file.txt)
 
 ## Screenshots
 
@@ -62,6 +63,8 @@ Not in particular order..:)
 - [ ] Nemomobile version
 - [ ] Breakpoints
 - [X] About page
+- [ ] Add new file
+- [ ] Port support
 
 ## Installation
 

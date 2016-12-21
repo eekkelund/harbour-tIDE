@@ -151,7 +151,7 @@ Page {
                 }
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.highlightColor
-                text:qsTr("Line numbers (experimental)") + "\n"+ qsTr("Autosave") + "\n" +qsTr("Themes") + "\n" +qsTr("Font settings") + "\n" +qsTr("Indentation") + "\n"+ qsTr("Redo/Undo") + "\n"+ qsTr("Search")
+                text:qsTr("Line numbers (experimental)") + "\n"+ qsTr("Autosave") + "\n" +qsTr("Themes") + "\n" +qsTr("Font settings") + "\n" +qsTr("Indentation") + "\n"+ qsTr("Redo/Undo") + "\n"+ qsTr("Search") + "\n"+ qsTr("Launch from terminal (harbour-tide /path/to/file.txt)")
             }
             SectionHeader {
                 text: qsTr("Instructions")
@@ -181,6 +181,19 @@ Page {
                     rightMargin: Theme.horizontalPageMargin
                 }
                 text: qsTr("Built RPM's are located at:") +" /home/nemo/rpmbuild/RPMS/*architecture*/"
+            }
+            Label {
+                textFormat: Text.StyledText
+                color: Theme.highlightColor
+                wrapMode: Text.WordWrap
+                font.pixelSize: Theme.fontSizeSmall
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                text: qsTr("Projects are located at:") +" /home/nemo/Projects/"
             }
             SectionHeader {
                 text: qsTr("Developer")
