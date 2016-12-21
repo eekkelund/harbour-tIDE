@@ -80,6 +80,8 @@ ApplicationWindow
     onHintChanged: setSetting('hint',hint)
     property bool plugins //:
     onPluginsChanged: setSetting('plugins',plugins)
+    property int wrapMode//: 3
+    onWrapModeChanged: setSetting('wrapmode', wrapMode)
 
     function setSetting(key, value){
         py.call('settings.set', [key, value], function(result) {});
@@ -124,6 +126,7 @@ ApplicationWindow
                         if (result=="True") plugins=true
                         else plugins=false
                     });
+                    py.call('settings.get', ['wrapmode'], function(result) {wrapMode=result})
                 });
 
             });

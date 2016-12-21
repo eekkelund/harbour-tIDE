@@ -379,15 +379,16 @@ Page {
                         property bool modified: false
                         property string path
 
-                        anchors.left: parent.left
-                        anchors.right: parent.right
+                        width: page.width -parent.x
                         textMargin: 0
                         labelVisible: false
-                        wrapMode: TextEdit.Wrap
+                        wrapMode: appWindow.wrapMode
                         text: documentHandler.text
                         color: focus ? textColor : Theme.primaryColor
                         font.pixelSize: fontSize
                         font.family: fontType
+                        textWidth: wrapMode !== Text.NoWrap ? width : Math.max(width, editor.implicitWidth)
+                        _flickableDirection: Flickable.HorizontalAndVerticalFlick
                         /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
                         *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
                         *I HAVE MODIFIED ORIGINAL FUNCTION

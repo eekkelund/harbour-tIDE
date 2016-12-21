@@ -9,8 +9,9 @@ dataPath=None
 
 def setDataPath(path):
     confPath = path+"/harbour-tide.conf"
-    if not os.path.exists(confPath):
+    if not os.path.exists(path):
         os.makedirs(path)
+    if not os.path.exists(confPath):
         config = configparser.RawConfigParser()
         config['editor']={'darktheme': 'True',
                           'fontsize': '35',
@@ -28,7 +29,8 @@ def setDataPath(path):
                           'bgcolor':"#1e1e27",
                           'trace':'False',
                           'hint':'0',
-                          'plugins':'False'
+                          'plugins':'False',
+                          'wrapmode': 3
                           }
         with open(confPath, 'a+') as cfg:
             config.write(cfg)

@@ -306,7 +306,24 @@ Page {
                     }
                 }
             }
+            ComboBox {
+                id: wrapModeBox
+                label: qsTr("Wrap mode:")
+                value: values[appWindow.wrapMode]
+                currentIndex: appWindow.wrapMode
 
+                property variant values: [qsTr("No wrap"), qsTr("Word wrap"),qsTr("Wrap anywhere"), qsTr("Try to word wrap, otherwise anywhere")]
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: wrapModeBox.values.length
+                        MenuItem {
+                            text: wrapModeBox.values[index]
+                            onClicked: appWindow.wrapMode = index
+                        }
+                    }
+                }
+            }
             ComboBox {
                 label: qsTr("Font:")
                 value: fontType
