@@ -1,7 +1,7 @@
  
 # tIDE
 
-transportable IDE for SailfishOS devices.
+tIDE, transportable IDE, is an application for SailfishOS to create new applications on the go! You can use it as pocket sized QtCreator or just normal text editor.
 
 All feature suggestions and contributions welcome! :)
 
