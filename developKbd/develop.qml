@@ -93,7 +93,7 @@ KeyboardLayout {
             active: splitActive
             languageLabel: ""
         }
-        CharacterKey {
+        /*CharacterKey {
             caption: "}"
             captionShifted: "}"
             accents: "(){"
@@ -101,7 +101,8 @@ KeyboardLayout {
             implicitWidth: punctuationKeyWidth
             fixedWidth: !splitActive
             //separator: SeparatorState.HiddenSeparator
-        }
+        }*/
+        TabulatorKey { }
         EnterKey {  }
     }
 }
