@@ -155,6 +155,14 @@
         <source>and SaberAltria&apos;s</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Launch from terminal (harbour-tide /path/to/file.txt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Projects are located at:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddFileDialog</name>
@@ -164,6 +172,10 @@
     </message>
     <message>
         <source>Name of the file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filetype</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -210,10 +222,6 @@
         <source>Create new project</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Projectname exists</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CreatorHome</name>
@@ -233,15 +241,54 @@
         <source>Open an existing project</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>/usr/share/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SD Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open existing project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to /usr/share/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to SD Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to own projects</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Editor2</name>
     <message>
-        <source>Erororor</source>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileManagerPage</name>
+    <message>
+        <source>Add file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search</source>
+        <source>Go to home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to root</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go SD Card</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
