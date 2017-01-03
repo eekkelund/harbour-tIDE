@@ -78,7 +78,7 @@ Page {
         delegate: ListItem {
             id:listItem
             width: parent.width
-            height: Theme.itemSizeExtraSmall
+            height: Theme.itemSizeExtraSmall +menu.height
             anchors {
                 left: parent.left
                 right: parent.right
@@ -94,8 +94,21 @@ Page {
             }
             onClicked: {
                 projectName = name.text
-                pageStack.push(Qt.resolvedUrl("ProjectHome.qml"))
-
+                var projectHome = pageStack.push(Qt.resolvedUrl("ProjectHome.qml"))
+                projectHome.projectDeleted.connect(function (){listModel.remove(index)})
+            }
+            menu: ContextMenu {
+                MenuItem {
+                    text: qsTr("Delete")
+                    onClicked: listItem.remorseAction(qsTr("Deleting project"), function () {
+                        py.call('deleteProject.remove', [projectPath, project], function (success) {
+                            if (success)
+                                listModel.remove(index);
+                            else
+                                console.log("Unable to remove project");
+                        })
+                    })
+                }
             }
 
         }
@@ -106,6 +119,7 @@ Page {
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('./../python'));
             importModule('createProject', function() {});
+            importModule('deleteProject', function() {})
             importModule('openFile', function () {
                 py.call('openFile.projects', [projectPath], function(result2) {
                     if (result2.length < 1){

@@ -233,6 +233,14 @@
         <source>Open an existing project</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting project</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Editor2</name>
@@ -295,6 +303,14 @@
     </message>
     <message>
         <source>Build the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting project</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

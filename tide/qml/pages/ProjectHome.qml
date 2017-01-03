@@ -24,6 +24,9 @@ Page {
 
     property string ext: ".qml"
 
+    signal projectDeleted()
+
+    RemorsePopup { id: remorsePopup }
 
     SilicaListView {
         id:fileList
@@ -32,6 +35,22 @@ Page {
         height: parent.height
         VerticalScrollDecorator {}
         PullDownMenu {
+            MenuItem {
+                text: qsTr("Delete project")
+                onClicked: {
+                    remorsePopup.execute(qsTr("Deleting project"),  function () {
+                        py.call('deleteProject.remove', [projectPath, projectName], function (success) {
+                            if (success)
+                            {
+                                projectDeleted()
+                                pageStack.pop()
+                            }
+                            else
+                                console.log("Unable to remove project");
+                        })
+                    })
+                }
+            }
             MenuItem {
                 text: qsTr("Build the app")
                 onClicked: {
@@ -121,6 +140,7 @@ Page {
             addImportPath(Qt.resolvedUrl('./../python'));
             importModule('addFile', function() {});
             importModule('buildRPM', function() {});
+            importModule('deleteProject', function() {})
             importModule('openFile', function () {
                 py.call('openFile.files', [projectPath+ "/"+projectName], function(result2) {
                     for (var i=0; i<result2.length; i++) {
