@@ -47,11 +47,11 @@ Not in particular order..:)
 - [ ]  C++ support
   * Syntax highlighting
   * Predictive
-  * Compiling
+  * Compiling*
 
 - [ ] Github/Gitlab gui
 - [ ] Start as root
-- [ ] Building
+- [/] Building
 - [ ] OBS
 - [ ] Help mode(API's)
 - [ ] Cover for harbour
@@ -59,12 +59,16 @@ Not in particular order..:)
 - [ ] Harbour version
 - [ ] App cover
 - [ ] Fix line numbering
-- [ ] Suggestions + Bugs
 - [ ] Nemomobile version
 - [ ] Breakpoints
 - [X] About page
-- [ ] Add new file
-- [ ] Port support
+- [X] Add new file
+- [ ] Hw keyboard
+- [X] File navigation
+- [ ] Arrow keys functionality
+- [ ] Rewrite some Python parts
+- [X] Tab button
+- [ ] UI for Tablet
 
 ## Installation
 
