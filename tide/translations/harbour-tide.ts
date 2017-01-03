@@ -474,5 +474,25 @@
         <source>DEBUG PLUGINS</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Wrap mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrap anywhere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to word wrap, otherwise anywhere</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
