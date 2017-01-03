@@ -207,6 +207,39 @@ Page {
                 text: "Eetu Kahelin" +" <br> " +"<a href='https://twitter.com/eekkelund'>@eekkelund</a>"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
+
+            SectionHeader {
+                text: qsTr("Contributors")
+            }
+            Label {
+                textFormat: Text.StyledText
+                linkColor: Theme.primaryColor
+                color: Theme.highlightColor
+                wrapMode: Text.WordWrap
+                font.pixelSize: Theme.fontSizeSmall
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                text:  "<a href='https://github.com/wellef'>wellef</a> "+": "+ qsTr("Project deleting, wrap mode setting for the editor, Python bug fixes")
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+            Label {
+                textFormat: Text.StyledText
+                color: Theme.primaryColor
+                wrapMode: Text.WordWrap
+                font.pixelSize: Theme.fontSizeSmall
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                text:  qsTr("Thank you! :)")
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
             SectionHeader {
                 text: qsTr("Credits")
             }

@@ -155,6 +155,26 @@
         <source>and SaberAltria&apos;s</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Launch from terminal (harbour-tide /path/to/file.txt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Projects are located at:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project deleting, wrap mode setting for the editor, Python bug fixes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you! :)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddFileDialog</name>

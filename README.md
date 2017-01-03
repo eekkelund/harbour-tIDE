@@ -83,6 +83,12 @@ Restart maliit-server `systemctl --user restart maliit-server.service`
 
 No releases yet :)
 
+## Contributors
+
+[wellef](https://github.com/wellef): Project deleting, wrap mode setting for the editor, Python bug fixes
+
+Thank you! :)
+
 ## Credits
 
 Base of the keyboard: Jolla's [maliit keyboard](https://github.com/maliit) and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard).  
