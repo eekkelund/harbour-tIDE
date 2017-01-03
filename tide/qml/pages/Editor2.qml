@@ -148,11 +148,19 @@ Page {
                     function search(text, position, direction, id) {
                         var reg = new RegExp(text, "ig")
                         var match = myeditor.text.match(reg)
-                        if(direction=="back"){
-                            myeditor.cursorPosition = myeditor.text.lastIndexOf(match[match.length-1], position)
-                        }else myeditor.cursorPosition = myeditor.text.indexOf(match[0],position)
-                        //id.focus =false
-                        myeditor.forceActiveFocus();
+                        if(match){
+                            if(direction=="back"){
+                                myeditor.cursorPosition = myeditor.text.lastIndexOf(match[match.length-1], position)
+                                if(myeditor.text.lastIndexOf(match[match.length-1], position) != -1) myeditor.select(myeditor.cursorPosition,myeditor.cursorPosition+text.length)
+                            }else{
+                                myeditor.cursorPosition = myeditor.text.indexOf(match[0],position)
+                                if (myeditor.text.indexOf(match[0],position)!=-1) myeditor.select(myeditor.cursorPosition,myeditor.cursorPosition+text.length)
+                            }
+                            //id.focus =false
+                            myeditor.forceActiveFocus();
+                        }else{
+                            searchField.errorHighlight = true
+                        }
                     }
 
                     transform: Rotation {
@@ -197,11 +205,14 @@ Page {
                             width: (activeFocus || text.length>0) ? pgHead.width -previous.width*2: implicitWidth
                             placeholderText: qsTr("Search")
                             EnterKey.onClicked:{
-                                flipable.search(text,0,"forward",searchField);
+                                flipable.search(text,myeditor.cursorPosition,"forward",searchField);
                                 //focus=false
                                 searched=true
                             }
-                            onTextChanged: searched = false
+                            onTextChanged: {
+                                errorHighlight = false
+                                searched = false
+                            }
                             //onActiveFocusChanged:
                         }
                         IconButton {
@@ -209,7 +220,7 @@ Page {
                             icon.source: "image://theme/icon-m-previous"
                             enabled: searched
                             onClicked:{
-                                flipable.search(searchField.text,myeditor.cursorPosition-1,"back",previous);
+                                flipable.search(searchField.text,myeditor.cursorPosition-searchField.text.length-1,"back",previous);
                                 //focus=false
                                 //myeditor.focus=true
                                 myeditor.forceActiveFocus();
@@ -221,7 +232,7 @@ Page {
                             icon.source: "image://theme/icon-m-next"
                             enabled: searched
                             onClicked:{
-                                flipable.search(searchField.text,myeditor.cursorPosition+1,"forward",next);
+                                flipable.search(searchField.text,myeditor.cursorPosition-(searchField.text.length-1),"forward",next);
                                 //focus=false
                                 //myeditor.focus=true
                                 myeditor.forceActiveFocus();
@@ -417,11 +428,12 @@ Page {
                                             if(text[cursorPosition - 2]===":"){
                                                 colonCount = textBeforeCursor.match(/\:/g).length
                                                 indentStr = new Array(colonCount).join("    ")
-                                                cPosition =cursorPosition+indentStr.length
-                                                textBeforeCursor = text.substring(0, cursorPosition)
-                                                textAfterCursor = text.substring(cursorPosition, text.length)
-                                                myeditor.text = textBeforeCursor + indentStr + textAfterCursor
-                                                cursorPosition = cPosition
+                                                //cPosition =cursorPosition+indentStr.length
+                                                _editor.insert(cursorPosition - 1, indentStr)
+                                                //textBeforeCursor = text.substring(0, cursorPosition)
+                                                //textAfterCursor = text.substring(cursorPosition, text.length)
+                                                //myeditor.text = textBeforeCursor + indentStr + textAfterCursor
+                                                //cursorPosition = cPosition
                                                 break
                                             }
                                         }else if(indentSize<0){
