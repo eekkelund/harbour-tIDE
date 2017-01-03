@@ -82,7 +82,7 @@ Page {
                 addImportPath(Qt.resolvedUrl('./../python'));
                 setHandler('output', function(text) {
                     listModel.append(text);
-                    if (text.out.search("Wrote")>-1){
+                    if (text.out.search(".src.rpm")>-1){
                         pulldown.visible =true
                     }
                 });
@@ -98,6 +98,7 @@ Page {
 
             }
             onError: {
+            showError(traceback)
                 console.log('python error: ' + traceback);
             }
         }

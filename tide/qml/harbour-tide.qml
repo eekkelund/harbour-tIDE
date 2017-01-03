@@ -17,6 +17,7 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
+import org.nemomobile.notifications 1.0
 import "pages"
 
 
@@ -37,6 +38,16 @@ ApplicationWindow
     property string filePath
     property string singleFile
     property string projectQmlPath:(projectPath +"/"+ projectName+"/qml/"+ projectName+".qml");
+
+    Notification{
+        id:notification
+    }
+    function showError(message) {
+        notification.category="x-nemo.example"
+        notification.previewBody = qsTr(message);
+        notification.close();
+        notification.publish();
+    }
 
     //Settings
     property int fontSize//:Theme.fontSizeMedium
@@ -129,6 +140,7 @@ ApplicationWindow
             });
         }
         onError: {
+            showError(traceback)
             // when an exception is raised, this error handler will be called
             console.log('python error: ' + traceback);
         }

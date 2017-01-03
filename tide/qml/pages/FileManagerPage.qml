@@ -25,6 +25,7 @@ Page {
         path: homePath
         active: page.status === PageStatus.Active
         onError: {
+            showError(traceback)
             console.log("###", fileName, error)
         }
     }

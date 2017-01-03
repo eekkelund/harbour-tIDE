@@ -18,9 +18,6 @@ import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 import harbour.tide.documenthandler 1.0
-import org.nemomobile.notifications 1.0
-
-
 
 Page {
     id: page
@@ -112,18 +109,6 @@ Page {
         color: bgColor
         anchors.fill: parent
         visible: true
-
-        Notification{
-            id:notification
-        }
-        function showError(message) {
-            notification.category="x-nemo.example"
-            notification.previewBody = qsTr("Erororor");
-            notification.close();
-            notification.publish();
-        }
-
-
 
         BusyIndicator {
             id:busy
@@ -545,9 +530,9 @@ Page {
                 importModule('editFile', function () {});
             }
             onError: {
+                showError(traceback)
                 // when an exception is raised, this error handler will be called
                 console.log('python error: ' + traceback);
-                showError();
 
             }
         }

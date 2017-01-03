@@ -83,6 +83,7 @@ Page {
 
             }
             onError: {
+            showError(traceback)
                 console.log('python error: ' + traceback);
             }
         }

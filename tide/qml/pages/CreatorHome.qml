@@ -121,6 +121,7 @@ Page {
             });
         }
         onError: {
+            showError(traceback)
             // when an exception is raised, this error handler will be called
             console.log('python error: ' + traceback);
         }
