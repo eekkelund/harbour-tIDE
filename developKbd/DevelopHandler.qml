@@ -109,7 +109,7 @@ InputHandler {
         keyboard.expandedPaste = false
 
         if ( pressedKey.key === Qt.Key_Space ) {
-
+            empty()
             if ( preedit.length > 0 && result.length > 0 && settings.spacebar === true) {
 
                 preedit = ""
@@ -137,9 +137,17 @@ InputHandler {
             if ( preedit.length > 0 ) {
                 commit(preedit)
             } else {
+                empty()
                 MInputMethodQuick.sendKey(Qt.Key_Return)
             }
 
+            handled = true
+
+        } else if ( pressedKey.key === Qt.Key_Tab ) {
+
+            empty()
+            commit(preedit)
+            MInputMethodQuick.sendKey(Qt.Key_Tab, 0, "\t", Maliit.KeyClick)
             handled = true
 
         } else if ( pressedKey.key === Qt.Key_Backspace ) {
@@ -159,7 +167,7 @@ InputHandler {
             } else if ( result.length > 0 ) {
 
                 empty()
-
+                MInputMethodQuick.sendKey(Qt.Key_Backspace)
 
             } else {
                 MInputMethodQuick.sendKey(Qt.Key_Backspace)
@@ -205,7 +213,7 @@ InputHandler {
             handled = true
 
         } else {
-	    MInputMethodQuick.sendCommit(preedit)
+            MInputMethodQuick.sendCommit(preedit)
             commit(pressedKey.text)
             handled = true
         }
