@@ -21,7 +21,7 @@ URL:        https://github.com/eekkelund/
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9, qtchooser, qt5-qtdeclarative-qmlscene, pyotherside-qml-plugin-python3-qt5 >= 1.3, rpm-build, meego-rpm-config
 Requires:   qt5-qtdeclarative-import-folderlistmodel
-# Requires: qt5-qmake, make
+# Requires: qt5-qmake, make, gcc-c++, qt5-qtgui-devel, qt5-qtcore-devel, qt5-qtgui-devel, libsailfishapp-devel
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
