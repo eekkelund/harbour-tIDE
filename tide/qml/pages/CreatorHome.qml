@@ -21,37 +21,51 @@ import io.thp.pyotherside 1.3
 Page {
     id: page
     property string labelText
+    function goToProjects(){
+        if(projectPath=="/usr/share/"){
+            labelText=qsTr("/usr/share/")
+        }else if(projectPath=="/"){
+            labelText=qsTr("SD Card")
+        }else{
+            labelText=qsTr("Open existing project")
+        }
+        py.call('openFile.projects', [projectPath], function(result2) {
+            listModel.clear()
+            if (result2.length < 1){
+                labelText=qsTr("No projects yet")
+            }
+            else {
+                for (var i=0; i<result2.length; i++) {
+                    listModel.append(result2[i]);
+                }
+            }
+        });
+    }
+
     SilicaListView {
         id:projectList
         anchors.top: parent.top
         width: parent.width
         height: parent.height
         PullDownMenu {
-            /*MenuItem {
-                text:  projectPath=="/usr/share/" ? qsTr("Go to own projects"): qsTr("Open /usr/share/")
-                onClicked: goToProjects()
-
-                function goToProjects(){
-                    if(projectPath=="/usr/share/"){
-                        projectPath= homePath+"/Projects"
-                        labelText=qsTr("Open existing project")
-                    }else{
-                        projectPath="/usr/share/"
-                        labelText=qsTr("/usr/share/")
-                    }
-                    py.call('openFile.projects', [projectPath], function(result2) {
-                        listModel.clear()
-                        if (result2.length < 1){
-                            labelText=qsTr("No projects yet")
-                        }
-                        else {
-                            for (var i=0; i<result2.length; i++) {
-                                listModel.append(result2[i]);
-                            }
-                        }
-                    });
+            MenuItem {
+                text:  projectPath=="/" ? qsTr("Go to own projects"): qsTr("Go to SD Card")
+                onClicked: {
+                    if(projectPath=="/") {
+                        projectPath=homePath+"/Projects"
+                    }else projectPath="/"
+                    goToProjects()
                 }
-            }*/
+            }
+            MenuItem {
+                text:  projectPath=="/usr/share/" ? qsTr("Go to own projects"): qsTr("Go to /usr/share/")
+                onClicked: {
+                    if(projectPath=="/usr/share/") {
+                        projectPath= homePath+"/Projects"
+                    }else projectPath="/usr/share/"
+                    goToProjects()
+                }
+            }
             MenuItem {
                 text: qsTr("Create new project")
                 onClicked: pageStack.push(Qt.resolvedUrl("CreateProject.qml"))

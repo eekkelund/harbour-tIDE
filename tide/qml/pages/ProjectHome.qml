@@ -22,8 +22,7 @@ Page {
     id: page
     property string projectHomePath: projectPath+ "/"+projectName
 
-    property string ext: ".qml"
-
+    property string ext: ""
 
     SilicaListView {
         id:fileList
@@ -47,7 +46,7 @@ Page {
             MenuItem {
                 text: qsTr("Add file")
                 onClicked: {
-                    pageStack.push(dialog, {path:projectHomePath})
+                    pageStack.push(dialog, {path:projectHomePath, accDest:"ProjectHome.qml"})
                 }
             }
         }
