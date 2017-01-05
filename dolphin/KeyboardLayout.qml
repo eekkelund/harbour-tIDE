@@ -47,7 +47,7 @@ Column {
             }
 
             if ( secondary !== "" ) {
-                secondaryHandlerLoader.source = "/usr/share/maliit/plugins/com/jolla/layouts/" + secondary + ".qml"
+                secondaryHandlerLoader.source = "/usr/share/maliit/plugins/com/jolla/" + secondary + ".qml"
             }
         }
 
