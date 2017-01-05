@@ -176,6 +176,8 @@ InputHandler {
 
             handled = true
 
+        } else if ( pressedKey.key ===  Qt.Key_Shift ) {
+            handled = true
         } else if ( pressedKey.keyType === KeyType.FunctionKey && pressedKey.keyType === KeyType.SymbolKey ) {
 
             reset()

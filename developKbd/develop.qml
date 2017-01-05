@@ -38,7 +38,7 @@ KeyboardLayout {
     splitSupported: true
 
     primary: "DevelopHandler"
-    secondary: "Xt9Handler"
+    secondary: "Xt9InputHandler"
 
     KeyboardRow {
         CharacterKey { caption: "q"; captionShifted: "Q"; symView: "1"; symView2: "€" }
@@ -61,10 +61,11 @@ KeyboardLayout {
         CharacterKey { caption: "d"; captionShifted: "D"; symView: "+"; symView2: "|"; accents: "dð"; accentsShifted: "DÐ" }
         CharacterKey { caption: "f"; captionShifted: "F"; symView: "-"; symView2: "_" }
         CharacterKey { caption: "g"; captionShifted: "G"; symView: "="; symView2: "§" }
-        CharacterKey { caption: "h"; captionShifted: "H"; symView: "("; symView2: "{" }
-        CharacterKey { caption: "j"; captionShifted: "J"; symView: ")"; symView2: "}" }
+        CharacterKey { caption: "h"; captionShifted: "H"; symView: "("; symView2: "@" }
+        CharacterKey { caption: "j"; captionShifted: "J"; symView: ")"; symView2: "&" }
         CharacterKey { caption: "k"; captionShifted: "K"; symView: "!"; symView2: "¡" }
         CharacterKey { caption: "l"; captionShifted: "L"; symView: "?"; symView2: "¿" }
+
     }
 
     KeyboardRow {
@@ -72,8 +73,8 @@ KeyboardLayout {
 
         ShiftKey {  }
 
-        CharacterKey { caption: "z"; captionShifted: "Z"; symView: "@"; symView2: "«" }
-        CharacterKey { caption: "x"; captionShifted: "X"; symView: "&"; symView2: "»" }
+        CharacterKey { caption: "z"; captionShifted: "Z"; symView: "{"; symView2: "«" }
+        CharacterKey { caption: "x"; captionShifted: "X"; symView: "}"; symView2: "»" }
         CharacterKey { caption: "c"; captionShifted: "C"; symView: "/"; symView2: "\""; accents: "cç"; accentsShifted: "CÇ" }
         CharacterKey { caption: "v"; captionShifted: "V"; symView: "\\"; symView2: "“" }
         CharacterKey { caption: "b"; captionShifted: "B"; symView: "'"; symView2: "”" }
@@ -93,16 +94,15 @@ KeyboardLayout {
             active: splitActive
             languageLabel: ""
         }
-        /*CharacterKey {
-            caption: "}"
-            captionShifted: "}"
-            accents: "(){"
-            accentsShifted: "(){"
+        CharacterKey {
+            caption: ","
+            captionShifted: ","
+            accents: ";"
+            accentsShifted: ";"
             implicitWidth: punctuationKeyWidth
             fixedWidth: !splitActive
             //separator: SeparatorState.HiddenSeparator
-        }*/
-        TabulatorKey { }
+        }
         EnterKey {  }
     }
 }
