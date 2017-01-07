@@ -63,9 +63,9 @@ Not in particular order..:)
 - [ ] Breakpoints
 - [X] About page
 - [X] Add new file
-- [ ] Hw keyboard
+- [X] Hw keyboard
 - [X] File navigation
-- [ ] Arrow keys functionality
+- [X] Arrow keys functionality
 - [ ] Rewrite some Python parts
 - [X] Tab button
 - [ ] UI for Tablet

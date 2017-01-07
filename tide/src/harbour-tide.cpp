@@ -25,11 +25,13 @@
 #include <QString>
 #include "documenthandler.h"
 #include "iconprovider.h"
+#include "keyboardshortcut.h"
 
 
 int main(int argc, char *argv[])
 {
     qmlRegisterType<DocumentHandler>("harbour.tide.documenthandler", 1, 0, "DocumentHandler");
+    qmlRegisterType<KeyboardShortcut>("harbour.tide.keyboardshortcut", 1, 0, "KeyboardShortcut");
     QGuiApplication *app = SailfishApp::application(argc, argv);
     app->setApplicationVersion(QString(APP_VERSION));
     QQuickView *view = SailfishApp::createView();

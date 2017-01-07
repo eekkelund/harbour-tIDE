@@ -18,12 +18,15 @@ import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 import harbour.tide.documenthandler 1.0
+import harbour.tide.keyboardshortcut 1.0
 
 Page {
     id: page
+    objectName: "editorPage"
     property bool textChangedAutoSave: false
     property bool textChangedSave: false
     property bool searched: false
+    property bool shortcutUsed: false
     property string fileTitle: singleFile
     //Check if file ends with tilde "~" and change the filetype accordingly
     property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
@@ -103,6 +106,12 @@ Page {
         }
     }*/
 
+    function searchActive(){
+        if (!flipable.flipped){
+            flipable.flipped = true
+        }
+        searchField.forceActiveFocus()
+    }
 
     Rectangle {
         id:rectangle
@@ -210,6 +219,12 @@ Page {
                                 searched=true
                             }
                             onTextChanged: {
+                                if(shortcutUsed){
+                                    shortcutUsed=false
+                                    if(searchField.text[searchField.cursorPosition - 1] === "f"|| searchField.text[searchField.cursorPosition - 1] === "F"){
+                                        searchField._editor.remove(searchField.cursorPosition - 1, searchField.cursorPosition)
+                                    }
+                                }
                                 errorHighlight = false
                                 searched = false
                             }
@@ -331,6 +346,7 @@ Page {
                     f.anchors.top = hdr.bottom
                 }
             }
+
             Item {
                 id:all
                 anchors.fill: parent
@@ -384,13 +400,39 @@ Page {
                         color: focus ? textColor : Theme.primaryColor
                         font.pixelSize: fontSize
                         font.family: fontType
+                        KeyboardShortcut {
+                            key: "Ctrl+F"
+                            onActivated: {
+                                shortcutUsed=true
+                                searchActive()
+                            }
+                        }
+                        KeyboardShortcut {
+                            key: "Ctrl+S"
+                            onActivated: {
+                                shortcutUsed=true
+                                py.call('editFile.savings', [filePath,myeditor.text], function(result) {
+                                    fileTitle=result
+                                    textChangedSave=false;
+                                });
+                            }
+                        }
+
+
                         /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
                         *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
                         *I HAVE MODIFIED ORIGINAL FUNCTION
                         */
                         onTextChanged: {
+                            if(shortcutUsed&&myeditor.focus){
+                                shortcutUsed=false
+                                if(myeditor.text[myeditor.cursorPosition - 1] === "s"|| myeditor.text[myeditor.cursorPosition - 1] === "S"){
+                                    myeditor._editor.remove(myeditor.cursorPosition - 1, myeditor.cursorPosition)
+                                }
+                            }
                             if (text !== previousText)
                             {
+                                textChangedSave = true
                                 //lineNumberChanged()
                                 if (textChangedManually)
                                 {
@@ -414,7 +456,6 @@ Page {
                                     var txti2
                                     var indentStringCount
                                     var lastCharacter = text[cursorPosition - 1]
-                                    textChangedSave = true
                                     var colonCount
                                     switch (lastCharacter)
                                     {
