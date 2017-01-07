@@ -63,7 +63,7 @@ desktop-file-install --delete-original       \
    %{buildroot}%{_datadir}/applications/*.desktop
 
 %post
-systemctl --user restart maliit-server.service
+systemctl-user restart maliit-server.service
 
 %files
 %defattr(755,nemo,nemo,755)
