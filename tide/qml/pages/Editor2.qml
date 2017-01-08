@@ -18,15 +18,15 @@ import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 import harbour.tide.documenthandler 1.0
-import org.nemomobile.notifications 1.0
-
-
+import harbour.tide.keyboardshortcut 1.0
 
 Page {
     id: page
+    objectName: "editorPage"
     property bool textChangedAutoSave: false
     property bool textChangedSave: false
     property bool searched: false
+    property bool shortcutUsed: false
     property string fileTitle: singleFile
     //Check if file ends with tilde "~" and change the filetype accordingly
     property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
@@ -106,24 +106,18 @@ Page {
         }
     }*/
 
+    function searchActive(){
+        if (!flipable.flipped){
+            flipable.flipped = true
+        }
+        searchField.forceActiveFocus()
+    }
 
     Rectangle {
         id:rectangle
         color: bgColor
         anchors.fill: parent
         visible: true
-
-        Notification{
-            id:notification
-        }
-        function showError(message) {
-            notification.category="x-nemo.example"
-            notification.previewBody = qsTr("Erororor");
-            notification.close();
-            notification.publish();
-        }
-
-
 
         BusyIndicator {
             id:busy
@@ -163,11 +157,19 @@ Page {
                     function search(text, position, direction, id) {
                         var reg = new RegExp(text, "ig")
                         var match = myeditor.text.match(reg)
-                        if(direction=="back"){
-                            myeditor.cursorPosition = myeditor.text.lastIndexOf(match[match.length-1], position)
-                        }else myeditor.cursorPosition = myeditor.text.indexOf(match[0],position)
-                        //id.focus =false
-                        myeditor.forceActiveFocus();
+                        if(match){
+                            if(direction=="back"){
+                                myeditor.cursorPosition = myeditor.text.lastIndexOf(match[match.length-1], position)
+                                if(myeditor.text.lastIndexOf(match[match.length-1], position) != -1) myeditor.select(myeditor.cursorPosition,myeditor.cursorPosition+text.length)
+                            }else{
+                                myeditor.cursorPosition = myeditor.text.indexOf(match[0],position)
+                                if (myeditor.text.indexOf(match[0],position)!=-1) myeditor.select(myeditor.cursorPosition,myeditor.cursorPosition+text.length)
+                            }
+                            //id.focus =false
+                            myeditor.forceActiveFocus();
+                        }else{
+                            searchField.errorHighlight = true
+                        }
                     }
 
                     transform: Rotation {
@@ -212,11 +214,20 @@ Page {
                             width: (activeFocus || text.length>0) ? pgHead.width -previous.width*2: implicitWidth
                             placeholderText: qsTr("Search")
                             EnterKey.onClicked:{
-                                flipable.search(text,0,"forward",searchField);
+                                flipable.search(text,myeditor.cursorPosition,"forward",searchField);
                                 //focus=false
                                 searched=true
                             }
-                            onTextChanged: searched = false
+                            onTextChanged: {
+                                if(shortcutUsed){
+                                    shortcutUsed=false
+                                    if(searchField.text[searchField.cursorPosition - 1] === "f"|| searchField.text[searchField.cursorPosition - 1] === "F"){
+                                        searchField._editor.remove(searchField.cursorPosition - 1, searchField.cursorPosition)
+                                    }
+                                }
+                                errorHighlight = false
+                                searched = false
+                            }
                             //onActiveFocusChanged:
                         }
                         IconButton {
@@ -224,7 +235,7 @@ Page {
                             icon.source: "image://theme/icon-m-previous"
                             enabled: searched
                             onClicked:{
-                                flipable.search(searchField.text,myeditor.cursorPosition-1,"back",previous);
+                                flipable.search(searchField.text,myeditor.cursorPosition-searchField.text.length-1,"back",previous);
                                 //focus=false
                                 //myeditor.focus=true
                                 myeditor.forceActiveFocus();
@@ -236,7 +247,7 @@ Page {
                             icon.source: "image://theme/icon-m-next"
                             enabled: searched
                             onClicked:{
-                                flipable.search(searchField.text,myeditor.cursorPosition+1,"forward",next);
+                                flipable.search(searchField.text,myeditor.cursorPosition-(searchField.text.length-1),"forward",next);
                                 //focus=false
                                 //myeditor.focus=true
                                 myeditor.forceActiveFocus();
@@ -335,6 +346,7 @@ Page {
                     f.anchors.top = hdr.bottom
                 }
             }
+
             Item {
                 id:all
                 anchors.fill: parent
@@ -387,15 +399,42 @@ Page {
                         color: focus ? textColor : Theme.primaryColor
                         font.pixelSize: fontSize
                         font.family: fontType
+
                         textWidth: wrapMode !== Text.NoWrap ? width : Math.max(width, editor.implicitWidth)
                         _flickableDirection: Flickable.HorizontalAndVerticalFlick
+
+                        KeyboardShortcut {
+                            key: "Ctrl+F"
+                            onActivated: {
+                                shortcutUsed=true
+                                searchActive()
+                            }
+                        }
+                        KeyboardShortcut {
+                            key: "Ctrl+S"
+                            onActivated: {
+                                shortcutUsed=true
+                                py.call('editFile.savings', [filePath,myeditor.text], function(result) {
+                                    fileTitle=result
+                                    textChangedSave=false;
+                                });
+                            }
+                        }
+
                         /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
                         *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
                         *I HAVE MODIFIED ORIGINAL FUNCTION
                         */
                         onTextChanged: {
+                            if(shortcutUsed&&myeditor.focus){
+                                shortcutUsed=false
+                                if(myeditor.text[myeditor.cursorPosition - 1] === "s"|| myeditor.text[myeditor.cursorPosition - 1] === "S"){
+                                    myeditor._editor.remove(myeditor.cursorPosition - 1, myeditor.cursorPosition)
+                                }
+                            }
                             if (text !== previousText)
                             {
+                                textChangedSave = true
                                 //lineNumberChanged()
                                 if (textChangedManually)
                                 {
@@ -419,7 +458,6 @@ Page {
                                     var txti2
                                     var indentStringCount
                                     var lastCharacter = text[cursorPosition - 1]
-                                    textChangedSave = true
                                     var colonCount
                                     switch (lastCharacter)
                                     {
@@ -433,11 +471,12 @@ Page {
                                             if(text[cursorPosition - 2]===":"){
                                                 colonCount = textBeforeCursor.match(/\:/g).length
                                                 indentStr = new Array(colonCount).join("    ")
-                                                cPosition =cursorPosition+indentStr.length
-                                                textBeforeCursor = text.substring(0, cursorPosition)
-                                                textAfterCursor = text.substring(cursorPosition, text.length)
-                                                myeditor.text = textBeforeCursor + indentStr + textAfterCursor
-                                                cursorPosition = cPosition
+                                                //cPosition =cursorPosition+indentStr.length
+                                                _editor.insert(cursorPosition - 1, indentStr)
+                                                //textBeforeCursor = text.substring(0, cursorPosition)
+                                                //textAfterCursor = text.substring(cursorPosition, text.length)
+                                                //myeditor.text = textBeforeCursor + indentStr + textAfterCursor
+                                                //cursorPosition = cPosition
                                                 break
                                             }
                                         }else if(indentSize<0){
@@ -546,9 +585,9 @@ Page {
                 importModule('editFile', function () {});
             }
             onError: {
+                showError(traceback)
                 // when an exception is raised, this error handler will be called
                 console.log('python error: ' + traceback);
-                showError();
 
             }
         }

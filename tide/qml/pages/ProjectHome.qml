@@ -22,7 +22,7 @@ Page {
     id: page
     property string projectHomePath: projectPath+ "/"+projectName
 
-    property string ext: ".qml"
+    property string ext: ""
 
     signal projectDeleted()
 
@@ -66,7 +66,7 @@ Page {
             MenuItem {
                 text: qsTr("Add file")
                 onClicked: {
-                    pageStack.push(dialog, {path:projectHomePath})
+                    pageStack.push(dialog, {path:projectHomePath, accDest:"ProjectHome.qml"})
                 }
             }
         }
@@ -150,6 +150,7 @@ Page {
             });
         }
         onError: {
+            showError(traceback)
             console.log('python error: ' + traceback);
         }
     }

@@ -200,10 +200,15 @@ Page {
             }
 
             Label {
-                x: Theme.paddingLarge
                 linkColor: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.highlightColor
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
                 text: "Eetu Kahelin" +" <br> " +"<a href='https://twitter.com/eekkelund'>@eekkelund</a>"
                 onLinkActivated: Qt.openUrlExternally(link)
             }

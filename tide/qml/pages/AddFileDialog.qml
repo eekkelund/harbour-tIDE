@@ -21,7 +21,8 @@ import io.thp.pyotherside 1.3
 Dialog {
 
     property string path
-    acceptDestination:Qt.resolvedUrl("ProjectHome.qml")
+    property string accDest
+    acceptDestination:Qt.resolvedUrl(accDest)
     acceptDestinationAction: PageStackAction.Replace
     DialogHeader {
         id:dHdr
@@ -51,6 +52,34 @@ Dialog {
                     id:cBox
                     width: parent.width / 2
                     menu: ContextMenu {
+                        id: cMenu
+                        MenuItem {
+                            id:anyType
+                            TextField {
+                                id:fType
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                horizontalAlignment:parent.horizontalAlignment
+                                x: parent.x
+                                color: "transparent"
+                                width: parent.width/2
+                                inputMethodHints: Qt.ImhNoPredictiveText
+                                placeholderText: qsTr("Filetype")
+                                placeholderColor: Theme.highlightDimmerColor
+                                validator: RegExpValidator { regExp: /.+/ }
+                                EnterKey.onClicked: {
+                                    cBox.currentItem = anyType
+                                    //text= fType.text
+                                    ext = anyType.text
+                                    parent.down=true//forceActiveFocus()
+                                    cMenu.hide()
+                                }
+                            }
+                            text: "."+ fType.text
+                            onClicked: {
+                                //fType.forceActiveFocus()
+                                ext = text
+                            }
+                        }
                         MenuItem {
                             text: ".qml"
                             onClicked: ext = text
@@ -73,23 +102,27 @@ Dialog {
         }
     }
 
-    canAccept: fileName.text !== "" ? true :false
+    canAccept: fileName.text !== ""&& ext !==""&& ext !=="." ? true :false
     onAccepted: {
-        if (fileName.text !== "") {
+        if (fileName.text !== ""&& ext !==""&& ext !==".") {
             var fName = fileName.text;
             py.call('addFile.createFile', [fName,ext,path], function() {
             });
             filePath = (path +"/"+ fName + ext)
-            lmodel.loadNew(path);
+            if(accDest=="ProjectHome.qml"){
+                lmodel.loadNew(path);
+            }
             fileName.focus= false;
             fileName.text = ""
+            fType.text =""
             cBox.currentIndex = 0
             singleFile=fName+ext
+            accDest=Qt.resolvedUrl("Editor2.qml")
             dialog.acceptDestination=Qt.resolvedUrl("Editor2.qml")
         }
     }
     onOpened:{
-        acceptDestination=Qt.resolvedUrl("ProjectHome.qml");
+        acceptDestination=Qt.resolvedUrl(accDest);
 
     }
 

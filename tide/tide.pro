@@ -7,7 +7,8 @@ DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 SOURCES += src/harbour-tide.cpp \
     src/realhighlighter.cpp \
     src/documenthandler.cpp \
-    src/iconprovider.cpp
+    src/iconprovider.cpp \
+    src/keyboardshortcut.cpp
 
 OTHER_FILES += qml/harbour-tide.qml \
     qml/cover/CoverPage.qml \
@@ -46,7 +47,8 @@ DISTFILES += \
 HEADERS += \
     src/realhighlighter.h \
     src/documenthandler.h \
-    src/iconprovider.h
+    src/iconprovider.h \
+    src/keyboardshortcut.h
 
 RESOURCES += \
     src/dictionarys.qrc

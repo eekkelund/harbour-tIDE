@@ -6,12 +6,14 @@ import QtQuick 2.2
 import Sailfish.Silica 1.0
 import Nemo.FileManager 1.0
 import Sailfish.FileManager 1.0
+import io.thp.pyotherside 1.3
 
 Page {
     id: page
     allowedOrientations: Orientation.All
 
     property alias path: fileModel.path
+    property string ext: ""
     property string title
     property bool showFormat
     signal formatClicked
@@ -25,6 +27,7 @@ Page {
         path: homePath
         active: page.status === PageStatus.Active
         onError: {
+            showError(traceback)
             console.log("###", fileName, error)
         }
     }
@@ -35,13 +38,21 @@ Page {
         Behavior on opacity { FadeAnimator {} }
 
         anchors.fill: parent
-       /* PullDownMenu {
+        PullDownMenu {
             MenuItem {
-                text:fileModel.path=="/"? qsTr("Go home"):qsTr("Show Root")
+                text:fileModel.path=="/"? qsTr("Go to home"):qsTr("Go to root")
                 onClicked: fileModel.path=="/"?fileModel.path=homePath:fileModel.path="/"
             }
-        }*/
+            MenuItem {
+                text:fileModel.path=="/usr/"? qsTr("Go to home"):qsTr("Go SD Card")
+                onClicked: fileModel.path=="/usr/"?fileModel.path=homePath:fileModel.path="/usr/"
+            }
 
+            MenuItem {
+                text:qsTr("Add file")
+                onClicked: pageStack.push(dialog, {path:path, accDest:"FileManagerPage.qml"})
+            }
+        }
         model: fileModel
 
         header: PageHeader {
@@ -240,5 +251,21 @@ Page {
             text: qsTrId("filemanager-la-no_files")
         }
         VerticalScrollDecorator {}
+    }
+    Python {
+        id: py
+
+        Component.onCompleted: {
+            addImportPath(Qt.resolvedUrl('./../python'));
+            importModule('addFile', function() {});
+        }
+        onError: {
+            showError(traceback)
+            console.log('python error: ' + traceback);
+        }
+    }
+
+    AddFileDialog {
+        id: dialog
     }
 }
