@@ -31,6 +31,21 @@ Includes keyboard!
   * Search
   * Launch from terminal (harbour-tide /path/to/file.txt)
 
+* Keyboard:
+  * Predictive text depending on what file opened
+    * .qml = QML, properties, JS and common keywords
+    * .js  = JS and common keywords
+    * .py  = Pythons and common keywords
+    * .*   = Common keywords
+  * Tabulator button on Sym view
+  * Arrow keys
+    * On shift latched possibility to jump words
+    * On shift down copying
+  * Basic hardware support including common shortcuts 
+    * CTRL+Z, CTRL+F, CTRL+S, CTRL combinations
+    * SHIFT combinations
+    * etc. etc.
+
 ## Screenshots
 
 ![Dark theme](https://cloud.githubusercontent.com/assets/11635400/21082871/471aff54-bfed-11e6-8a35-63c3fbb066a8.png "Dark theme in editor")
@@ -48,10 +63,9 @@ Not in particular order..:)
   * Syntax highlighting
   * Predictive
   * Compiling*
-
 - [ ] Github/Gitlab gui
 - [ ] Start as root
-- [/] Building
+- [X] Building (kinda, needs more work)
 - [ ] OBS
 - [ ] Help mode(API's)
 - [ ] Cover for harbour
@@ -85,7 +99,7 @@ Restart maliit-server `systemctl --user restart maliit-server.service`
 
 ## History
 
-No releases yet :)
+[Version 0.1](https://openrepos.net/content/eekkelund/tide) 21/12/2016
 
 ## Contributors
 
