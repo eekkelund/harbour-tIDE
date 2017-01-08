@@ -18,19 +18,35 @@ BackgroundItem {
     }
 
     onPressedChanged: {
+        var keyboardModifier
         if ( pressed ) {
+            switch(keyboard.shiftState) {
+            case ShiftState.LockedShift:
+                keyboardModifier = Qt.ShiftModifier
+                break
+            case ShiftState.LatchedShift:
+                keyboardModifier = Qt.ControlModifier
+                break
+            default:
+                keyboardModifier = 0
+                break
+            }
             switch(direction) {
             case"left":
-                MInputMethodQuick.sendKey(Qt.Key_Left, 0, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_Left, keyboardModifier, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_C, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
                 break
             case "right":
-                MInputMethodQuick.sendKey(Qt.Key_Right, 0, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_Right, keyboardModifier, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_C, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
                 break
             case "up":
-                MInputMethodQuick.sendKey(Qt.Key_Up, 0, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_Up, keyboardModifier, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_C, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
                 break
             case "down":
-                MInputMethodQuick.sendKey(Qt.Key_Down, 0, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_Down, keyboardModifier, "", Maliit.KeyClick)
+                MInputMethodQuick.sendKey(Qt.Key_C, Qt.ControlModifier, 0,  "", Maliit.KeyClick)
                 break
             }
         }

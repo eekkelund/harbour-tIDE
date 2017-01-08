@@ -11,8 +11,8 @@ CharacterKey {
     captionShifted: caption
     symView: "."
     symView2: "."
-    accents: ";:"
-    accentsShifted: ";:"
+    accents: ":"
+    accentsShifted: ":"
     implicitWidth: punctuationKeyWidth
     fixedWidth: !splitActive
     separator: SeparatorState.HiddenSeparator
