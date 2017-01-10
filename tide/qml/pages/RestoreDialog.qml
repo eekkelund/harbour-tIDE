@@ -30,15 +30,17 @@ Dialog{
         }
     }
     onAccepted: {
-        py.call('editFile.openAutoSaved', [filePath], function(result) {
+        py.call('editFile.openAutoSaved', [fullFilePath], function(result) {
             documentHandler.text = result.text;
             fileTitle=result.fileTitle
+            previousPath=fullFilePath.replace(fileTitle.slice(0, -1), "")
         })
     }
     onRejected:{
-        py.call('editFile.openings', [filePath], function(result) {
+        py.call('editFile.openings', [fullFilePath], function(result) {
             documentHandler.text = result.text;
             fileTitle=result.fileTitle
+            documentHandler.setDictionary(fileType);
             py.call('editFile.savings', [filePath,result.text], function(result) {
                 fileTitle=result
             });

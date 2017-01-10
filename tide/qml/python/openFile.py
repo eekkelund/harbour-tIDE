@@ -35,3 +35,18 @@ def files(path):
         filelist.append({'files':name, 'pathh':path+"/"+name})
     filelist = sorted(filelist, key=lambda k: k['files'])
     return filelist
+
+def allfiles(path):
+    all = []
+    path= abspath(path)
+    all.append(join(pardir+"/"))
+    for f in listdir(path):
+        if not isfile(join(path, f)):
+            f=f+"/"
+        if not f.endswith("~"):
+            all.append(join(f))
+    filelist =[]
+    for name in all:
+        filelist.append({'files':name, 'pathh':path+"/"+name})
+    filelist = sorted(filelist, key=lambda k: k['files'])
+    return filelist

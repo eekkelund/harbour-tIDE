@@ -258,7 +258,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Deleting project</source>
         <source>/usr/share/</source>
         <translation type="unfinished"></translation>
     </message>
@@ -282,9 +281,17 @@
         <source>Go to own projects</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Deleting project</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Editor2</name>
+    <message>
+        <source>Open file</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Search</source>
         <translation type="unfinished"></translation>

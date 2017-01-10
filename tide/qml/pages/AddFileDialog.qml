@@ -120,9 +120,14 @@ Dialog {
             singleFile=fName+ext
             accDest=Qt.resolvedUrl("Editor2.qml")
             dialog.acceptDestination=Qt.resolvedUrl("Editor2.qml")
+            acceptDestinationInstance.fullFilePath = fPath
         }
     }
     onOpened:{
+        fileName.focus= false;
+        fileName.text = ""
+        fType.text =""
+        cBox.currentIndex = 0
         acceptDestination=Qt.resolvedUrl(accDest);
 
     }

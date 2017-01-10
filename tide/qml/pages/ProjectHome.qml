@@ -116,7 +116,7 @@ Page {
                 else {
                     filePath=path;
                     singleFile =file.text
-                    pageStack.push(Qt.resolvedUrl("Editor2.qml"))
+                    pageStack.push(Qt.resolvedUrl("Editor2.qml"),{fullFilePath: path})
                 }
 
             }

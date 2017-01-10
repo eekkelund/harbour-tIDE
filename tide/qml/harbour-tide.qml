@@ -38,13 +38,14 @@ ApplicationWindow
     property string filePath
     property string singleFile
     property string projectQmlPath:(projectPath +"/"+ projectName+"/qml/"+ projectName+".qml");
+    property bool split: false
 
     Notification{
         id:notification
     }
     function showError(message) {
         notification.category="x-nemo.example"
-        notification.previewBody = qsTr(message);
+        notification.previewBody = message;
         notification.close();
         notification.publish();
     }
