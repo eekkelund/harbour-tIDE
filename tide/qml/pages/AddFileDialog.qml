@@ -62,21 +62,20 @@ Dialog {
                                 x: parent.x
                                 color: "transparent"
                                 width: parent.width/2
-                                inputMethodHints: Qt.ImhNoPredictiveText
+                                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                                 placeholderText: qsTr("Filetype")
                                 placeholderColor: Theme.highlightDimmerColor
                                 validator: RegExpValidator { regExp: /.+/ }
                                 EnterKey.onClicked: {
                                     cBox.currentItem = anyType
-                                    //text= fType.text
                                     ext = anyType.text
-                                    parent.down=true//forceActiveFocus()
+                                    parent.down=true
                                     cMenu.hide()
                                 }
+                                onTextChanged: ext = "."+ text
                             }
                             text: "."+ fType.text
                             onClicked: {
-                                //fType.forceActiveFocus()
                                 ext = text
                             }
                         }
@@ -106,9 +105,11 @@ Dialog {
     onAccepted: {
         if (fileName.text !== ""&& ext !==""&& ext !==".") {
             var fName = fileName.text;
-            py.call('addFile.createFile', [fName,ext,path], function() {
+            var fPath = path +"/"+ fName + ext
+            py.call('addFile.createFile', [fName,ext,path], function(fPath) {
+                fPath=path
             });
-            filePath = (path +"/"+ fName + ext)
+            filePath = fPath
             if(accDest=="ProjectHome.qml"){
                 lmodel.loadNew(path);
             }

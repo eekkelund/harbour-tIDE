@@ -2,9 +2,7 @@
 
 #include <QKeyEvent>
 #include <QCoreApplication>
-#include <QDebug>
-//#include <QLineEdit>
-//#include <QGraphicsScene>
+
 
 KeyboardShortcut::KeyboardShortcut(QObject *parent)
     : QObject(parent)
@@ -26,10 +24,7 @@ void KeyboardShortcut::setKey(QVariant key)
 bool KeyboardShortcut::eventFilter(QObject *obj, QEvent *e)
 {
     if(e->type() == QEvent::KeyPress && !m_keySequence.isEmpty()) {
-//If you want some Key event was not filtered, add conditions to here
-        //if ((dynamic_cast<QGraphicsScene*>(obj)) || (obj->objectName() == "blockShortcut") || (dynamic_cast<QLineEdit*>(obj)) ){
-        //    return QObject::eventFilter(obj, e);
-        //}
+
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(e);
 
         // Just mod keys is not enough for a shortcut, block them just by returning.

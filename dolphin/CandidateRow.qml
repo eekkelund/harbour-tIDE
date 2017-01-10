@@ -67,14 +67,15 @@ TopItem {
         }
 
         onContentWidthChanged: {
-            timer.restart()
+            //timer.restart()
         }
 
         Connections {
             target: Clipboard
             onTextChanged: {
                 if (Clipboard.hasText) {
-                    timer.restart()
+                    listView.positionViewAtBeginning()
+                    //timer.restart()
                 }
             }
         }
@@ -82,7 +83,7 @@ TopItem {
         Timer {
             id: timer
             interval: 16
-            onTriggered: listView.positionViewAtBeginning()
+            //onTriggered: listView.positionViewAtBeginning()
         }
 
 

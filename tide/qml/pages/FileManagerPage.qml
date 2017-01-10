@@ -44,8 +44,8 @@ Page {
                 onClicked: fileModel.path=="/"?fileModel.path=homePath:fileModel.path="/"
             }
             MenuItem {
-                text:fileModel.path=="/usr/"? qsTr("Go to home"):qsTr("Go SD Card")
-                onClicked: fileModel.path=="/usr/"?fileModel.path=homePath:fileModel.path="/usr/"
+                text:fileModel.path=="/media/sdcard/"? qsTr("Go to home"):qsTr("Go SD Card")
+                onClicked: fileModel.path=="/media/sdcard/"?fileModel.path=homePath:fileModel.path="/media/sdcard/"
             }
 
             MenuItem {

@@ -21,7 +21,6 @@ import io.thp.pyotherside 1.3
 Page {
     id: page
     property string projectHomePath: projectPath+ "/"+projectName
-
     property string ext: ""
 
     signal projectDeleted()

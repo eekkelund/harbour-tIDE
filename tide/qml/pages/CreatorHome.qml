@@ -24,7 +24,7 @@ Page {
     function goToProjects(){
         if(projectPath=="/usr/share/"){
             labelText=qsTr("/usr/share/")
-        }else if(projectPath=="/"){
+        }else if(projectPath=="/media/sdcard/"){
             labelText=qsTr("SD Card")
         }else{
             labelText=qsTr("Open existing project")
@@ -49,11 +49,11 @@ Page {
         height: parent.height
         PullDownMenu {
             MenuItem {
-                text:  projectPath=="/" ? qsTr("Go to own projects"): qsTr("Go to SD Card")
+                text:  projectPath=="/media/sdcard/" ? qsTr("Go to own projects"): qsTr("Go to SD Card")
                 onClicked: {
-                    if(projectPath=="/") {
+                    if(projectPath=="/media/sdcard/") {
                         projectPath=homePath+"/Projects"
-                    }else projectPath="/"
+                    }else projectPath="/media/sdcard/"
                     goToProjects()
                 }
             }

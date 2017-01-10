@@ -1,7 +1,6 @@
 #ifndef KEYBOARDSHORTCUT_H
 #define KEYBOARDSHORTCUT_H
 
-//#include <QDeclarativeItem>
 #include <QObject>
 #include <QKeySequence>
 #include <QVariant>
