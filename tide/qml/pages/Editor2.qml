@@ -419,20 +419,6 @@ Page {
                                         flipable.flipped = false
                                     }
                                 }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-close"
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                    onClicked:{
-                                        flipable.flipped = false
-                                    }
-                                }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-close"
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                    onClicked:{
-                                        flipable.flipped = false
-                                    }
-                                }
                             }
                         }
                     }
