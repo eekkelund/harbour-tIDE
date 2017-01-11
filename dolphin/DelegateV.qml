@@ -25,7 +25,7 @@ BackgroundItem {
         verticalAlignment: Text.AlignVCenter
         textFormat: Text.PlainText
         color: ( parent.down || index === 0 ) ? Theme.highlightColor : Theme.primaryColor
-        font { pixelSize: ( settings.size === 0 ? Theme.fontSizeMedium: ( settings.size === 1 ? Theme.fontSizeLarge: Theme.fontSizeLarge ) ) }
+        font { pixelSize: ( settings.size === 0? Theme.fontSizeExtraSmall: ( settings.size === 1 ? Theme.fontSizeMedium : Theme.fontSizeSmall) ) }
         text: modelData
     }
 

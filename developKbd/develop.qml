@@ -95,10 +95,10 @@ KeyboardLayout {
             languageLabel: ""
         }
         CharacterKey {
-            caption: ","
-            captionShifted: ","
-            accents: ";"
-            accentsShifted: ";"
+            caption: "."
+            captionShifted: "."
+            accents: ":"
+            accentsShifted: ":"
             implicitWidth: punctuationKeyWidth
             fixedWidth: !splitActive
             //separator: SeparatorState.HiddenSeparator
