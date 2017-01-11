@@ -13,5 +13,3 @@ qml.files = $${OTHER_FILES}
 qml.path = /var/lib/harbour-tide-keyboard/config/
 
 INSTALLS += qml sql
-
-
