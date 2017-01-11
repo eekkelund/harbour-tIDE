@@ -27,6 +27,7 @@ Page {
     property bool textChangedSave: false
     property bool searched: false
     property bool shortcutUsed: false
+    property bool ready: false
     property string fileTitle: singleFile
     property string fullFilePath
     property string previousPath:fullFilePath.replace(fileTitle, "")
@@ -126,7 +127,7 @@ Page {
                     fileTitle=result
                 });
             }
-
+            ready =false
             return;
         }
         else {
@@ -143,7 +144,7 @@ Page {
                         documentHandler.setDictionary(fileType);
                     })
                 }else {
-                    pageStack.push(restoreD);
+                    pageStack.push(restoreD, {fullFilePath:fullFilePath});
                 }
             })
             myeditor.forceActiveFocus();
@@ -153,6 +154,7 @@ Page {
                 hint = hint+1
             }
         }
+        ready = true
     }
 
     Drawer {
@@ -192,20 +194,20 @@ Page {
                 onClicked: {
                     if (file.text.slice(-1) =="/") {
                         lmodel.loadNew(path);
-                    }
-                    else {
+                    }else {
                         fullFilePath=path
-                        py.call('editFile.checkAutoSaved', [path], function(result) {
+                        py.call('editFile.checkAutoSaved', [fullFilePath], function(result) {
                             if(!result){
-                                py.call('editFile.openings', [path], function(result) {
-                                    documentHandler.text = result.text;
+                                py.call('editFile.openings', [fullFilePath], function(result) {
                                     fileTitle=result.fileTitle
+                                    documentHandler.text = result.text;
                                     fileType= /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0];
+                                    previousPath=fullFilePath.replace(fileTitle, "")
                                     py.call('editFile.changeFiletype', [fileType], function(result){});
                                     documentHandler.setDictionary(fileType);
                                 })
                             }else {
-                                pageStack.push(restoreD);
+                                pageStack.push(restoreD, {fullFilePath:fullFilePath});
                             }
                         })
                         myeditor.forceActiveFocus();
@@ -314,7 +316,8 @@ Page {
                             width: parent.width
                             anchors.right:parent.right
                             title: fileTitle
-                            visible: true
+                            visible: !flipable.flipped
+                            enabled: visible
                             MouseArea {
                                 enabled: !flipable.flipped
                                 onClicked: {
@@ -324,99 +327,107 @@ Page {
                             }
                         }
 
-                        back: Flickable {
-                            id: topBarFlick
-                            anchors.fill: parent
-                            contentWidth: menu.width
-                            contentHeight: menu.height
-                            Flow {
-                                id:menu
-                                height: pgHead.height
-                                anchors.horizontalCenter: parent.horizontalCenter
+                        back: Item{
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: parent.width
+                            height: parent.height
+                            clip:true
+                            Flickable {
+                                id: topBarFlick
+                                anchors.fill: parent
+                                contentWidth: menu.width < parent.width ? parent.width:menu.width
+                                contentHeight: menu.height
+                                contentX: topBarFlick.contentWidth/2-parent.width/2
+                                Flow {
+                                    id:menu
+                                    height: pgHead.height
+                                    anchors.horizontalCenter: parent.horizontalCenter
 
-                                SearchField{
-                                    id:searchField
-                                    width: (activeFocus || text.length>0) ? pgHead.width -previous.width*2: implicitWidth
-                                    placeholderText: qsTr("Search")
-                                    EnterKey.onClicked:{
-                                        flipable.search(text,myeditor.cursorPosition,"forward");
-                                        searched=true
-                                    }
-                                    onTextChanged: {
-                                        if(shortcutUsed){
-                                            shortcutUsed=false
-                                            if(searchField.text[searchField.cursorPosition - 1] === "f"|| searchField.text[searchField.cursorPosition - 1] === "F"){
-                                                searchField._editor.remove(searchField.cursorPosition - 1, searchField.cursorPosition)
-                                            }
+                                    SearchField{
+                                        id:searchField
+                                        width: (activeFocus || text.length>0) ? pgHead.width -previous.width*2: implicitWidth
+                                        placeholderText: qsTr("Search")
+                                        EnterKey.onClicked:{
+                                            flipable.search(text,myeditor.cursorPosition,"forward");
+                                            searched=true
                                         }
-                                        errorHighlight = false
-                                        searched = false
+                                        onTextChanged: {
+                                            if(shortcutUsed){
+                                                shortcutUsed=false
+                                                if(searchField.text[searchField.cursorPosition - 1] === "f"|| searchField.text[searchField.cursorPosition - 1] === "F"){
+                                                    searchField._editor.remove(searchField.cursorPosition - 1, searchField.cursorPosition)
+                                                }
+                                            }
+                                            errorHighlight = false
+                                            searched = false
+                                        }
                                     }
-                                }
 
-                                IconButton {
-                                    id:previous
-                                    icon.source: "image://theme/icon-m-previous"
-                                    enabled: searched
-                                    onClicked:{
-                                        flipable.search(searchField.text,myeditor.cursorPosition-searchField.text.length-1,"back");
+                                    IconButton {
+                                        id:previous
+                                        icon.source: "image://theme/icon-m-previous"
+                                        enabled: searched
+                                        onClicked:{
+                                            flipable.search(searchField.text,myeditor.cursorPosition-searchField.text.length-1,"back");
+                                        }
+                                        visible:searchField.activeFocus || searchField.text.length>0
                                     }
-                                    visible:searchField.activeFocus || searchField.text.length>0
-                                }
-                                IconButton {
-                                    id:next
-                                    icon.source: "image://theme/icon-m-next"
-                                    enabled: searched
-                                    onClicked:{
-                                        flipable.search(searchField.text,myeditor.cursorPosition-(searchField.text.length-1),"forward");
+                                    IconButton {
+                                        id:next
+                                        icon.source: "image://theme/icon-m-next"
+                                        enabled: searched
+                                        onClicked:{
+                                            flipable.search(searchField.text,myeditor.cursorPosition-(searchField.text.length-1),"forward");
+                                        }
+                                        visible:searchField.activeFocus || searchField.text.length>0
                                     }
-                                    visible:searchField.activeFocus || searchField.text.length>0
-                                }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-rotate-left"
-                                    enabled: myeditor._editor.canUndo
-                                    onClicked: myeditor._editor.undo()
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-rotate-right"
-                                    enabled: myeditor._editor.canRedo
-                                    onClicked: myeditor._editor.redo()
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                }
-                                IconButton {
-                                    icon.source: "image://ownIcons/icon-m-save"
-                                    enabled: textChangedSave
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                    onClicked: {
-                                        py.call('editFile.savings', [fullFilePath,myeditor.text], function(result) {
-                                            fileTitle=result
-                                        });
-                                        textChangedSave=false;
+                                    IconButton {
+                                        icon.source: "image://theme/icon-m-rotate-left"
+                                        enabled: myeditor._editor.canUndo
+                                        onClicked: myeditor._editor.undo()
+                                        visible:!searchField.activeFocus && searchField.text.length<=0
                                     }
-                                }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-folder"
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                    enabled: !drawer.opened
-                                    onClicked:{
-                                        lmodel.loadNew(previousPath)
-                                        drawer.open = true
+                                    IconButton {
+                                        icon.source: "image://theme/icon-m-rotate-right"
+                                        enabled: myeditor._editor.canRedo
+                                        onClicked: myeditor._editor.redo()
+                                        visible:!searchField.activeFocus && searchField.text.length<=0
                                     }
-                                }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-flip"
-                                    visible: !inSplitView && Screen.sizeCategory === Screen.Large && !searchField.activeFocus && searchField.text.length<=0
-                                    enabled: visible
-                                    onClicked:{
-                                        pageStack.replace(Qt.resolvedUrl("SplitPage.qml"),{fullFilePath: fullFilePath},PageStackAction.Immediate)
+                                    IconButton {
+                                        icon.source: "image://ownIcons/icon-m-save"
+                                        enabled: textChangedSave
+                                        visible:!searchField.activeFocus && searchField.text.length<=0
+                                        onClicked: {
+                                            py.call('editFile.savings', [fullFilePath,myeditor.text], function(result) {
+                                                fileTitle=result
+                                            });
+                                            textChangedSave=false;
+                                        }
                                     }
-                                }
-                                IconButton {
-                                    icon.source: "image://theme/icon-m-close"
-                                    visible:!searchField.activeFocus && searchField.text.length<=0
-                                    onClicked:{
-                                        flipable.flipped = false
+                                    IconButton {
+                                        icon.source: "image://theme/icon-m-folder"
+                                        visible:!searchField.activeFocus && searchField.text.length<=0
+                                        enabled: !drawer.opened && !textChangedSave
+                                        onClicked:{
+                                            lmodel.loadNew(previousPath)
+                                            drawer.open = true
+                                        }
+                                    }
+                                    IconButton {
+                                        icon.source: "image://theme/icon-m-flip"
+                                        visible: !inSplitView && Screen.sizeCategory === Screen.Large && !searchField.activeFocus && searchField.text.length<=0
+                                        enabled: visible && !textChangedSave
+                                        onClicked:{
+                                            pageStack.replace(Qt.resolvedUrl("SplitPage.qml"),{fullFilePath: fullFilePath},PageStackAction.Immediate)
+                                        }
+                                    }
+                                    IconButton {
+                                        icon.source: "image://theme/icon-m-close"
+                                        visible:!searchField.activeFocus && searchField.text.length<=0
+                                        onClicked:{
+                                            flipable.flipped = false
+                                        }
                                     }
                                 }
                             }
@@ -459,6 +470,7 @@ Page {
                         if(textChangedAutoSave){
                             py.call('editFile.autosave', [fullFilePath,myeditor.text], function(result) {
                                 fileTitle=result
+                                previousPath=fullFilePath.replace(fileTitle.slice(0, -1), "")
                             });
                             textChangedAutoSave=false;
                         }
@@ -540,18 +552,22 @@ Page {
                             KeyboardShortcut {
                                 key: "Ctrl+F"
                                 onActivated: {
-                                    shortcutUsed=true
-                                    searchActive()
+                                    if(myeditor.focus){
+                                        shortcutUsed=true
+                                        searchActive()
+                                    }
                                 }
                             }
                             KeyboardShortcut {
                                 key: "Ctrl+S"
                                 onActivated: {
-                                    shortcutUsed=true
-                                    py.call('editFile.savings', [fullFilePath,myeditor.text], function(result) {
-                                        fileTitle=result
-                                        textChangedSave=false;
-                                    });
+                                    if(myeditor.focus){
+                                        shortcutUsed=true
+                                        py.call('editFile.savings', [fullFilePath,myeditor.text], function(result) {
+                                            fileTitle=result
+                                            textChangedSave=false;
+                                        });
+                                    }
                                 }
                             }
 
@@ -693,6 +709,7 @@ Page {
                                 selectionStart: myeditor.selectionStart
                                 selectionEnd: myeditor.selectionEnd
                                 onTextChanged: {
+                                    myeditor.text = text
                                     myeditor.update()
                                 }
                             }

@@ -19,9 +19,21 @@ Page {
             inSplitView:true
             drawer.parent: column1
             myeditor.onTextChanged: {
-                if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
-                    editor2Page.myeditor.text = editor1Page.myeditor.text
+                if(ready && editor2Page.ready && !editor1Page.drawer.opened){
+                    if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
+                        editor2Page.myeditor.text = editor1Page.myeditor.text
+                    }
                 }
+            }
+            onFileTitleChanged: {
+                if(ready && editor2Page.ready && !editor1Page.drawer.opened){
+                    if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
+                         editor2Page.fileTitle= editor1Page.fileTitle
+                    }
+                }
+            }
+            myeditor.onFocusChanged: {
+                if(myeditor.focus) py.call('editFile.changeFiletype', [fileType], function(result){});
             }
         }
 
@@ -46,11 +58,22 @@ Page {
             inSplitView: true
             drawer.parent: column2
             myeditor.onTextChanged: {
-                if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
-                    editor1Page.myeditor.text = editor2Page.myeditor.text
+                if(ready && editor1Page.ready && !editor2Page.drawer.opened){
+                    if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
+                        editor1Page.myeditor.text = editor2Page.myeditor.text
+                    }
                 }
             }
-
+            onFileTitleChanged: {
+                if(ready && editor1Page.ready && !editor2Page.drawer.opened){
+                    if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
+                         editor1Page.fileTitle= editor2Page.fileTitle
+                    }
+                }
+            }
+            myeditor.onFocusChanged: {
+                if(myeditor.focus) py.call('editFile.changeFiletype', [fileType], function(result){});
+            }
         }
 
     }

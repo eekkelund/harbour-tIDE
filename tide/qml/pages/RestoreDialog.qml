@@ -20,6 +20,7 @@ import io.thp.pyotherside 1.3
 
 
 Dialog{
+    property string fullFilePath
     Column{
         width: parent.width
         DialogHeader {}
@@ -41,7 +42,7 @@ Dialog{
             documentHandler.text = result.text;
             fileTitle=result.fileTitle
             documentHandler.setDictionary(fileType);
-            py.call('editFile.savings', [filePath,result.text], function(result) {
+            py.call('editFile.savings', [fullFilePath,result.text], function(result) {
                 fileTitle=result
             });
         })
