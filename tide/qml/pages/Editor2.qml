@@ -48,7 +48,7 @@ Page {
     function pageStatusChange(page){
         if((page.status !== PageStatus.Active) || (myeditor.text.length > 0)){
             if (autoSave&&textChangedAutoSave){
-                py.call('editFile.savings', [fullFilePath,result.text], function(result) {
+                py.call('editFile.savings', [fullFilePath,myeditor.text], function(result) {
                     fileTitle=result
                 });
             }
