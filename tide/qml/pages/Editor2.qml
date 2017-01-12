@@ -38,81 +38,6 @@ Page {
     property alias myeditor: myeditor
     property alias drawer:drawer
 
-    //Try to fix linenumbering
-    /*property var lineNumberslist: new Array()
-    property int lastLineCount:0
-    property int numLines:0
-    property int lineCount: 1
-
-    function numberOfLines() {
-        console.log(myeditor._editor.lineCount)
-        //while(myeditor._editor.lineCount >= lineCount) {
-           //if(myeditor.text.match(/\n/g) || []){
-                var lineBreakPosition
-                for (var i = 1 ; i <= myeditor.text.length; i++)
-                {
-                    console.log(Math.round(myeditor.positionToRectangle(i).y/myeditor.positionToRectangle(i).height+1))
-                    console.log(lineCount)
-                    if (Math.round(myeditor.positionToRectangle(i).y/myeditor.positionToRectangle(i).height+1) > lineCount){
-                        if (myeditor.text[i-1] === "\n"){
-                            console.log("tämäpäs")
-                            numLines =numLines+1
-                            lineNumberslist.push(numLines)
-
-                        }else{
-                            console.log("tämdsäpäs")
-                            lineNumberslist.push(" ")
-                        }
-                        lineCount=lineCount+1
-                    }
-                }
-
-            //}
-       // }
-
-        //lineNumberslist += 1;
-        //lineNumberslist=lastLineCount
-        //console.log(lineNumberslist)
-        //return lineNumberslist;
-                lastLineCount=lineCount
-    }
-
-    function lineNumberChanged() {
-        console.log(lastLineCount)
-        console.log(myeditor._editor.lineCount)
-        if (lastLineCount===lineCount){
-        if (myeditor._editor.lineCount > lineNumberslist.length){//lastLineCount) {
-            console.log("Last character = " + myeditor.text[myeditor.cursorPosition - 1])
-            if(myeditor.text[myeditor.cursorPosition - 1] !== "\n") {
-                //lineNumberslist += "\n"
-                // += 1
-                //lineNumberslist.push(" ")
-                lineNumberslist.splice(myeditor.currentLine-1, 0, " ")
-            }
-            else {
-                //lineNumberslist += numberOfLines() + "\n";
-                // += " "
-                numLines =numLines+1
-                lineNumberslist.push(numLines)
-
-            }
-            lastLineCount = myeditor._editor.lineCount;
-        } else if (myeditor._editor.lineCount < lineNumberslist.length){//lastLineCount) {
-            //lineNumberslist = lineNumberslist.slice(0, -2);
-            console.log("perkr")
-            var popp = lineNumberslist.pop()
-             console.log(lineNumberslist)
-            if( popp !== " "){
-                numLines =numLines-1
-            }
-
-            lastLineCount = myeditor._editor.lineCount;
-        }
-        lineCount = lastLineCount
-        return lineNumberslist
-        }
-    }*/
-
     function searchActive(){
         if (!flipable.flipped){
             flipable.flipped = true
@@ -123,7 +48,7 @@ Page {
     function pageStatusChange(page){
         if((page.status !== PageStatus.Active) || (myeditor.text.length > 0)){
             if (autoSave&&textChangedAutoSave){
-                py.call('editFile.autosave', [fullFilePath,myeditor.text], function(result) {
+                py.call('editFile.savings', [fullFilePath,result.text], function(result) {
                     fileTitle=result
                 });
             }

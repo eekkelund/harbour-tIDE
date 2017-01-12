@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pyotherside
-import os, shutil, tarfile, pty, sys
+import os, shutil, tarfile, pty, sys, re, glob
 from select import select
 from subprocess import PIPE, Popen, STDOUT
 from threading import Thread
@@ -11,7 +11,7 @@ import signal
 process =None
 bgthread =None
 buildP =None
-project=None
+name=None
 
 def createBuildDir(projectName, buildPath, projectPath):
     try:
@@ -28,21 +28,27 @@ def createBuildDir(projectName, buildPath, projectPath):
         raise
 
 def getReady(projectName, buildPath, projectPath):
-    #cwd = os.getcwd()
-    #pyotherside.send(cwd)
-    with tarfile.open(projectName+"-0.1.tar.bz2", "w:bz2") as tar:
-           tar.add(projectPath+"/"+ projectName, arcname=os.path.basename(projectPath+"/"+ projectName))
-    shutil.move(projectName+"-0.1.tar.bz2", buildPath+"/SOURCES/"+projectName+"-0.1.tar.bz2")
-    shutil.copy(projectPath+"/"+ projectName+"/rpm/"+projectName+".spec", buildPath+"/SPECS/"+projectName+".spec")
-    global project
+    #Find the specfile
+    for file in glob.glob(projectPath+"/"+ projectName+"/rpm/*" + ".spec"):
+        specfile = file
+    #Read the version
+    spec = open(specfile, 'r')
+    spectxt = spec.read()
+    spec.close()
+    version=re.search('(?<=Version:).*',spectxt).group(0).strip()
+    global name
+    name = re.search('(?<=Name:).*',spectxt).group(0).strip()
+    with tarfile.open(name+"-"+version+".tar.bz2", "w:bz2") as tar:
+           tar.add(projectPath+"/"+ projectName, arcname=name)#os.path.basename(projectPath+"/"+ projectName))
+    shutil.move(name+"-"+version+".tar.bz2", buildPath+"/SOURCES/"+name+"-"+version+".tar.bz2")
+    shutil.copy(specfile, buildPath+"/SPECS/"+name+".spec")
     global buildP
-    project=projectName
     buildP =buildPath
 
 def build():
     master_fd, slave_fd = pty.openpty()
     global process
-    process = Popen(["rpmbuild", "-ba", buildP+"/SPECS/"+project+".spec"], stdin=slave_fd, stdout=slave_fd, stderr=STDOUT, bufsize=0, close_fds=True)
+    process = Popen(["rpmbuild", "-ba", buildP+"/SPECS/"+name+".spec"], stdin=slave_fd, stdout=slave_fd, stderr=STDOUT, bufsize=0, close_fds=True)
     pyotherside.send('pid', process.pid)
     timeout = .1
     with os.fdopen(master_fd, 'r+b', 0) as master:
@@ -83,5 +89,6 @@ def start_proc():
 
 def kill():
     os.kill(process.pid, signal.SIGTERM)
+    process.wait()
     bgthread = None
     return "stopperd"

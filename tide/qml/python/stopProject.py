@@ -74,6 +74,7 @@ def start_proc():
 
 def kill():
     os.kill(process.pid, signal.SIGTERM)
+    process.wait()
     bgthread = None
     return "stopperd"
 
