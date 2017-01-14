@@ -136,11 +136,9 @@ InputHandler {
 
             if ( preedit.length > 0 ) {
                 commit(preedit)
-            } else {
-                empty()
-                MInputMethodQuick.sendKey(Qt.Key_Return)
             }
-
+            empty()
+            MInputMethodQuick.sendKey(Qt.Key_Return)
             handled = true
 
         } else if ( pressedKey.key === Qt.Key_Tab ) {
