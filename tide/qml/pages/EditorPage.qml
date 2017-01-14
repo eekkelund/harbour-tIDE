@@ -37,6 +37,7 @@ Page {
     property alias background: background
     property alias myeditor: myeditor
     property alias drawer:drawer
+    property alias restoreD:restoreD
 
     function searchActive(){
         if (!flipable.flipped){
@@ -69,7 +70,7 @@ Page {
                         documentHandler.setDictionary(fileType);
                     })
                 }else {
-                    pageStack.push(restoreD, {fullFilePath:fullFilePath});
+                    pageStack.push(restoreD, {pathToFile:fullFilePath});
                 }
             })
             myeditor.forceActiveFocus();
@@ -111,7 +112,7 @@ Page {
                 property string path: pathh
                 id: litem
                 width: parent.width
-                height: Theme.itemSizeExtraSmall
+                height: Theme.itemSizeSmall
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -123,6 +124,7 @@ Page {
                         fullFilePath=path
                         py.call('editFile.checkAutoSaved', [fullFilePath], function(result) {
                             if(!result){
+                                console.log(fullFilePath+" "+ path)
                                 py.call('editFile.openings', [fullFilePath], function(result) {
                                     fileTitle=result.fileTitle
                                     documentHandler.text = result.text;
@@ -132,7 +134,7 @@ Page {
                                     documentHandler.setDictionary(fileType);
                                 })
                             }else {
-                                pageStack.push(restoreD, {fullFilePath:fullFilePath});
+                                pageStack.push(restoreD, {pathToFile:path});
                             }
                         })
                         myeditor.forceActiveFocus();
@@ -184,6 +186,14 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     distance: 1
                     loops: 2
+                }
+                InteractionHintLabel {
+                    text: qsTr("Tap to show top bar")
+                    opacity: headerHint.running ? 1.0 : 0.0
+                    Behavior on opacity { FadeAnimation {} }
+                    width: parent.width
+                    anchors.top: parent.bottom
+                    invert: true
                 }
 
                 Column {

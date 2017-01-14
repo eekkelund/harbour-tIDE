@@ -118,8 +118,8 @@ Dialog {
             fType.text =""
             cBox.currentIndex = 0
             singleFile=fName+ext
-            accDest=Qt.resolvedUrl("Editor2.qml")
-            dialog.acceptDestination=Qt.resolvedUrl("Editor2.qml")
+            accDest=Qt.resolvedUrl("EditorPage.qml")
+            dialog.acceptDestination=Qt.resolvedUrl("EditorPage.qml")
             acceptDestinationInstance.fullFilePath = fPath
         }
     }

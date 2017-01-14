@@ -21,6 +21,7 @@ Page {
     id: splitPage
     property string fullFilePath
     allowedOrientations: Orientation.LandscapeMask
+    property int editor:0
 
     Item {
         id: column1
@@ -28,12 +29,16 @@ Page {
         anchors.left: parent.left
         height: splitPage.height
 
-        Editor2 {
+        EditorPage {
             id: editor1Page
             width: parent.width
             height: parent.height
             inSplitView:true
             drawer.parent: column1
+            restoreD.onDone:{
+                splitPage.fullFilePath = fullFilePath
+                editor=1
+            }
             myeditor.onTextChanged: {
                 if(ready && editor2Page.ready && !editor1Page.drawer.opened){
                     if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
@@ -44,7 +49,7 @@ Page {
             onFileTitleChanged: {
                 if(ready && editor2Page.ready && !editor1Page.drawer.opened){
                     if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
-                         editor2Page.fileTitle= editor1Page.fileTitle
+                        editor2Page.fileTitle= editor1Page.fileTitle
                     }
                 }
             }
@@ -67,12 +72,17 @@ Page {
         anchors.right: parent.right
         height: splitPage.height
 
-        Editor2 {
+        EditorPage {
             id: editor2Page
             width: parent.width
             height: parent.height
             inSplitView: true
             drawer.parent: column2
+            restoreD.onDone:{
+                splitPage.fullFilePath = fullFilePath
+                editor=2
+            }
+
             myeditor.onTextChanged: {
                 if(ready && editor1Page.ready && !editor2Page.drawer.opened){
                     if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
@@ -83,7 +93,7 @@ Page {
             onFileTitleChanged: {
                 if(ready && editor1Page.ready && !editor2Page.drawer.opened){
                     if(editor1Page.fullFilePath===editor2Page.fullFilePath) {
-                         editor1Page.fileTitle= editor2Page.fileTitle
+                        editor1Page.fileTitle= editor2Page.fileTitle
                     }
                 }
             }
@@ -94,10 +104,22 @@ Page {
 
     }
     onStatusChanged:{
-        editor2Page.fullFilePath= fullFilePath
-        editor1Page.fullFilePath= fullFilePath
+        switch(editor) {
+        case 0:
+            editor2Page.fullFilePath= fullFilePath
+            editor1Page.fullFilePath= fullFilePath
+            break;
+        case 1:
+            editor1Page.fullFilePath= fullFilePath
+            break;
+        case 2:
+            editor2Page.fullFilePath= fullFilePath
+            break;
+        }
         editor2Page.pageStatusChange(splitPage)
         editor1Page.pageStatusChange(splitPage)
+        editor2Page.ready = true
+        editor1Page.ready =true
     }
 
 }

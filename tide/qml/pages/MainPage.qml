@@ -23,7 +23,7 @@ Page{
     property bool hadArgs: false
 
     function openEditor(chooserPath){
-        pageStack.replaceAbove(pageStack.previousPage(), Qt.resolvedUrl("Editor2.qml"),{fullFilePath: chooserPath})
+        pageStack.replaceAbove(pageStack.previousPage(), Qt.resolvedUrl("EditorPage.qml"),{fullFilePath: chooserPath})
         pageStack.nextPage();
     }
 
@@ -93,7 +93,7 @@ Page{
                 if (args.length > 1) {
                     filePath=args[1]
                     hadArgs = true
-                    pageStack.push(Qt.resolvedUrl("Editor2.qml"),{fullFilePath: args[1]})
+                    pageStack.push(Qt.resolvedUrl("EditorPage.qml"),{fullFilePath: args[1]})
                 }
             }
         }

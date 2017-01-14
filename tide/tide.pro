@@ -17,7 +17,6 @@ OTHER_FILES += qml/harbour-tide.qml \
     qml/pages/CreatorHome.qml \
     qml/pages/AddFileDialog.qml \
     qml/pages/AppOutput.qml \
-    qml/pages/Editor2.qml \
     qml/pages/RestoreDialog.qml \
     qml/pages/BuildOutput.qml \
     qml/pages/MainPage.qml \
@@ -43,7 +42,8 @@ DISTFILES += \
     qml/python/settings.py \
     qml/pages/AboutPage.qml \
     qml/python/deleteProject.py \
-    qml/pages/SplitPage.qml
+    qml/pages/SplitPage.qml \
+    qml/pages/EditorPage.qml
 
 HEADERS += \
     src/realhighlighter.h \

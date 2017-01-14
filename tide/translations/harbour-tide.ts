@@ -287,13 +287,17 @@
     </message>
 </context>
 <context>
-    <name>Editor2</name>
+    <name>EditorPage</name>
     <message>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tap to show top bar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

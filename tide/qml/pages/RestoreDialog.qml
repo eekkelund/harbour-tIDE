@@ -20,7 +20,7 @@ import io.thp.pyotherside 1.3
 
 
 Dialog{
-    property string fullFilePath
+    property string pathToFile
     Column{
         width: parent.width
         DialogHeader {}
@@ -30,23 +30,25 @@ Dialog{
             text: qsTr("Restore autosaved version?")
         }
     }
-    onAccepted: {
-        py.call('editFile.openAutoSaved', [fullFilePath], function(result) {
-            documentHandler.text = result.text;
-            fileTitle=result.fileTitle
-            previousPath=fullFilePath.replace(fileTitle.slice(0, -1), "")
-        })
-    }
-    onRejected:{
-        py.call('editFile.openings', [fullFilePath], function(result) {
-            documentHandler.text = result.text;
-            fileTitle=result.fileTitle
-            documentHandler.setDictionary(fileType);
-            py.call('editFile.savings', [fullFilePath,result.text], function(result) {
-                fileTitle=result
-            });
-        })
-
+    onDone: {
+        if (result == DialogResult.Accepted) {
+            py.call('editFile.openAutoSaved', [pathToFile], function(result) {
+                documentHandler.text = result.text;
+                fileTitle=result.fileTitle
+                previousPath=pathToFile.replace(fileTitle.slice(0, -1), "")
+            })
+            fullFilePath=pathToFile
+        }else if(result == DialogResult.Rejected){
+            py.call('editFile.openings', [pathToFile], function(result) {
+                documentHandler.text = result.text;
+                fileTitle=result.fileTitle
+                documentHandler.setDictionary(fileType);
+                py.call('editFile.savings', [pathToFile,result.text], function(result) {
+                    fileTitle=result
+                });
+            })
+            fullFilePath=pathToFile
+        }
     }
 
 }

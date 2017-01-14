@@ -92,7 +92,7 @@ Page {
         delegate: ListItem {
             id:listItem
             width: parent.width
-            height: Theme.itemSizeExtraSmall +menu.height
+            height: Theme.itemSizeSmall +menu.height
             anchors {
                 left: parent.left
                 right: parent.right

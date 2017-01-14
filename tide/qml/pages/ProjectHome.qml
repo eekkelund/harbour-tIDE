@@ -103,7 +103,7 @@ Page {
             property string path: pathh
             id: litem
             width: parent.width
-            height: Theme.itemSizeExtraSmall
+            height:Theme.itemSizeSmall
             anchors {
                 left: parent.left
                 right: parent.right
@@ -116,7 +116,7 @@ Page {
                 else {
                     filePath=path;
                     singleFile =file.text
-                    pageStack.push(Qt.resolvedUrl("Editor2.qml"),{fullFilePath: path})
+                    pageStack.push(Qt.resolvedUrl("EditorPage.qml"),{fullFilePath: path})
                 }
 
             }
