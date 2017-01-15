@@ -270,10 +270,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Go to /usr/share/</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Go to SD Card</source>
         <translation type="unfinished"></translation>
     </message>
@@ -317,6 +313,10 @@
     </message>
     <message>
         <source>Go SD Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go /usr/share</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

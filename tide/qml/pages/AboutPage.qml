@@ -193,7 +193,7 @@ Page {
                     right: parent.right
                     rightMargin: Theme.horizontalPageMargin
                 }
-                text: qsTr("Projects are located at:") +" /home/nemo/Projects/"
+                text: qsTr("Projects are located at:") +" /home/nemo/tIDE/Projects"
             }
             SectionHeader {
                 text: qsTr("Developer")

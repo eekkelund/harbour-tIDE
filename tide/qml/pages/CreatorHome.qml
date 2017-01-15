@@ -49,15 +49,19 @@ Page {
         height: parent.height
         PullDownMenu {
             MenuItem {
+                enabled:!rootMode
+                visible:enabled
                 text:  projectPath=="/media/sdcard/" ? qsTr("Go to own projects"): qsTr("Go to SD Card")
                 onClicked: {
                     if(projectPath=="/media/sdcard/") {
-                        projectPath=homePath+"/Projects"
+                        projectPath=homePath+"/tIDE/Projects"
                     }else projectPath="/media/sdcard/"
                     goToProjects()
                 }
             }
-            MenuItem {
+            /*MenuItem {
+                enabled:rootMode
+                visible:enabled
                 text:  projectPath=="/usr/share/" ? qsTr("Go to own projects"): qsTr("Go to /usr/share/")
                 onClicked: {
                     if(projectPath=="/usr/share/") {
@@ -65,7 +69,7 @@ Page {
                     }else projectPath="/usr/share/"
                     goToProjects()
                 }
-            }
+            }*/
             MenuItem {
                 text: qsTr("Create new project")
                 onClicked: pageStack.push(Qt.resolvedUrl("CreateProject.qml"))
@@ -77,6 +81,7 @@ Page {
             PageHeader  {
                 width: parent.width
                 title: qsTr("Projects")
+                _titleItem.color: rootMode ? reverseColor(Theme.highlightColor) :Theme.highlightColor
             }
             Label {
                 id:topLabel
@@ -136,6 +141,7 @@ Page {
             importModule('deleteProject', function() {})
             importModule('openFile', function () {
                 py.call('openFile.projects', [projectPath], function(result2) {
+                    console.log(result2)
                     if (result2.length < 1){
                         labelText=qsTr("No projects yet")
                     }

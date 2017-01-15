@@ -23,6 +23,7 @@
 #include <QGuiApplication>
 #include <QQmlEngine>
 #include <QString>
+#include <unistd.h>
 #include "documenthandler.h"
 #include "iconprovider.h"
 #include "keyboardshortcut.h"
@@ -30,6 +31,9 @@
 
 int main(int argc, char *argv[])
 {
+    bool root;
+    if (getuid()) root = false;
+    else root = true;
     qmlRegisterType<DocumentHandler>("harbour.tide.documenthandler", 1, 0, "DocumentHandler");
     qmlRegisterType<KeyboardShortcut>("harbour.tide.keyboardshortcut", 1, 0, "KeyboardShortcut");
     QGuiApplication *app = SailfishApp::application(argc, argv);
@@ -37,10 +41,10 @@ int main(int argc, char *argv[])
     QQuickView *view = SailfishApp::createView();
     QQmlEngine *engine = view->engine();
     engine->addImageProvider(QLatin1String("ownIcons"), new IconProvider);
+    view->rootContext()->setContextProperty("root", root);
     view->setSource(SailfishApp::pathTo("qml/harbour-tide.qml"));
     view->showFullScreen();
 
     return app->exec();
 
 }
-

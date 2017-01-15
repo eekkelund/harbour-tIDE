@@ -32,13 +32,15 @@ ApplicationWindow
     _defaultPageOrientations: Orientation.All
 
     property string homePath: StandardPaths.home
-    property string projectPath: homePath+"/Projects"
+    property string projectPath:rootMode ? "/usr/share/": homePath+"/tIDE/Projects"
+    property string patchPath:rootMode ? "/usr/share/": homePath+"/tIDE/Patches"
     property string buildPath: homePath+"/rpmbuild"
     property string projectName
     property string filePath
     property string singleFile
     property string projectQmlPath:(projectPath +"/"+ projectName+"/qml/"+ projectName+".qml");
-    property bool split: false
+    //property bool split: false
+    property bool rootMode: root
 
     Notification{
         id:notification
@@ -48,6 +50,14 @@ ApplicationWindow
         notification.previewBody = message;
         notification.close();
         notification.publish();
+    }
+
+    //Reverse theme color
+    function reverseColor(color, light) {
+        if(light === undefined)
+            light = 3.0;
+
+        return Qt.lighter(Qt.rgba(1.0 - color.r, 1.0 - color.g, 1.0 - color.b, 1.0), light);
     }
 
     //Settings

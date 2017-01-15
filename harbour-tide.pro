@@ -2,11 +2,12 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    kbdSrc \
-    developKbd \
+    kbdsrc \
+    developkbd \
     dolphin \
     config \
-    tide
+    tide \
+    roothelper
 
 OTHER_FILES += \
     rpm/harbour-tide.changes.in \

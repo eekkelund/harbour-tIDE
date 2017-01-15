@@ -20,7 +20,7 @@ def files(path):
     all = []
     path= abspath(path)
     projectFolder = False;
-    for i in glob.glob(expanduser('~')+'/Projects/*'):
+    for i in glob.glob(expanduser('~')+'/tIDE/Projects/*'):
         if abspath(path) == i:
             projectFolder=True;
     if not projectFolder:

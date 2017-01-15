@@ -40,10 +40,14 @@ Page {
         anchors.fill: parent
         PullDownMenu {
             MenuItem {
-                text:fileModel.path=="/"? qsTr("Go to home"):qsTr("Go to root")
-                onClicked: fileModel.path=="/"?fileModel.path=homePath:fileModel.path="/"
+                enabled:rootMode
+                visible:enabled
+                text:fileModel.path=="/"? qsTr("Go /usr/share"):qsTr("Go to root")
+                onClicked: fileModel.path=="/"?fileModel.path="/usr/share":fileModel.path="/"
             }
             MenuItem {
+                enabled:!rootMode
+                visible:enabled
                 text:fileModel.path=="/media/sdcard/"? qsTr("Go to home"):qsTr("Go SD Card")
                 onClicked: fileModel.path=="/media/sdcard/"?fileModel.path=homePath:fileModel.path="/media/sdcard/"
             }
@@ -58,6 +62,7 @@ Page {
         header: PageHeader {
             title: path == homePath && page.title.length > 0 ? page.title
                                                              : page.path.split("/").pop()
+            _titleItem.color: rootMode ? reverseColor(Theme.highlightColor) :Theme.highlightColor
         }
 
         delegate: ListItem {

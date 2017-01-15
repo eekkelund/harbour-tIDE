@@ -76,6 +76,7 @@ Page {
             PageHeader  {
                 width: parent.width
                 title: projectName
+                _titleItem.color: rootMode ? reverseColor(Theme.highlightColor) :Theme.highlightColor
             }
             Label {
                 width: parent.width

@@ -47,7 +47,8 @@ Page{
             spacing: Theme.paddingMedium
             PageHeader  {
                 width: parent.width
-                title: "tIDE"
+                _titleItem.color: rootMode ? reverseColor(Theme.highlightColor) :Theme.highlightColor
+                title: rootMode ? "tIDE - Root" : "tIDE"
             }
             Label {
                 id:topLabel
