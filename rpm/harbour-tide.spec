@@ -61,8 +61,12 @@ desktop-file-install --delete-original       \
 
 %post
 systemctl-user restart maliit-server.service
+mkdir -p /home/nemo/tIDE/
+mv /home/nemo/Projects/ /home/nemo/tIDE/
 
 %files
+%defattr(4755,root,root,4755)
+%{_bindir}/harbour-tide-root
 %defattr(755,nemo,nemo,755)
 %{_localstatedir}/lib/harbour-tide-keyboard/config/
 %{_localstatedir}/lib/harbour-tide-keyboard/database/
@@ -70,7 +74,9 @@ systemctl-user restart maliit-server.service
 %{_bindir}/%{name}/
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/harbour-tide-root.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_datadir}/icons/hicolor/*/apps/%{name}-root.png
 %{_libdir}
 %{_datadir}/maliit/plugins/com/jolla/layouts/
 %{_datadir}/maliit/plugins/com/jolla/tide/
