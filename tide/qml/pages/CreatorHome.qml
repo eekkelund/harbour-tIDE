@@ -141,7 +141,6 @@ Page {
             importModule('deleteProject', function() {})
             importModule('openFile', function () {
                 py.call('openFile.projects', [projectPath], function(result2) {
-                    console.log(result2)
                     if (result2.length < 1){
                         labelText=qsTr("No projects yet")
                     }

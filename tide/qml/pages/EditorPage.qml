@@ -223,6 +223,7 @@ Page {
                                     myeditor.cursorPosition = myText.indexOf(match[0],position)
                                     if (myText.indexOf(match[0],position)!=-1) myeditor.select(myeditor.cursorPosition,myeditor.cursorPosition+text.length)
                                 }
+                                myeditor.forceActiveFocus()
                             }else{
                                 searchField.errorHighlight = true
                             }

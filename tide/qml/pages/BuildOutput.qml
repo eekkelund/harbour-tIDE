@@ -17,19 +17,17 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
+import org.nemomobile.contentaction 1.0
 
 
 Page {
     id: page
     property int pid
+    property string rpmPath
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
             py.call('buildRPM.kill', [],function(result) {});
         }
-    }
-    PageHeader {
-        id:hdr
-        title: qsTr("Build output")
     }
 
     SilicaListView {
@@ -37,18 +35,26 @@ Page {
         PullDownMenu {
             id:pulldown
             visible: false
-            /*MenuItem {
-                text: qsTr("Install")
+            MenuItem {
+                text: qsTr("Install the RPM")
                 onClicked: {
-                    py.call('buildRPM.kill', [], function(result) {console.log(result)});
-                    listModel.clear()
+                    ContentAction.trigger(rpmPath)
+                    console.log(ContentAction.error)
                 }
-            }*/
+            }
         }
-        anchors.top: hdr.bottom
-        anchors.bottom: parent.bottom
-        anchors.left:parent.left
-        anchors.right: parent.right
+        anchors.fill: parent
+        header: Column {
+            id: header
+            width: parent.width
+            spacing: Theme.paddingMedium
+            PageHeader  {
+                width: parent.width
+                id:hdr
+                title: qsTr("Build output")
+            }
+        }
+
         clip: true
         model: ListModel { id: listModel }
         delegate: ListItem {
@@ -79,11 +85,20 @@ Page {
             id: py
 
             Component.onCompleted: {
+                var success
                 addImportPath(Qt.resolvedUrl('./../python'));
                 setHandler('output', function(text) {
                     listModel.append(text);
+                    if (success&&text.out.length>2) {
+                        rpmPath=text.out.split(": ")[1].trim()
+                        rpmPath = "file://"+rpmPath
+                        console.log(rpmPath)
+                        console.log(text.out)
+                        success = false
+                    }
                     if (text.out.search(".src.rpm")>-1){
                         pulldown.visible =true
+                        success=true
                     }
                 });
                 setHandler('pid', function(pidi) {
