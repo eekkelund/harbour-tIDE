@@ -11,5 +11,4 @@ SUBDIRS += \
 
 OTHER_FILES += \
     rpm/harbour-tide.changes.in \
-    rpm/harbour-tide.spec \
-    rpm/harbour-tide.yaml \
+    rpm/harbour-tide.spec
