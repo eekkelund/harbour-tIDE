@@ -213,7 +213,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Install</source>
+        <source>Install the RPM</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

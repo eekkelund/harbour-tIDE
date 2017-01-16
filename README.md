@@ -19,6 +19,7 @@ Includes keyboard!
   * Running your application
   * Application output & debug log
   * Building a RPM (experimental)
+  * Installing built RPM
   * Predictive text (QML, JS & Python)
 
 * Normal text editor features including:
@@ -30,6 +31,8 @@ Includes keyboard!
   * Redo/Undo
   * Search
   * Launch from terminal (harbour-tide /path/to/file.txt)
+  * Change file on the fly
+  * Split view, only for large screens
 
 * Keyboard:
   * Predictive text depending on what file opened
@@ -63,8 +66,8 @@ Not in particular order..:)
   * Syntax highlighting
   * Predictive
   * Compiling*
-- [ ] Github/Gitlab gui
-- [ ] Start as root
+- [ ] Git gui
+- [X] Root mode
 - [X] Building (kinda, needs more work)
 - [ ] OBS
 - [ ] Help mode(API's)
@@ -82,12 +85,11 @@ Not in particular order..:)
 - [X] Arrow keys functionality
 - [ ] Rewrite some Python parts
 - [X] Tab button
-- [ ] UI for Tablet
+- [X] UI for Tablet
 
 ## Installation
 
 Download RPM from openrepos and `pkcon install-local harbour-tide`  
-Restart maliit-server `systemctl --user restart maliit-server.service` 
 
 ## Contributing
 
@@ -113,6 +115,7 @@ Base of the keyboard: Jolla's [maliit keyboard](https://github.com/maliit) and S
 Some highlighting rules and indentation: Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
 SettingsPage slider: [Ancelad](https://github.com/Ancelad)
 Dedicated to: [Gido Griese](https://talk.maemo.org/member.php?u=60993)
+Icon: [gri4994](https://github.com/gri4994)
 
 ## License
 

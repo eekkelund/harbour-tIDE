@@ -48,7 +48,7 @@ Page{
             PageHeader  {
                 width: parent.width
                 _titleItem.color: rootMode ? reverseColor(Theme.highlightColor) :Theme.highlightColor
-                title: rootMode ? "tIDE - Root" : "tIDE"
+                title: rootMode ? "root@tIDE" : "tIDE"
             }
             Label {
                 id:topLabel

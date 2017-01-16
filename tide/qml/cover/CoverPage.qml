@@ -32,18 +32,21 @@ CoverBackground {
                sourceSize.height: height
 
                function closestMatchingIcon() {
+                   var icon = "harbour-tide"
+                   if(rootMode) icon = icon+"-root"
+
                    if (width <= 500) {
-                       return "/usr/share/icons/hicolor/86x86/apps/harbour-tide.png"
+                       return "/usr/share/icons/hicolor/86x86/apps/"+icon+".png"
                    } else if (width <= 100) {
-                       return "/usr/share/icons/hicolor/108x108/apps/harbour-tide.png"
+                       return "/usr/share/icons/hicolor/108x108/apps/"+icon+".png"
                    } else {
-                       return "/usr/share/icons/hicolor/256x256/apps/harbour-tide.png"
+                       return "/usr/share/icons/hicolor/256x256/apps/"+icon+".png"
                    }
                }
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "tIDE"
+            text: rootMode ? "root@tIDE" : "tIDE"
         }
     }
 }
