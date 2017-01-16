@@ -5,9 +5,10 @@ tIDE, transportable IDE, is an application for SailfishOS to create new applicat
 
 All feature suggestions and contributions welcome! :)
 
-Includes keyboard!
+Includes keyboard and root mode!
 
 ![tIDE](https://github.com/eekkelund/harbour-tIDE/blob/devel/tide/icons/128x128/harbour-tide.png?raw=true "tIDE")
+![tIDEroot](https://github.com/eekkelund/harbour-tIDE/blob/devel/roothelper/icons/128x128/harbour-tide-root.png?raw=true "tIDEroot")
 
 
 ## Features
@@ -113,9 +114,9 @@ Thank you! :)
 
 Base of the keyboard: Jolla's [maliit keyboard](https://github.com/maliit) and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard).  
 Some highlighting rules and indentation: Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
-SettingsPage slider: [Ancelad](https://github.com/Ancelad)
-Dedicated to: [Gido Griese](https://talk.maemo.org/member.php?u=60993)
-Icon: [gri4994](https://github.com/gri4994)
+SettingsPage slider: [Ancelad](https://github.com/Ancelad)  
+Dedicated to: [Gido Griese](https://talk.maemo.org/member.php?u=60993)  
+Icon: [gri4994](https://github.com/gri4994)  
 
 ## License
 
