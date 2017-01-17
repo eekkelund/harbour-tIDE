@@ -145,7 +145,7 @@ Page {
                         labelText=qsTr("No projects yet")
                     }
                     else {
-                        labelText=qsTr("Open an existing project")
+                        labelText= rootMode ? "/usr/share/": qsTr("Open an existing project")
                         for (var i=0; i<result2.length; i++) {
                             listModel.append(result2[i]);
                         }

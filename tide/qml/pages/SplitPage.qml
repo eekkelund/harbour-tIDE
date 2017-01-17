@@ -25,8 +25,9 @@ Page {
 
     Item {
         id: column1
-        width: splitPage.width / 2
+        //width: splitPage.width / 2
         anchors.left: parent.left
+        anchors.right:line.left
         height: splitPage.height
 
         EditorPage {
@@ -64,11 +65,28 @@ Page {
         height: parent.height
         width: Theme.paddingSmall
         color: Theme.highlightDimmerColor
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: parent.width/2
+        //anchors.horizontalCenter: parent.horizontalCenter
+        Drag.active: mouseArea.drag.active
+        property point beginDrag
+
+        MouseArea {
+            id:mouseArea
+            anchors.fill: parent
+            anchors.margins: +Theme.paddingMedium
+            drag.target: parent
+            drag.axis: Drag.XAxis
+            drag.maximumX: splitPage.width-Theme.paddingLarge
+            drag.minimumX: Theme.paddingLarge
+            onPressed: {
+                line.beginDrag = Qt.point(line.x, line.y);
+            }
+        }
     }
     Item {
         id: column2
-        width: splitPage.width / 2
+        //width: splitPage.width / 2
+        anchors.left: line.right
         anchors.right: parent.right
         height: splitPage.height
 

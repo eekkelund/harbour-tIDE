@@ -24,7 +24,7 @@ Page {
     FileModel {
         id: fileModel
 
-        path: homePath
+        path: rootMode ? "/" : homePath
         active: page.status === PageStatus.Active
         onError: {
             showError(traceback)

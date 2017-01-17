@@ -223,6 +223,7 @@ Page {
                                     myeditor.cursorPosition = myText.indexOf(match[0],position)
                                     if (myText.indexOf(match[0],position)!=-1) myeditor.select(myeditor.cursorPosition,myeditor.cursorPosition+text.length)
                                 }
+                                f.time=3
                                 myeditor.forceActiveFocus()
                             }else{
                                 searchField.errorHighlight = true
@@ -352,7 +353,7 @@ Page {
                                     }
                                     IconButton {
                                         icon.source: "image://theme/icon-m-flip"
-                                        visible: !inSplitView && Screen.sizeCategory === Screen.Large && !searchField.activeFocus && searchField.text.length<=0
+                                        visible: !inSplitView /*&& Screen.sizeCategory === Screen.Large*/ && !searchField.activeFocus && searchField.text.length<=0
                                         enabled: visible && !textChangedSave
                                         onClicked:{
                                             pageStack.replace(Qt.resolvedUrl("SplitPage.qml"),{fullFilePath: fullFilePath},PageStackAction.Immediate)

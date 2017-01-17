@@ -35,6 +35,8 @@ Page {
         VerticalScrollDecorator {}
         PullDownMenu {
             MenuItem {
+                visible:!rootMode
+                enabled:visible
                 text: qsTr("Delete project")
                 onClicked: {
                     remorsePopup.execute(qsTr("Deleting project"),  function () {
@@ -51,6 +53,8 @@ Page {
                 }
             }
             MenuItem {
+                visible:!rootMode
+                enabled:visible
                 text: qsTr("Build the app")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("BuildOutput.qml"))
