@@ -64,6 +64,9 @@ systemctl-user restart maliit-server.service
 mkdir -p /home/nemo/tIDE/
 mv /home/nemo/Projects/ /home/nemo/tIDE/
 
+%postun
+rm -rf %{_datadir}/%{name}/
+
 %files
 %defattr(4755,root,root,4755)
 %{_bindir}/harbour-tide-root
