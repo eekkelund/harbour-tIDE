@@ -23,6 +23,7 @@
 #include <QGuiApplication>
 #include <QQmlEngine>
 #include <QString>
+#include <QQmlContext>
 #include <unistd.h>
 #include "documenthandler.h"
 #include "iconprovider.h"

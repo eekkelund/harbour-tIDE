@@ -124,7 +124,7 @@ Page {
                 }
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.highlightColor
-                text: qsTr("Syntax highlighting (QML, JS & Python)") + "\n"+ qsTr("Project template creation for SailfishOS") + "\n"+ qsTr("Autocomplete (Installs new keyboard)") + "\n"+ qsTr("Running your application") + "\n"+ qsTr("Application output & debug log") + "\n"+ qsTr("Building a RPM(experimental)") + "\n"+ qsTr("Predictive text (QML, JS & Python)")
+                text: qsTr("Syntax highlighting (QML, JS & Python)") + "\n"+ qsTr("Project template creation for SailfishOS") + "\n"+ qsTr("Autocomplete (Installs new keyboard)") + "\n"+ qsTr("Running your application") + "\n"+ qsTr("Application output & debug log") + "\n"+ qsTr("Building a RPM(experimental)") + "\n"+ qsTr("Predictive text (QML, JS & Python)")+ "\n"+ qsTr("Installing built RPM")
             }
             Label {
                 width: parent.width
@@ -151,7 +151,61 @@ Page {
                 }
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.highlightColor
-                text:qsTr("Line numbers (experimental)") + "\n"+ qsTr("Autosave") + "\n" +qsTr("Themes") + "\n" +qsTr("Font settings") + "\n" +qsTr("Indentation") + "\n"+ qsTr("Redo/Undo") + "\n"+ qsTr("Search") + "\n"+ qsTr("Launch from terminal (harbour-tide /path/to/file.txt)")
+                text:qsTr("Line numbers (experimental)") + "\n"+ qsTr("Autosave") + "\n" +qsTr("Themes") + "\n" +qsTr("Font settings") + "\n" +qsTr("Indentation") + "\n"+ qsTr("Redo/Undo") + "\n"+ qsTr("Search") + "\n"+ qsTr("Launch from terminal (harbour-tide /path/to/file.txt)")+ "\n"+ qsTr("Change files on the fly")+ "\n"+ qsTr("Split view. And possibility to move separator")
+            }
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.highlightColor
+                font.bold: true
+                text: qsTr("Root mode features:")
+            }
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.highlightColor
+                text:qsTr("Edit UI, app or system files. You name it!") + "\n"+ qsTr("Possibility to run applications in /usr/share")
+            }
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.highlightColor
+                font.bold: true
+                text: qsTr("Keyboard:")
+            }
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.highlightColor
+                text:qsTr("Predictive text depending on what file opened") + "\n"+ qsTr("Tabulator button on Sym view") + "\n"+ qsTr("Arrow keys") + "\n"+ qsTr("Basic hardware support including common shortcuts")
             }
             SectionHeader {
                 text: qsTr("Instructions")

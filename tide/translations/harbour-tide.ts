@@ -175,6 +175,50 @@
         <source>Thank you! :)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Installing built RPM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change files on the fly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Split view. And possibility to move separator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Root mode features:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Possibility to run applications in /usr/share</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keyboard:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predictive text depending on what file opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tabulator button on Sym view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrow keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic hardware support including common shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit UI, app or system files. You name it!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddFileDialog</name>
