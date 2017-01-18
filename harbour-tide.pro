@@ -10,5 +10,5 @@ SUBDIRS += \
     roothelper
 
 OTHER_FILES += \
-    rpm/harbour-tide.changes.in \
-    rpm/harbour-tide.spec
+    rpm/harbour-tide.spec \
+    rpm/harbour-tide.changes

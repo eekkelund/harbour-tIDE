@@ -1,0 +1,33 @@
+# Rename this file as harbour-tide.changes to include changelog
+# entries in your RPM file.
+#
+# Add new changelog entries following the format below.
+# Add newest entries to the top of the list.
+# Separate entries from eachother with a blank line.
+
+# * date Author's Name <author's email> version-release
+# - Summary of changes
+
+* Wed Jan 18 2017 Eetu Kahelin <eekkelund> 0.2-1
+- Added tabulator key, visible on Sym view
+- Added selecting and jumping words to cursor keys
+- Show notification on Python error
+- Possibility to navigate to SD Card-Root-usr/share
+- Adding files in FileManagerPage possible
+- Improved search function
+- Improved spec files
+- Fixed ShiftKey bug
+- Updated keyboard layoyt
+- Added support for hw keyboard. CTRL+F and CTRL+S
+- Fixed keyboard prediction suggestions bug
+- Split view for tablet, quick file change inside editor and scrollable topbar
+- Key shortcuts & predicting support for split view
+- Fixed bug if building not example project
+- Root mode support and renamed directories
+- If build has been successfull possibility to install app
+- Possibility to change splitter position in split view
+- Possibility to delete projects. In CreatorHome via the long-tap-menu in the ListItems, and the pull down menu in ProjectHome. RemorseItem and RemorsePopup in use.(wellef)
+- Add support for wrap mode setting for the editor. As a result the editors textarea is now able to flick in both directions when needed.(wellef)
+
+* Wed Dec 21 2016 Eetu Kahelin <eekkelund> 0.1-1
+- Initial release

@@ -20,8 +20,8 @@ Includes keyboard and root mode!
   * Running your application
   * Application output & debug log
   * Building a RPM (experimental)
-  * Installing built RPM
   * Predictive text (QML, JS & Python)
+  * Installing built RPM
 
 * Normal text editor features including:
   * Line numbers (experimental)
@@ -32,8 +32,12 @@ Includes keyboard and root mode!
   * Redo/Undo
   * Search
   * Launch from terminal (harbour-tide /path/to/file.txt)
-  * Change file on the fly
-  * Split view, only for large screens
+  * Change files on the fly
+  * Split view. And possibility to move separator
+  
+* Root mode features:
+  * Edit UI, application or system files. You name it!
+  * Possibility to run applications in /usr/share
 
 * Keyboard:
   * Predictive text depending on what file opened
@@ -54,43 +58,52 @@ Includes keyboard and root mode!
 
 ![Dark theme](https://cloud.githubusercontent.com/assets/11635400/21082871/471aff54-bfed-11e6-8a35-63c3fbb066a8.png "Dark theme in editor")
 ![Settings](https://cloud.githubusercontent.com/assets/11635400/21082870/471a3cfe-bfed-11e6-8792-a330cea85d68.png "Settings")
-![Predictive text](https://cloud.githubusercontent.com/assets/11635400/21082873/471b61d8-bfed-11e6-9a6e-c328f6371804.png "Predictive text")
+![Predictive text](https://cloud.githubusercontent.com/assets/11635400/22042196/ceeb9e9c-dd12-11e6-9fb9-2c383892bea4.png "Predictive text")
 ![Building&Running](https://cloud.githubusercontent.com/assets/11635400/21082872/471b3bb8-bfed-11e6-85da-31bc6aa4f333.png "Building & Running")
 ![App output](https://cloud.githubusercontent.com/assets/11635400/21133077/c1fb2ef0-c11f-11e6-869b-facc0689d669.png "App output")
-![Build output](https://cloud.githubusercontent.com/assets/11635400/21133076/c1fa9ee0-c11f-11e6-9d8b-588c3f4b6780.png "Build output")
-  
+![Build output](https://cloud.githubusercontent.com/assets/11635400/22043760/d8b025ae-dd19-11e6-8665-000151fc3222.png "Build output")
+![File open in split view](https://cloud.githubusercontent.com/assets/11635400/22042203/d5e80f14-dd12-11e6-9254-92c6269b63d2.png "File open in split view")
+![Draggable separator](https://cloud.githubusercontent.com/assets/11635400/22042212/db53bd86-dd12-11e6-8293-c00726ec1c40.png "Draggable separator")
+![File open](https://cloud.githubusercontent.com/assets/11635400/22042219/e339b94c-dd12-11e6-8668-730f419b342e.png "File open")
+
 ## To Do
 
 Not in particular order..:)
 
-- [ ]  C++ support
+- [ ]  C++ support (v.0.3)
   * Syntax highlighting
   * Predictive
   * Compiling*
-- [ ] Git gui
+- [ ] Git gui (v.0.3)
 - [X] Root mode
 - [X] Building (kinda, needs more work)
-- [ ] OBS
-- [ ] Help mode(API's)
+- [ ] OBS(v.0.3-0.4)
+- [ ] Help mode(API's)(v.0.3-0.4)
 - [ ] Cover for harbour
 - [X] Icon
-- [ ] Harbour version
-- [ ] App cover
-- [ ] Fix line numbering
-- [ ] Nemomobile version
-- [ ] Breakpoints
+- [ ] Harbour version(v.0.3)
+- [ ] App cover(v.0.3-0.4)
+- [ ] Fix line numbering(v.0.3?)
+- [ ] Nemomobile version(v.0.5)
+- [ ] Breakpoints(v.0.5)
 - [X] About page
 - [X] Add new file
 - [X] Hw keyboard
 - [X] File navigation
 - [X] Arrow keys functionality
-- [ ] Rewrite some Python parts
+- [ ] Rewrite some Python parts(v.0.5)
 - [X] Tab button
 - [X] UI for Tablet
+- [ ] Create patches(v.0.3)
+- [ ] .pro file parsing(v.0.3)
+- [ ] More highlighting(v.0.3)
+- [ ] Settings for topbar(v.0.3)
+- [ ] Icon edit?
 
 ## Installation
 
-Download RPM from openrepos and `pkcon install-local harbour-tide`  
+Download RPM from openrepos and `pkcon install-local harbour-tide`
+If you have problem when installing try `pkcon refresh` and then try to install again. 
 
 ## Contributing
 
@@ -102,7 +115,10 @@ Download RPM from openrepos and `pkcon install-local harbour-tide`
 
 ## History
 
+[Version 0.2](https://openrepos.net/content/eekkelund/tide) 18/01/2017
 [Version 0.1](https://openrepos.net/content/eekkelund/tide) 21/12/2016
+
+[Changelog](https://github.com/eekkelund/harbour-tIDE/blob/master/rpm/harbour-tide.changes)
 
 ## Contributors
 
@@ -122,7 +138,7 @@ Icon: [gri4994](https://github.com/gri4994)
 
 Distributed under the GPLv3 license. See ``LICENSE`` for more information.
     
-    Copyright (C) 2016  Eetu Kahelin
+    Copyright (C) 2016-2017  Eetu Kahelin
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
