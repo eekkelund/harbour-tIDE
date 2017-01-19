@@ -143,9 +143,13 @@ InputHandler {
 
         } else if ( pressedKey.key === Qt.Key_Tab ) {
 
+            if(pressedKey.tab && pressedKey.tab.length > 1){
+               commit(preedit+pressedKey.tab)
+            } else {
+                commit(preedit)
+                MInputMethodQuick.sendKey(Qt.Key_Tab, 0, "\t", Maliit.KeyClick)
+            }
             empty()
-            commit(preedit)
-            MInputMethodQuick.sendKey(Qt.Key_Tab, 0, "\t", Maliit.KeyClick)
             handled = true
 
         } else if ( pressedKey.key === Qt.Key_Backspace ) {
