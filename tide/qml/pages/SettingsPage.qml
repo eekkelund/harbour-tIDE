@@ -271,6 +271,18 @@ Page {
                     indentSize = sliderValue
                 }
             }
+            Slider {
+                label: qsTr("Tab size")
+                width: parent.width
+                value: tabSize
+                minimumValue: 1
+                valueText: (value<=1) ? qsTr("Real tab") : value +" "+ qsTr("spaces")
+                stepSize:1
+                maximumValue: 8
+                onReleased: {
+                    tabSize = sliderValue
+                }
+            }
 
             SectionHeader {
                 text: qsTr("Font")

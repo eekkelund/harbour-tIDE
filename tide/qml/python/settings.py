@@ -23,7 +23,8 @@ editorDefaults={'darktheme': 'True',
 'trace':'False',
 'hint':'0',
 'plugins':'False',
-'wrapmode': 3
+'wrapmode': 3,
+'tabsize': '4',
 }
 
 def setDataPath(path):

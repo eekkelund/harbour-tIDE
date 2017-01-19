@@ -104,6 +104,15 @@ ApplicationWindow
     onPluginsChanged: setSetting('plugins',plugins)
     property int wrapMode//: 3
     onWrapModeChanged: setSetting('wrapmode', wrapMode)
+    property int tabSize//:4
+    property string tabString: "    "
+    onTabSizeChanged: {
+        setSetting('tabsize',tabSize)
+        var tabString = ""
+        for (var i = 0; i < tabSize; i++)
+            tabString += " "
+        appWindow.tabString = tabString
+    }
 
     function setSetting(key, value){
         py.call('settings.set', [key, value], function(result) {});
@@ -149,6 +158,7 @@ ApplicationWindow
                         else plugins=false
                     });
                     py.call('settings.get', ['wrapmode'], function(result) {wrapMode=result})
+                    py.call('settings.get', ['tabsize'], function(result) {tabSize=result});
                 });
 
             });

@@ -33,12 +33,13 @@ import Sailfish.Silica 1.0
 FunctionKey {
     property bool chineseOverride: keyboard.chineseOverrideForEnter
 
-     icon.source: attributes.inSymView ? "tab.svg" : MInputMethodQuick.actionKeyOverride.icon
+     icon.source: attributes.inSymView ? "tab.svg":(tab ? "image://theme/icon-m-enter" : MInputMethodQuick.actionKeyOverride.icon)
     //icon.source: !chineseOverride ? MInputMethodQuick.actionKeyOverride.icon : ""
     caption: !chineseOverride ? MInputMethodQuick.actionKeyOverride.label : "输入" // <= "enter"
     key: attributes.inSymView ? Qt.Key_Tab:  Qt.Key_Return
     enabled: !chineseOverride ? MInputMethodQuick.actionKeyOverride.enabled : true
     implicitWidth: shiftKeyWidth
+    tab:MInputMethodQuick.actionKeyOverride.label.slice(-1)==" " && MInputMethodQuick.actionKeyOverride.label.charAt(0)==" "?MInputMethodQuick.actionKeyOverride.label:""
 
     Rectangle {
         color: parent.pressed ? Theme.highlightBackgroundColor : Theme.primaryColor

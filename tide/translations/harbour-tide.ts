@@ -609,5 +609,17 @@
         <source>Try to word wrap, otherwise anywhere</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Tab size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Real tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>spaces</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

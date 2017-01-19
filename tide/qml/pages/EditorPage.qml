@@ -475,6 +475,7 @@ Page {
                             property bool modified: false
                             property string path
 
+                            EnterKey.text: tabString
                             width: background.width -parent.x
                             textMargin: 0
                             labelVisible: false
