@@ -285,6 +285,7 @@ Page {
                                         id:searchField
                                         width: (activeFocus || text.length>0) ? pgHead.width -previous.width*2: implicitWidth
                                         placeholderText: qsTr("Search")
+                                        EnterKey.iconSource: "image://theme/icon-m-enter-next"
                                         EnterKey.onClicked:{
                                             flipable.search(text,myeditor.cursorPosition,"forward");
                                             searched=true
