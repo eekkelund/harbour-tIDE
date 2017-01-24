@@ -81,7 +81,7 @@ public:
 
     QString text() const;
 
-
+    Q_INVOKABLE QStringList lines();
 
 Q_SIGNALS:
 

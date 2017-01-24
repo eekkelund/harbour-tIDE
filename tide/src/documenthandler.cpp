@@ -44,6 +44,7 @@
 #include <QtGui/QTextCursor>
 #include <QtGui/QFontDatabase>
 #include <QtCore/QFileInfo>
+#include <QTextLayout>
 
 DocumentHandler::DocumentHandler() : m_target(0)  , m_doc(0) , m_cursorPosition(-1) , m_selectionStart(0) , m_selectionEnd(0) , m_realhighlighter(0)
 {
@@ -73,6 +74,18 @@ QString DocumentHandler::text() const
 {
     return m_text;
 }
+QStringList DocumentHandler::lines()
+{
+    QStringList lines;
+    for (QTextBlock tb = m_doc->begin(); tb != m_doc->end(); tb = tb.next()){
+        const int nbLines = tb.layout()->lineCount();
+        lines.append(QString::number(tb.blockNumber()+1));
+        for (int i=1; i < nbLines; i++){
+            lines.append(" ");
+        }
+    }
+    return lines;
+}
 
 void DocumentHandler::setTarget(QQuickItem *target)
 {
@@ -82,13 +95,13 @@ void DocumentHandler::setTarget(QQuickItem *target)
     if (!m_target)
         return;
     QVariant doc = m_target->property("textDocument");
-       if (doc.canConvert<QQuickTextDocument*>()) {
-           QQuickTextDocument *qqdoc = doc.value<QQuickTextDocument*>();
-           if (qqdoc)
-               m_doc = qqdoc->textDocument();
-               m_realhighlighter = new RealHighlighter(m_doc);
-       }
-   emit targetChanged();
+    if (doc.canConvert<QQuickTextDocument*>()) {
+        QQuickTextDocument *qqdoc = doc.value<QQuickTextDocument*>();
+        if (qqdoc)
+            m_doc = qqdoc->textDocument();
+        m_realhighlighter = new RealHighlighter(m_doc);
+    }
+    emit targetChanged();
 }
 
 void DocumentHandler::setCursorPosition(int position)
@@ -106,7 +119,7 @@ void DocumentHandler::setSelectionStart(int position)
 
 void DocumentHandler::setSelectionEnd(int position)
 {
-   m_selectionEnd = position;
+    m_selectionEnd = position;
 }
 
 void DocumentHandler::setText(QString &arg)
@@ -142,11 +155,11 @@ void DocumentHandler::setDictionary(QString dictionary)
 QTextCursor DocumentHandler::textCursor() const
 {
     QTextCursor cursor = QTextCursor(m_doc);
-        if (m_selectionStart != m_selectionEnd) {
-            cursor.setPosition(m_selectionStart);
-            cursor.setPosition(m_selectionEnd, QTextCursor::KeepAnchor);
-        } else {
-            cursor.setPosition(m_cursorPosition);
-        }
+    if (m_selectionStart != m_selectionEnd) {
+        cursor.setPosition(m_selectionStart);
+        cursor.setPosition(m_selectionEnd, QTextCursor::KeepAnchor);
+    } else {
+        cursor.setPosition(m_cursorPosition);
+    }
     return cursor;
 }
