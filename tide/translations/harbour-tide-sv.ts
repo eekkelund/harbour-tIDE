@@ -219,6 +219,18 @@
         <source>Edit UI, app or system files. You name it!</source>
         <translation>Redigera UI-, app- eller systemfiler. Ditt val!</translation>
     </message>
+    <message>
+        <source>Start as root script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swedish</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddFileDialog</name>
