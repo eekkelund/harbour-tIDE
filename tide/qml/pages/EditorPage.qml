@@ -459,7 +459,7 @@ Page {
                                     color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
                                     readOnly:true
                                     font.pixelSize: myeditor.font.pixelSize
-                                    text: lineNumberList[index]//index+1
+                                    text: lineNumberList[index]
                                 }
                             }
                         }
@@ -478,6 +478,15 @@ Page {
                             property bool modified: false
                             property string path
                             property int lineCount: _editor.lineCount
+
+                            property string textBeforeCursor
+                            property var openBrackets
+                            property var closeBrackets
+                            property int openBracketsCount
+                            property int closeBracketsCount
+                            property int indentDepth
+                            property string indentStr
+
                             EnterKey.text: tabString
                             width: background.width -parent.x
                             textMargin: 0
@@ -512,10 +521,46 @@ Page {
                                 }
                             }
 
-                            /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
-                        *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
-                        *I HAVE MODIFIED ORIGINAL FUNCTION
-                        */
+                            EnterKey.onClicked: {
+                                var colonCount
+
+                                textChangedAutoSave=true;
+                                f.startY = f.contentY
+                                textBeforeCursor = text.substring(0, cursorPosition - 1)
+
+                                if(fileType=="py"){
+                                    if(text[cursorPosition - 2]===":"){
+                                        colonCount = textBeforeCursor.match(/\:/g).length
+                                        indentStr = new Array(colonCount).join("    ")
+                                        _editor.insert(cursorPosition - 1, indentStr)
+                                        return
+                                    }
+                                }else if(indentSize<0){
+                                    return
+                                }else{
+
+                                    openBrackets = textBeforeCursor.match(/\{/g)
+                                    closeBrackets = textBeforeCursor.match(/\}/g)
+
+                                    if (openBrackets !== null)
+                                    {
+                                        openBracketsCount = openBrackets.length
+                                        closeBracketsCount = 0
+
+                                        if (closeBrackets !== null)
+                                            closeBracketsCount = closeBrackets.length
+
+                                        indentDepth = openBracketsCount - closeBracketsCount
+                                        if (indentDepth > 0){
+                                            indentStr = new Array(indentDepth + 1).join(indentString)
+
+                                            textChangedManually = true
+                                            _editor.insert(cursorPosition, indentStr)
+                                        }
+                                    }
+                                }
+                            }
+
                             onTextChanged: {
                                 if(shortcutUsed&&myeditor.focus){
                                     shortcutUsed=false
@@ -526,75 +571,21 @@ Page {
                                 if (text !== previousText)
                                 {
                                     textChangedSave = true
-                                    //lineNumberChanged()
                                     if (textChangedManually)
                                     {
                                         previousText = text
                                         textChangedManually = false
                                         return
                                     }
-
-                                    if (myeditor.text.length > previousText.length)
-                                    {
-                                        var textBeforeCursor
-                                        var textAfterCursor
-                                        var openBrackets
-                                        var closeBrackets
-                                        var openBracketsCount
-                                        var closeBracketsCount
-                                        var indentDepth
-                                        var indentStr
-                                        var cPosition
-                                        var txti
-                                        var txti2
-                                        var indentStringCount
+                                    if(indentSize<0){
+                                        return
+                                    } else if (myeditor.text.length > previousText.length) {
                                         var lastCharacter = text[cursorPosition - 1]
-                                        var colonCount
-                                        switch (lastCharacter)
-                                        {
 
-                                        case "\n":
-                                            textChangedAutoSave=true;
-                                            f.startY = f.contentY
-                                            textBeforeCursor = text.substring(0, cursorPosition - 1)
-
-                                            if(fileType=="py"){
-                                                if(text[cursorPosition - 2]===":"){
-                                                    colonCount = textBeforeCursor.match(/\:/g).length
-                                                    indentStr = new Array(colonCount).join("    ")
-                                                    _editor.insert(cursorPosition - 1, indentStr)
-                                                    break
-                                                }
-                                            }else if(indentSize<0){
-                                                break
-                                            }else{
-
-                                                openBrackets = textBeforeCursor.match(/\{/g)
-                                                closeBrackets = textBeforeCursor.match(/\}/g)
-
-                                                if (openBrackets !== null)
-                                                {
-                                                    openBracketsCount = openBrackets.length
-                                                    closeBracketsCount = 0
-
-                                                    if (closeBrackets !== null)
-                                                        closeBracketsCount = closeBrackets.length
-
-                                                    indentDepth = openBracketsCount - closeBracketsCount
-                                                    if (indentDepth > 0){
-                                                        indentStr = new Array(indentDepth + 1).join(indentString)
-                                                        indentStringCount = indentStr.length
-
-                                                        textChangedManually = true
-                                                        _editor.insert(cursorPosition, indentStr)
-                                                    }
-                                                }
-                                            }
-                                            break
-                                        case "}":
+                                        if(lastCharacter=="}") {
                                             //bug fix with letters after "}"
                                             if (/^[a-zA-Z]/.test(text[cursorPosition])){
-                                                break
+                                                return
                                             }
 
                                             var lineBreakPosition
@@ -636,7 +627,6 @@ Page {
                                                     }
                                                 }
                                             }
-                                            break
                                         }
                                     }
                                     previousText = text

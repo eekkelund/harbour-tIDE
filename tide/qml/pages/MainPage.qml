@@ -23,8 +23,7 @@ Page{
     property bool hadArgs: false
 
     function openEditor(chooserPath){
-        pageStack.replaceAbove(pageStack.previousPage(), Qt.resolvedUrl("EditorPage.qml"),{fullFilePath: chooserPath})
-        pageStack.nextPage();
+        pageStack.push(Qt.resolvedUrl("EditorPage.qml"),{fullFilePath: chooserPath})
     }
 
     SilicaFlickable {
