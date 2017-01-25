@@ -28,8 +28,8 @@ ApplicationWindow
             id:home
         } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-    allowedOrientations: Orientation.All
-    _defaultPageOrientations: Orientation.All
+    allowedOrientations: defaultAllowedOrientations
+    _defaultPageOrientations: defaultAllowedOrientations
 
     property string homePath: StandardPaths.home
     property string projectPath:rootMode ? "/usr/share/": homePath+"/tIDE/Projects"
