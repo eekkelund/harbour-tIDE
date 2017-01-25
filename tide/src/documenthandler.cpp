@@ -74,7 +74,8 @@ QString DocumentHandler::text() const
 {
     return m_text;
 }
-QStringList DocumentHandler::lines()
+
+QStringList DocumentHandler::lines() const
 {
     QStringList lines;
     for (QTextBlock tb = m_doc->begin(); tb != m_doc->end(); tb = tb.next()){
@@ -101,6 +102,7 @@ void DocumentHandler::setTarget(QQuickItem *target)
             m_doc = qqdoc->textDocument();
         m_realhighlighter = new RealHighlighter(m_doc);
     }
+    connect(m_doc, SIGNAL(blockCountChanged()), this, SLOT(lines()));
     emit targetChanged();
 }
 

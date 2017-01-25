@@ -62,6 +62,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(int selectionStart READ selectionStart WRITE setSelectionStart NOTIFY selectionStartChanged)
     Q_PROPERTY(int selectionEnd READ selectionEnd WRITE setSelectionEnd NOTIFY selectionEndChanged)
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
+    Q_PROPERTY(QStringList lines READ lines NOTIFY linesChanged)
 
 public:
     DocumentHandler();
@@ -81,7 +82,7 @@ public:
 
     QString text() const;
 
-    Q_INVOKABLE QStringList lines();
+    QStringList lines() const;
 
 Q_SIGNALS:
 
@@ -94,6 +95,8 @@ Q_SIGNALS:
     void selectionEndChanged();
 
     void textChanged();
+
+    void linesChanged();
 
 public Q_SLOTS:
 
@@ -119,7 +122,7 @@ private:
 
     RealHighlighter *m_realhighlighter;
 
-
+    QStringList m_lines;
 };
 
 

@@ -34,7 +34,7 @@ Page {
     property bool inSplitView: false
     //Check if file ends with tilde "~" and change the filetype accordingly
     property string fileType: /~$/.test(fileTitle) ? fileTitle.split(".").slice(-1)[0].slice(0, -1) :fileTitle.split(".").slice(-1)[0]
-    property var lineNumberList: []
+    property var lineNumberList: documentHandler.lines
     property alias background: background
     property alias myeditor: myeditor
     property alias drawer:drawer
@@ -455,6 +455,7 @@ Page {
                                 model: myeditor._editor.lineCount
                                 delegate: TextEdit {
                                     anchors.right: linecolumn.right
+                                    height: myeditor._editor.cursorRectangle.height
                                     color: index + 1 === myeditor.currentLine ? Theme.primaryColor : Theme.secondaryColor
                                     readOnly:true
                                     font.pixelSize: myeditor.font.pixelSize
@@ -509,11 +510,6 @@ Page {
                                         });
                                     }
                                 }
-                            }
-                            EnterKey.onClicked: lineNumberList = documentHandler.lines()
-                            onLineCountChanged: {
-                                console.log(documentHandler.lines())
-                                lineNumberList = documentHandler.lines()
                             }
 
                             /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator/blob/master/qml/components/CCodeArea.qml#L143
