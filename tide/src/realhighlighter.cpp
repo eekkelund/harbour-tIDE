@@ -48,6 +48,12 @@ void RealHighlighter::ruleUpdate()
     QStringList keywordPatterns;
     QStringList propertiesPatterns;
 
+    functionFormat.setFontItalic(true);
+    functionFormat.setForeground(QColor(m_secondaryHighlightColor));
+    rule.pattern = QRegExp("\\b[A-Za-z0-9_]+(?=\\()");
+    rule.format = functionFormat;
+    highlightingRules.append(rule);
+
     if (m_dictionary=="qml") {
         jsFormat.setForeground(QColor(m_secondaryHighlightColor));
         jsFormat.setFontItalic(true);
@@ -113,7 +119,7 @@ void RealHighlighter::ruleUpdate()
             rule.format = keywordFormat;
             highlightingRules.append(rule);
         }
-   }else if (m_dictionary=="js") {
+    }else if (m_dictionary=="js") {
         jsFormat.setForeground(QColor(m_secondaryHighlightColor));
         jsFormat.setFontItalic(true);
         QStringList jsPatterns;
@@ -144,6 +150,25 @@ void RealHighlighter::ruleUpdate()
             highlightingRules.append(rule);
         }
     }
+
+    quotationFormat.setForeground(QColor(m_secondaryColor));
+    quotationFormat.setFontItalic(true);
+    rule.pattern = QRegExp("\"([^\"]*)\"");
+    rule.format = quotationFormat;
+    highlightingRules.append(rule);
+
+
+    singleLineCommentFormat.setFontItalic(true);
+    singleLineCommentFormat.setForeground(QColor(m_highlightBackgroundColor));
+    rule.pattern = QRegExp("//[^\n]*");
+    rule.format = singleLineCommentFormat;
+    highlightingRules.append(rule);
+
+    numberFormat.setForeground(QColor(m_primaryColor));
+    rule.pattern = QRegExp("[0-9]");
+    rule.format = numberFormat;
+    highlightingRules.append(rule);
+
 }
 
 void RealHighlighter::highlightBlock(const QString &text)
@@ -157,19 +182,15 @@ void RealHighlighter::highlightBlock(const QString &text)
             index = expression.indexIn(text, index + length);
         }
     }
+
     QTextCharFormat tmpFormat;
     enum {
         StartState = 0,
-        NumberState = 1,
-        IdentifierState = 2,
-        StringState = 3,
         CommentState = 4
     };
     /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator
     *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
-    *I HAVE MODIFIED ORIGINAL FUNCTION :)
-    */
-    QList<int> bracketPositions;
+    *I HAVE MODIFIED ORIGINAL FUNCTION :)*/
 
     int blockState = previousBlockState();
     int bracketLevel = blockState >> 4;
@@ -184,88 +205,19 @@ void RealHighlighter::highlightBlock(const QString &text)
     while (i <= text.length()) {
         QChar ch = (i < text.length()) ? text.at(i) : QChar();
         QChar next = (i < text.length() - 1) ? text.at(i + 1) : QChar();
-
         switch (state) {
-
         case StartState:
             start = i;
-            if (ch.isSpace()) {
-                ++i;
-            } else if (ch.isDigit()) {
-                ++i;
-                state = NumberState;
-            } else if (ch.isLetter() || ch == '_') {
-                ++i;
-                state = IdentifierState;
-            } else if (ch == '\'' || ch == '\"') {
-                ++i;
-                state = StringState;
-            } else if (ch == '/' && next == '*') {
+            if (ch == '/' && next == '*') {
                 ++i;
                 ++i;
                 state = CommentState;
-            } else if (ch == '/' && next == '/') {
-                i = text.length();
-                tmpFormat.setFontItalic(true);
-                tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
-                setFormat(start, text.length(), tmpFormat);
-            } else {
-                if (!QString("(){}[]").contains(ch))
-                    //setFormat(start, 1, Qt::green);
-                if (ch =='{' || ch == '}') {
-                    bracketPositions += i;
-                    if (ch == '{')
-                        bracketLevel++;
-                    else
-                        bracketLevel--;
-                }
+            }else{
                 ++i;
                 state = StartState;
             }
             break;
 
-        case NumberState:
-            if (ch.isSpace() || !ch.isDigit()) {
-                setFormat(start, i - start, QColor(m_primaryColor));
-                state = StartState;
-            } else {
-                ++i;
-            }
-            break;
-
-        /*case IdentifierState:
-            if (ch.isSpace() || !(ch.isDigit() || ch.isLetter() || ch == '_')) {
-                QString token = text.mid(start, i - start).trimmed();
-                if (keywordPatterns.contains(token))
-                    setFormat(start, i - start, Qt::darkBlue);
-                //else if (m_qmlIdsCache.contains(token) || m_qmlIds.contains(token))
-                    setFormat(start, i - start, Qt::darkBlue);
-                //else if (m_propertiesCache.contains(token))
-                    setFormat(start, i - start, Qt::darkBlue);
-                //else if (m_jsIdsCache.contains(token) || m_jsIds.contains(token))
-                    setFormat(start, i - start, Qt::darkBlue);
-                state = StartState;
-            } else {
-                ++i;
-            }
-            break;*/
-
-        case StringState:
-            if (ch == text.at(start)) {
-                QChar prev = (i > 0) ? text.at(i - 1) : QChar();
-                if (prev != '\\') {
-                    ++i;
-                    tmpFormat.setFontItalic(true);
-                    tmpFormat.setForeground(QColor(m_secondaryColor));
-                    setFormat(start, i - start, tmpFormat);
-                    state = StartState;
-                } else {
-                    ++i;
-                }
-            } else {
-                ++i;
-            }
-            break;
         case CommentState:
             if (ch == '*' && next == '/') {
                 ++i;
@@ -278,6 +230,7 @@ void RealHighlighter::highlightBlock(const QString &text)
                 ++i;
             }
             break;
+
         default:
             state = StartState;
             break;
@@ -288,28 +241,13 @@ void RealHighlighter::highlightBlock(const QString &text)
         tmpFormat.setFontItalic(true);
         tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
         setFormat(start, text.length(), tmpFormat);
-    }
-    else
+    }else
         state = StartState;
-
-    /*if (!m_markString.isEmpty()) {
-        int pos = 0;
-        int len = m_markString.length();
-        QTextCharFormat markerFormat;
-        markerFormat.setBackground(Qt::darkBlue);
-        markerFormat.setForeground(Qt::darkBlue);
-        for (;;) {
-            pos = text.indexOf(m_markString, pos, m_markCaseSensitivity);
-            if (pos < 0)
-                break;
-            setFormat(pos, len, markerFormat);
-            ++pos;
-        }
-    }*/
 
     blockState = (state & 15) | (bracketLevel << 4);
     setCurrentBlockState(blockState);
 }
+
 void RealHighlighter::setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, QString highlightBackgroundColor, QString highlightDimmerColor, qreal baseFontPointSize)
 {
     m_primaryColor = QString(primaryColor);

@@ -67,6 +67,11 @@ private:
     QTextCharFormat jsFormat;
     QTextCharFormat propertiesFormat;
     QTextCharFormat pythonFormat;
+    QTextCharFormat singleLineCommentFormat;
+     QTextCharFormat multiLineCommentFormat;
+     QTextCharFormat quotationFormat;
+     QTextCharFormat functionFormat;
+     QTextCharFormat numberFormat;
     void loadDict(QString path, QStringList &patterns);
 };
 
