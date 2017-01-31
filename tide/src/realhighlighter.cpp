@@ -97,6 +97,11 @@ void RealHighlighter::ruleUpdate()
             rule.format = propertiesFormat;
             highlightingRules.append(rule);
         }
+        singleLineCommentFormat.setFontItalic(true);
+        singleLineCommentFormat.setForeground(QColor(m_highlightBackgroundColor));
+        rule.pattern = QRegExp("//[^\n]*");
+        rule.format = singleLineCommentFormat;
+        highlightingRules.append(rule);
 
     }else if (m_dictionary=="py") {
         pythonFormat.setForeground(QColor(m_secondaryHighlightColor));
@@ -139,6 +144,11 @@ void RealHighlighter::ruleUpdate()
             rule.format = keywordFormat;
             highlightingRules.append(rule);
         }
+        singleLineCommentFormat.setFontItalic(true);
+        singleLineCommentFormat.setForeground(QColor(m_highlightBackgroundColor));
+        rule.pattern = QRegExp("//[^\n]*");
+        rule.format = singleLineCommentFormat;
+        highlightingRules.append(rule);
     }else{
         keywordFormat.setForeground(QColor(m_highlightDimmerColor));
         keywordFormat.setFontWeight(QFont::Bold);
@@ -155,13 +165,6 @@ void RealHighlighter::ruleUpdate()
     quotationFormat.setFontItalic(true);
     rule.pattern = QRegExp("\"([^\"]*)\"");
     rule.format = quotationFormat;
-    highlightingRules.append(rule);
-
-
-    singleLineCommentFormat.setFontItalic(true);
-    singleLineCommentFormat.setForeground(QColor(m_highlightBackgroundColor));
-    rule.pattern = QRegExp("//[^\n]*");
-    rule.format = singleLineCommentFormat;
     highlightingRules.append(rule);
 
     numberFormat.setForeground(QColor(m_primaryColor));
@@ -183,69 +186,68 @@ void RealHighlighter::highlightBlock(const QString &text)
         }
     }
 
-    QTextCharFormat tmpFormat;
-    enum {
-        StartState = 0,
-        CommentState = 4
-    };
-    /*ORIGINAL FUNCTION TAKEN FROM HERE: https://github.com/olegyadrov/qmlcreator
-    *ORIGINAL LICENSE APACHE2 AND CREATOR Oleg Yadrov
-    *I HAVE MODIFIED ORIGINAL FUNCTION :)*/
+    if((m_dictionary=="js" &&(m_dictionary=="qml"))){
+        QTextCharFormat tmpFormat;
+        enum {
+            Start = 0,
+            MultiLineComment = 4
+        };
 
-    int blockState = previousBlockState();
-    int bracketLevel = blockState >> 4;
-    int state = blockState & 15;
-    if (blockState < 0) {
-        bracketLevel = 0;
-        state = StartState;
-    }
-
-    int start = 0;
-    int i = 0;
-    while (i <= text.length()) {
-        QChar ch = (i < text.length()) ? text.at(i) : QChar();
-        QChar next = (i < text.length() - 1) ? text.at(i + 1) : QChar();
-        switch (state) {
-        case StartState:
-            start = i;
-            if (ch == '/' && next == '*') {
-                ++i;
-                ++i;
-                state = CommentState;
-            }else{
-                ++i;
-                state = StartState;
-            }
-            break;
-
-        case CommentState:
-            if (ch == '*' && next == '/') {
-                ++i;
-                ++i;
-                tmpFormat.setFontItalic(true);
-                tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
-                setFormat(start, i - start, tmpFormat);
-                state = StartState;
-            } else {
-                ++i;
-            }
-            break;
-
-        default:
-            state = StartState;
-            break;
+        int blockState = previousBlockState();
+        int bracketLevel = blockState >> 4;
+        int state = blockState & 15;
+        if (blockState < 0) {
+            bracketLevel = 0;
+            state = Start;
         }
+
+        int start = 0;
+        int i = 0;
+        while (i <= text.length()) {
+            QChar ch = (i < text.length()) ? text.at(i) : QChar();
+            QChar next = (i < text.length() - 1) ? text.at(i + 1) : QChar();
+            switch (state) {
+            case Start:
+                start = i;
+                if (ch == '/' && next == '*') {
+                    ++i;
+                    ++i;
+                    state = MultiLineComment;
+                }else{
+                    ++i;
+                    state = Start;
+                }
+                break;
+
+            case MultiLineComment:
+                if (ch == '*' && next == '/') {
+                    ++i;
+                    ++i;
+                    tmpFormat.setFontItalic(true);
+                    tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
+                    setFormat(start, i - start, tmpFormat);
+                    state = Start;
+                } else {
+                    ++i;
+                }
+                break;
+
+            default:
+                state = Start;
+                break;
+            }
+        }
+
+        if (state == MultiLineComment){
+            tmpFormat.setFontItalic(true);
+            tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
+            setFormat(start, text.length(), tmpFormat);
+        }else
+            state = Start;
+
+        blockState = (state & 15) | (bracketLevel << 4);
+        setCurrentBlockState(blockState);
     }
-
-    if (state == CommentState){
-        tmpFormat.setFontItalic(true);
-        tmpFormat.setForeground(QColor(m_highlightBackgroundColor));
-        setFormat(start, text.length(), tmpFormat);
-    }else
-        state = StartState;
-
-    blockState = (state & 15) | (bracketLevel << 4);
-    setCurrentBlockState(blockState);
 }
 
 void RealHighlighter::setStyle(QString primaryColor, QString secondaryColor, QString highlightColor, QString secondaryHighlightColor, QString highlightBackgroundColor, QString highlightDimmerColor, qreal baseFontPointSize)
