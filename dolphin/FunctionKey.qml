@@ -39,7 +39,6 @@ KeyBase {
     property int sourceWidth: -1
     property int sourceHeight: -1
     property bool separator
-    property string tab
 
     keyType: KeyType.FunctionKey
     opacity: enabled ? (pressed ? 0.6 : 1.0)

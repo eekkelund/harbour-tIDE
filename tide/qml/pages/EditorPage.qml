@@ -487,7 +487,6 @@ Page {
                             property int indentDepth
                             property string indentStr
 
-                            EnterKey.text: tabString
                             width: background.width -parent.x
                             textMargin: 0
                             labelVisible: false

@@ -142,9 +142,11 @@ InputHandler {
             handled = true
 
         } else if ( pressedKey.key === Qt.Key_Tab ) {
-
-            if(pressedKey.tab && pressedKey.tab.length > 1){
-               commit(preedit+pressedKey.tab)
+            if(settings.load("tabsize") && settings.load("tabsize") > 1){
+                var tabString = ""
+                for (var i = 0; i < settings.load("tabsize"); i++)
+                    tabString += " "
+                commit(preedit+tabString)
             } else {
                 commit(preedit)
                 MInputMethodQuick.sendKey(Qt.Key_Tab, 0, "\t", Maliit.KeyClick)

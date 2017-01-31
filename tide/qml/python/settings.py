@@ -58,3 +58,24 @@ def get(key):
             config.set('editor', key, default)
         result = config['editor'][key]
         return result
+
+#conf files should be in same place. have to rewrite...
+def setTab(key, value):
+    path = "/var/lib/harbour-tide-keyboard/config/config.conf"
+    config = configparser.RawConfigParser()
+    if(path!=None):
+        #Updating configuration file '.conf'
+        config.read(path)
+        config.set('General', key, value)
+        with open(path, 'w+') as configfile:
+            config.write(configfile)
+
+def getTab(key):
+    path = "/var/lib/harbour-tide-keyboard/config/config.conf"
+    config = configparser.RawConfigParser()
+    if(path!=None):
+        config.read(path)
+        if not config.has_option('General',key):
+            config.set('General', key, 4)
+        result = config['General'][key]
+        return result

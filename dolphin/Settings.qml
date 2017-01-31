@@ -13,6 +13,7 @@ Item {
     property alias enMode: _enMode.value
     property alias swipe: _swipe.value
 
+    property alias tabsize: _tabsize.value
 
     property alias scale: _scale.value
     property alias size: _size.value
@@ -56,6 +57,12 @@ Item {
     ConfigurationValue {
         id: _swipe
         key: "/apps/harbour-tide-keyboard/settings/keyboard/swipe"
+        defaultValue: false
+    }
+
+    ConfigurationValue {
+        id: _tabsize
+        key: "/apps/harbour-tide-keyboard/settings/appearance/tabsize"
         defaultValue: false
     }
 
