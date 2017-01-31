@@ -24,7 +24,7 @@ Includes keyboard and root mode!
   * Installing built RPM
 
 * Normal text editor features including:
-  * Line numbers (experimental)
+  * Line numbers
   * Autosave
   * Themes
   * Font settings
@@ -46,6 +46,7 @@ Includes keyboard and root mode!
     * .py  = Pythons and common keywords
     * .*   = Common keywords
   * Tabulator button on Sym view
+    * Tab settings real tab "\t" or amount of spaces
   * Arrow keys
     * On shift latched possibility to jump words
     * On shift down copying
@@ -83,7 +84,7 @@ Not in particular order..:)
 - [X] Icon
 - [ ] Harbour version(v.0.3)
 - [ ] App cover(v.0.3-0.4)
-- [ ] Fix line numbering(v.0.3?)
+- [X] Fix line numbering YEA
 - [ ] Nemomobile version(v.0.5)
 - [ ] Breakpoints(v.0.5)
 - [X] About page
@@ -115,7 +116,8 @@ If you have problem when installing try `pkcon refresh` and then try to install 
 
 ## History
 
-[Version 0.2](https://openrepos.net/content/eekkelund/tide) 18/01/2017
+[Version 0.2.5](https://openrepos.net/content/eekkelund/tide) 31/01/2017  
+[Version 0.2](https://openrepos.net/content/eekkelund/tide) 18/01/2017  
 [Version 0.1](https://openrepos.net/content/eekkelund/tide) 21/12/2016
 
 [Changelog](https://github.com/eekkelund/harbour-tIDE/blob/master/rpm/harbour-tide.changes)
@@ -123,6 +125,12 @@ If you have problem when installing try `pkcon refresh` and then try to install 
 ## Contributors
 
 [wellef](https://github.com/wellef): Project deleting, wrap mode setting for the editor, Python bug fixes
+[GoAlexander](https://github.com/GoAlexander): Icon for searchbar  
+
+### Translations
+
+[eson57](https://github.com/eson57): Swedish  
+[d9h02f](https://github.com/d9h02f): Dutch  
 
 Thank you! :)
 
@@ -132,7 +140,7 @@ Base of the keyboard: Jolla's [maliit keyboard](https://github.com/maliit) and S
 Some highlighting rules and indentation: Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
 SettingsPage slider: [Ancelad](https://github.com/Ancelad)  
 Dedicated to: [Gido Griese](https://talk.maemo.org/member.php?u=60993)  
-Icon: [gri4994](https://github.com/gri4994)  
+Icon: [gri4994](https://github.com/gri4994) SVG: [topiasv-p](https://github.com/topiasv-p)  
 
 ## License
 

@@ -231,6 +231,10 @@
         <source>Start as root script</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Dutch</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddFileDialog</name>
@@ -354,6 +358,10 @@
     </message>
     <message>
         <source>Tap to show top bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

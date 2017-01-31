@@ -330,6 +330,21 @@ Page {
                     }
                     Label {
                         textFormat: Text.StyledText
+                        linkColor: Theme.primaryColor
+                        color: Theme.highlightColor
+                        wrapMode: Text.WordWrap
+                        font.pixelSize: Theme.fontSizeSmall
+                        anchors {
+                            left: parent.left
+                            leftMargin: Theme.horizontalPageMargin
+                            right: parent.right
+                            rightMargin: Theme.horizontalPageMargin
+                        }
+                        text:  "<a href='https://github.com/d9h02f'>d9h02f</a> "+": "+ qsTr("Dutch")
+                        onLinkActivated: Qt.openUrlExternally(link)
+                    }
+                    Label {
+                        textFormat: Text.StyledText
                         color: Theme.primaryColor
                         wrapMode: Text.WordWrap
                         font.pixelSize: Theme.fontSizeSmall
@@ -405,7 +420,7 @@ Page {
                             rightMargin: Theme.horizontalPageMargin
                         }
                         anchors.margins: Theme.paddingLarge
-                        text: qsTr("Icon:")+" "+" <a href='https://github.com/gri4994'>gri4994</a>"+" and "+"<a href='https://github.com/topiasv-p'>topiasv-p</a>"
+                        text: qsTr("Icon:")+" "+" <a href='https://github.com/gri4994'>gri4994</a>"+" and svg "+"<a href='https://github.com/topiasv-p'>topiasv-p</a>"
                         onLinkActivated: Qt.openUrlExternally(link)
                     }
                     Label {

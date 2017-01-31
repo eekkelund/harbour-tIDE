@@ -8,6 +8,19 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Jan 31 2017 Eetu Kahelin <eekkelund> 0.2.5-1
+-Able to start from command line in rootmode.
+-Tabulator key settings, (Real tab - 8spaces)
+-Bugfix: Linecounting works now WOOoo:)
+-Swedish(eson57) and Dutch (d9h02f) translations
+-Bugfix: Respect system allowed orientations settings.(Issue#9)
+-Bugfix: Come back to right folder when returning from editor and indentation function improving
+-Slightly better highlighting time, which affects file opening time
+-Fix: Better tab setting, not final though
+-Settings page available from EditorPage!
+-Better higlighting time, not perfect yet. Multiline needs fix
+-Added enterkey icon for searchbar in editorpage(GoAlexander)
+
 * Wed Jan 18 2017 Eetu Kahelin <eekkelund> 0.2-1
 - Added tabulator key, visible on Sym view
 - Added selecting and jumping words to cursor keys

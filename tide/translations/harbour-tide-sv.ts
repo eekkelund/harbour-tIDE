@@ -231,6 +231,10 @@
         <source>Swedish</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Dutch</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddFileDialog</name>
@@ -355,6 +359,10 @@
     <message>
         <source>Tap to show top bar</source>
         <translation>Tryck för att visa toppfält</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Inställningar</translation>
     </message>
 </context>
 <context>

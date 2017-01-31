@@ -125,7 +125,7 @@
     </message>
     <message>
         <source>Themes</source>
-        <translation>Thema's</translation>
+        <translation>Thema&apos;s</translation>
     </message>
     <message>
         <source>New keyboard is activated from: Settings - Text input - Keyboards - Develop</source>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Built RPM&apos;s are located at:</source>
-        <translation>Gebouwde RPM's worden opgeslagen in:</translation>
+        <translation>Gebouwde RPM&apos;s worden opgeslagen in:</translation>
     </message>
     <message>
         <source>Base of the keyboard: Jolla&apos;s</source>
@@ -218,6 +218,22 @@
     <message>
         <source>Edit UI, app or system files. You name it!</source>
         <translation>Bewerk gebruikersinterface, app- of systeembestanden. Jij kiest!</translation>
+    </message>
+    <message>
+        <source>Start as root script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swedish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -343,6 +359,10 @@
     <message>
         <source>Tap to show top bar</source>
         <translation>Tik om de bovenste balk weer te geven</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Instellingen</translation>
     </message>
 </context>
 <context>
