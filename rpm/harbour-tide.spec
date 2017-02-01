@@ -11,7 +11,7 @@ Name:       harbour-tide
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    transportable IDE
 Version:    0.2.5
-Release:    1
+Release:    2
 Group:      Qt/Qt
 License:    GPLv3
 URL:        https://github.com/eekkelund/harbour-tIDE
@@ -59,10 +59,12 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
+#So dirty..........
 %post
 systemctl-user restart maliit-server.service
-mkdir -p /home/nemo/tIDE/
+install -g nemo -o nemo -d /home/nemo/tIDE/
 mv /home/nemo/Projects/ /home/nemo/tIDE/
+chown -R nemo:nemo /home/nemo/tIDE/
 
 %postun
 rm -rf %{_datadir}/%{name}/qml/pages/Editor2.qml
