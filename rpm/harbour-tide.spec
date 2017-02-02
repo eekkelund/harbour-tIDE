@@ -11,7 +11,7 @@ Name:       harbour-tide
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    transportable IDE
 Version:    0.2.5
-Release:    2
+Release:    3
 Group:      Qt/Qt
 License:    GPLv3
 URL:        https://github.com/eekkelund/harbour-tIDE
