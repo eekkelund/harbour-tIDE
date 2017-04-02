@@ -8,6 +8,16 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Apr 2 2017 Eetu Kahelin <eekkelund> 0.2.6-1
+-Harbour version! Just the editor part though
+-Bugfix: App output working also on SFOS 2.1.x.x
+
+* Tue Feb 5 2017 Eetu Kahelin <eekkelund> 0.2.5-4
+-Create ~/tIDE and ~/tIDE/Projects folders automaticly
+-Bugfix: if project name different than main.qml file then app not able to run.
+-Update swedish translation(eson57)
+-'Bugfix':  fileowner issues (Issue #11) and multiline working again
+
 * Tue Jan 31 2017 Eetu Kahelin <eekkelund> 0.2.5-1
 -Able to start from command line in rootmode.
 -Tabulator key settings, (Real tab - 8spaces)
