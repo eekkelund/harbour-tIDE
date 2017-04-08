@@ -7,8 +7,11 @@ All feature suggestions and contributions welcome! :)
 
 Includes keyboard and root mode!
 
+Winner of [Maemo Coding Competition 2016-2017 "Something new"](https://wiki.maemo.org/index.php?title=Maemo.org_Coding_Competition_2016#Results) category
+
 ![tIDE](https://github.com/eekkelund/harbour-tIDE/blob/devel/tide/icons/128x128/harbour-tide.png?raw=true "tIDE")
 ![tIDEroot](https://github.com/eekkelund/harbour-tIDE/blob/devel/roothelper/icons/128x128/harbour-tide-root.png?raw=true "tIDEroot")
+![tIDEditor](https://github.com/eekkelund/harbour-tIDE/blob/devel/tide/icons/128x128/harbour-tide-editor.png?raw=true "tIDEditor")
 
 
 ## Features
@@ -82,7 +85,7 @@ Not in particular order..:)
 - [ ] Help mode(API's)(v.0.3-0.4)
 - [ ] Cover for harbour
 - [X] Icon
-- [ ] Harbour version(v.0.3)
+- [X] Harbour version(v.0.2.6 Submitted to Jolla store) [tIDEditor](https://github.com/eekkelund/harbour-tIDE/tree/devel/tide)
 - [ ] App cover(v.0.3-0.4)
 - [X] Fix line numbering YEA
 - [ ] Nemomobile version(v.0.5)
@@ -137,7 +140,7 @@ Thank you! :)
 ## Credits
 
 Base of the keyboard: Jolla's [maliit keyboard](https://github.com/maliit) and SaberAltria's [Dolphin keyboard](https://github.com/SaberAltria/harbour-dolphin-keyboard).  
-Some highlighting rules and indentation: Oleg Yadrov's [QML Creator](https://github.com/olegyadrov/qmlcreator)  
+Better 'root@tIDE' script [elros34](https://talk.maemo.org/showpost.php?p=1522202&postcount=28)  
 SettingsPage slider: [Ancelad](https://github.com/Ancelad)  
 Dedicated to: [Gido Griese](https://talk.maemo.org/member.php?u=60993)  
 Icon: [gri4994](https://github.com/gri4994) SVG: [topiasv-p](https://github.com/topiasv-p)  
