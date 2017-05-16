@@ -18,7 +18,7 @@ Database::Database(QQuickItem *parent)
 void Database::initial(QString name)
 {
     //If should use properties
-    if (name != "qml" && name != "js" && name != "py") {
+    if (name != "qml" && name != "js" && name != "py" && name != "sh") {
         name = "keywords";
     }
     //Check if file exists

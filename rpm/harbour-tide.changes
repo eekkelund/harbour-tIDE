@@ -8,6 +8,15 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu May 5 2017 Eetu Kahelin <eekkelund> 0.2.7-2
+-Minor improvements for highlight.
+
+* Tue Apr 26 2017 Eetu Kahelin <eekkelund> 0.2.7-1
+-Harbour version! Released in Jolla store, just the editor part.
+-Improved search highlight and improved highlight in general
+-New cover
+-And small bug fixes, getting ready for Git support
+
 * Tue Apr 2 2017 Eetu Kahelin <eekkelund> 0.2.6-1
 -Harbour version! Just the editor part though
 -Bugfix: App output working also on SFOS 2.1.x.x
