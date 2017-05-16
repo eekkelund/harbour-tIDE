@@ -10,14 +10,13 @@ Name:       harbour-tide
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    transportable IDE
-Version:    0.2.6
+Version:    0.2.8
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
 URL:        https://github.com/eekkelund/harbour-tIDE
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9, qtchooser, qt5-qtdeclarative-qmlscene, pyotherside-qml-plugin-python3-qt5 >= 1.3, rpm-build, meego-rpm-config
-Requires:   qt5-qtdeclarative-import-folderlistmodel
 # Requires: qt5-qmake, make, gcc-c++, qt5-qtgui-devel, qt5-qtcore-devel, libsailfishapp-devel
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
