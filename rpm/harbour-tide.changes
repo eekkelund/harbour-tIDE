@@ -8,6 +8,20 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed May 17 2017 Eetu Kahelin <eekkelund> 0.2.9-1
+-Small cosmetic settings page fixes
+-Fix file opening in splitview with system file manager
+-Fix untitled saving
+
+* Tue May 16 2017 Eetu Kahelin <eekkelund> 0.2.8-1
+-Improvements for system FileManager. Option to use System File Manager as quick file manager
+-Highlightning rewrite, faster, better, cleaner, newer, more functionality. Change QRegExp to QRegularExpression. Better multiline, quotation and search highlight
+-Settings page rewrite. Add settings shortcut to topbar
+-Add option to disable highlight, clean code; create functions
+-Break long .qml pages to smaller components
+-More fonts
+-Bash syntax highlighting
+
 * Thu May 5 2017 Eetu Kahelin <eekkelund> 0.2.7-2
 -Minor improvements for highlight.
 
