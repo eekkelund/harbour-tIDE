@@ -1,5 +1,3 @@
-
-
 Name:       harbour-tide
 
 # >> macros
@@ -10,7 +8,7 @@ Name:       harbour-tide
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    transportable IDE
-Version:    0.2.9
+Version:    0.2.10
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -38,7 +36,8 @@ transportable IDE for SailfishOS devices
 # << build pre
 
 %qtc_qmake5  \
-    VERSION=%{version}
+    VERSION=%{version} \
+    NAME=%{name}
 
 %qtc_make %{?_smp_mflags}
 
@@ -54,10 +53,6 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
-desktop-file-install --delete-original       \
-  --dir %{buildroot}%{_datadir}/applications             \
-   %{buildroot}%{_datadir}/applications/*.desktop
-
 #So dirty..........
 %post
 systemctl-user restart maliit-server.service
@@ -65,9 +60,6 @@ install -g nemo -o nemo -d /home/nemo/tIDE/
 install -g nemo -o nemo -d /home/nemo/tIDE/Projects/
 mv /home/nemo/Projects/ /home/nemo/tIDE/
 chown -R nemo:nemo /home/nemo/tIDE/
-
-%postun
-rm -rf %{_datadir}/%{name}/qml/pages/Editor2.qml
 
 %files
 %defattr(4755,root,root,4755)

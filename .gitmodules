@@ -1,0 +1,4 @@
+[submodule "tide"]
+	path = tide
+	url = git@github.com:eekkelund/tide.git
+	branch = devel

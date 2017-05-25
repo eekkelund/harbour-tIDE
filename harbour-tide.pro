@@ -1,4 +1,3 @@
-
 TEMPLATE = subdirs
 
 SUBDIRS += \
@@ -11,4 +10,11 @@ SUBDIRS += \
 
 OTHER_FILES += \
     rpm/harbour-tide.spec \
-    rpm/harbour-tide.changes
+    rpm/harbour-tide.changes \
+    harbour-tide.desktop
+
+desktop.files =  harbour-tide.desktop
+desktop.path =  /usr/share/applications/
+
+INSTALLS += desktop
+

@@ -9,15 +9,17 @@ Includes keyboard and root mode!
 
 Winner of [Maemo Coding Competition 2016-2017 "Something new"](https://wiki.maemo.org/index.php?title=Maemo.org_Coding_Competition_2016#Results) category
 
-![tIDE](https://github.com/eekkelund/harbour-tIDE/blob/devel/tide/icons/128x128/harbour-tide.png?raw=true "tIDE")
+Check also [tIDEditor](https://github.com/eekkelund/harbour-tIDEditor), Jolla Store allowed version of tIDE.
+
+![tIDE](https://github.com/eekkelund/tide/blob/devel/icons/128x128/harbour-tide.png?raw=true "tIDE")
 ![tIDEroot](https://github.com/eekkelund/harbour-tIDE/blob/devel/roothelper/icons/128x128/harbour-tide-root.png?raw=true "tIDEroot")
-![tIDEditor](https://github.com/eekkelund/harbour-tIDE/blob/devel/tide/icons/128x128/harbour-tide-editor.png?raw=true "tIDEditor")
+![tIDEditor](https://github.com/eekkelund/tide/blob/devel/icons/128x128/harbour-tide-editor.png?raw=true "tIDEditor")
 
 
 ## Features
 
 * Basic IDE features such as:
-  * Syntax highlighting ( QML, JS & Python)
+  * Syntax highlighting ( QML, JS, Bash & Python)
   * Project template creation for SailfishOS
   * Autocomplete (Installs new keyboard)
   * Running your application
@@ -37,6 +39,7 @@ Winner of [Maemo Coding Competition 2016-2017 "Something new"](https://wiki.maem
   * Launch from terminal (harbour-tide /path/to/file.txt)
   * Change files on the fly
   * Split view. And possibility to move separator
+  * Set as default editor
   
 * Root mode features:
   * Edit UI, application or system files. You name it!
@@ -47,6 +50,7 @@ Winner of [Maemo Coding Competition 2016-2017 "Something new"](https://wiki.maem
     * .qml = QML, properties, JS and common keywords
     * .js  = JS and common keywords
     * .py  = Pythons and common keywords
+    * .sh  = Bash and common keywords
     * .*   = Common keywords
   * Tabulator button on Sym view
     * Tab settings real tab "\t" or amount of spaces
@@ -85,7 +89,7 @@ Not in particular order..:)
 - [ ] Help mode(API's)(v.0.3-0.4)
 - [ ] Cover for harbour
 - [X] Icon
-- [X] Harbour version(v.0.2.6 Submitted to Jolla store) [tIDEditor](https://github.com/eekkelund/harbour-tIDE/tree/devel/tide)
+- [X] Harbour version(v.0.2.6 Submitted to Jolla store) [tIDEditor](https://github.com/eekkelund/harbour-tIDEditor)
 - [ ] App cover(v.0.3-0.4)
 - [X] Fix line numbering YEA
 - [ ] Nemomobile version(v.0.5)
