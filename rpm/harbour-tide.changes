@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu May 25 2017 Eetu  Kahelin <eekkelund> 0.2.10-1
+- Visual changes, splitview and topbar
+-Add possibility set as default text editor. Add possibility to edit system files; Root support
+
 * Wed May 17 2017 Eetu Kahelin <eekkelund> 0.2.9-1
 -Small cosmetic settings page fixes
 -Fix file opening in splitview with system file manager
