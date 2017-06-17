@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Jun 08 2017 Eetu  Kahelin <eekkelund> 0.2.10-2
+-Improved Search
+-Possibility to Search/Replace
+
 * Thu May 25 2017 Eetu  Kahelin <eekkelund> 0.2.10-1
 - Visual changes, splitview and topbar
 -Add possibility set as default text editor. Add possibility to edit system files; Root support

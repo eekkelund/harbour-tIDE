@@ -25,7 +25,7 @@ Check also [tIDEditor](https://github.com/eekkelund/harbour-tIDEditor), Jolla St
   * Running your application
   * Application output & debug log
   * Building a RPM (experimental)
-  * Predictive text (QML, JS & Python)
+  * Predictive text (QML, JS, Bash & Python)
   * Installing built RPM
 
 * Normal text editor features including:
@@ -35,7 +35,7 @@ Check also [tIDEditor](https://github.com/eekkelund/harbour-tIDEditor), Jolla St
   * Font settings
   * Indentation
   * Redo/Undo
-  * Search
+  * Search & Replace
   * Launch from terminal (harbour-tide /path/to/file.txt)
   * Change files on the fly
   * Split view. And possibility to move separator
